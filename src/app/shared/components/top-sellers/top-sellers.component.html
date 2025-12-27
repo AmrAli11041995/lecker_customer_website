@@ -18,12 +18,13 @@
     <div class="cards" #track>
       <div class="card" *ngFor="let p of products">
         <div class="image-wrap">
-          <img [src]="imageEndPoint + (p.image?.imageUrl ?? '')" [alt]="p.name" />
+          <img *ngIf="p.image" [src]="fileBaseURL + (p.image?.imageUrl)" [alt]="p.name" />
+          <img *ngIf="!p.image" src="assets/img/cookies.png" [alt]="p.name" />
         </div>
         <div class="meta">
           <h3>{{ p.name }}</h3>
-          <p class="desc">Handpicked favorites loved by our shoppers.</p>
-          <button class="shop">Shop Now</button>
+          <p class="desc">{{ p.descreption }}</p>
+          <button class="shop" (click)="selectProduct(p)" routerLink="/products">Shop Now</button>
         </div>
       </div>
     </div>

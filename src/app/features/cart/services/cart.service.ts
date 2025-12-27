@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart, CartItem, CouponCode } from '../models/cart.model';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +74,7 @@ export class CartService {
         id: Date.now(), // Simple ID generation
         productId: product.id,
         name: product.name,
-        image: product.imageUrl,
+        image:product.image?.imageUrl ?  environment.fileBaseURL+ product.image?.imageUrl :  'assets/img/cookies.png',
         price: product.price,
         quantity: quantity || 1,
         subtotal: product.price * (quantity || 1)

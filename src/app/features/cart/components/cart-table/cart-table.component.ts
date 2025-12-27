@@ -17,6 +17,11 @@ export class CartTableComponent {
   @Output() returnToShop = new EventEmitter<void>();
   @Output() updateCart = new EventEmitter<void>();
 
+  constructor() { 
+    debugger;
+    let val = this.cartItems;
+  }
+  
   onQuantityChange(itemId: number, quantity: number): void {
     this.quantityChange.emit({ itemId, quantity });
   }

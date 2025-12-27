@@ -19,7 +19,8 @@
               [class.active]="i === selectedImageIndex"
               (click)="selectImage(i)"
             >
-              <img [src]="fileBaseURL +image" [alt]="product.name">
+              <img *ngIf="image" [src]="fileBaseURL +image" [alt]="product.name">
+              <img *ngIf="!image"[src]="'assets/img/cookies.png'" [alt]="product.name">
             </div>
             <!-- Scroll Arrow -->
             <div class="scroll-arrow">
@@ -31,7 +32,8 @@
 
           <!-- Main Product Image -->
           <div class="main-image">
-            <img [src]="fileBaseURL +productImages[selectedImageIndex]" [alt]="product.name">
+            <img *ngIf="productImages[selectedImageIndex]" [src]="fileBaseURL +productImages[selectedImageIndex]" [alt]="product.name">
+            <img *ngIf="!productImages[selectedImageIndex]"[src]="'assets/img/cookies.png'" [alt]="product.name">
           </div>
         </div>
 
@@ -47,7 +49,8 @@
               class="carousel-image"
               [class.active]="i === selectedImageIndex"
             >
-              <img [src]="fileBaseURL + image" [alt]="product.name">
+              <img *ngIf="image" [src]="fileBaseURL + image" [alt]="product.name">
+              <img *ngIf="!image"[src]="'assets/img/cookies.png'" [alt]="product.name">
             </div>
           </div>
           
@@ -137,7 +140,7 @@
         <!-- Description -->
         <div class="description">
           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p> -->
-          <p>{{ product.description }}</p>
+          <p>{{ product.descreption }}</p>
         </div>
 
         <!-- Quantity Selector -->

@@ -29,9 +29,9 @@
         <div class="right-content">
           <!-- Search Bar -->
           <app-search-bar
-            [searchQuery]="searchOptions.query"
-            [sortBy]="searchOptions.sortBy"
-            [resultsCount]="searchOptions.resultsCount"
+            [searchQuery]="searchOptions.query!"
+            [sortBy]="searchOptions.sortBy!"
+            [resultsCount]="searchOptions.resultsCount!"
             (searchChange)="onSearchChange($event)"
             (sortChange)="onSortChange($event)"
             (categoryChange)="onCategoryChange($event)"

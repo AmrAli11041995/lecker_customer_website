@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -32,9 +32,10 @@ import { ProductService } from '../../../products/services/product.service';
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent implements OnInit, OnDestroy {
+  @ViewChild('filterSidebar') filterSidebar!: FilterSidebarComponent;
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  searchOptions: SearchOptions = { query: '', sortBy: 'All', resultsCount: 0 };
+  searchOptions: SearchOptions = { query: '', sortBy: 'All' , resultsCount: 0 };
   currentPage = 1;
   itemsPerPage = 9;
   isFilterSidebarOpen = true; // Open by default on desktop
@@ -42,6 +43,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   // Modal state
   selectedProduct: Product | null = null;
   isModalOpen = false;
+  currentFilters: { PageNumber: number; PageSize: number; SearchTerm: string | null; TagIds: (number | null)[] | null; Rate: number | null; SortBy: string | null } | null = null;
 
   private destroy$ = new Subject<void>();
 
@@ -55,6 +57,23 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadProducts();
+    this.dataService.filterQuery$.pipe(takeUntil(this.destroy$)).subscribe(query => {
+      this.currentFilters = query;
+      this.currentPage = query.PageNumber;
+      this.itemsPerPage = query.PageSize;
+      this.productService.GetProducts(query).subscribe({
+        next: (response) => {
+          this.products = response.data;
+          this.filteredProducts = [...this.products];
+          this.sortProducts();
+          this.updateSearchOptions();
+        },
+        error: (error) => {
+          console.error('Error applying filters:', error);
+          this.toastService.showError('Failed to apply filters. Please try again.');
+        }
+      });
+    });
     this.handleResponsiveSidebar();
     window.addEventListener('resize', () => this.handleResponsiveSidebar());
   }
@@ -79,11 +98,16 @@ export class ShopComponent implements OnInit, OnDestroy {
   //   this.updateSearchOptions();
   // }
   loadProducts() {
-    this.productService.GetProducts().subscribe({
+    let prodId =  null
+    if(this.dataService.selectedTopSellerProduct){
+      prodId = this.dataService.selectedTopSellerProduct.id;
+    }
+    const query = { PageNumber: 1, PageSize: this.itemsPerPage, SearchTerm: null, TagIds: null, Rate: null, SortBy: null,productId: prodId };
+    this.productService.GetProducts(query).subscribe({
       next: (response) => {
-        debugger;
         this.products = response.data;
         this.filteredProducts = [...this.products];
+        this.dataService.selectedTopSellerProduct = null;
         this.sortProducts();
         this.updateSearchOptions();
       },
@@ -92,10 +116,6 @@ export class ShopComponent implements OnInit, OnDestroy {
         this.toastService.showError('Failed to load products. Please try again.');
       }
     });
-    // this.products = this.dataService.getDummyProducts();
-    // this.filteredProducts = [...this.products];
-    // this.sortProducts();
-    // this.updateSearchOptions();
   }
 
   onSearchChange(query: string) {
@@ -105,7 +125,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onSortChange(sortBy: string) {
     this.searchOptions.sortBy = sortBy;
-    this.sortProducts();
+    // this.sortProducts();
   }
 
   onCategoryChange(category: Category) {
@@ -121,37 +141,48 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   filterProducts() {
-    if (!this.searchOptions.query.trim()) {
-      this.filteredProducts = [...this.products];
-    } else {
-      this.filteredProducts = this.products.filter(product =>
-        product.name.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
-        product.category?.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
-        product.tags?.some(tag => tag.toLowerCase().includes(this.searchOptions.query.toLowerCase()))
-      );
-    }
-    this.updateSearchOptions();
+    // if (!this.searchOptions.query.trim()) {
+    //   this.filteredProducts = [...this.products];
+    // } else {
+    //   this.filteredProducts = this.products.filter(product =>
+    //     product.name.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
+    //     product.category?.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
+    //     product.tags?.some(tag => tag.toLowerCase().includes(this.searchOptions.query.toLowerCase()))
+    //   );
+    // }
+    // this.updateSearchOptions();
   }
 
+  selectedSortByEnum?: SortByEnum ;
   sortProducts() {
     switch (this.searchOptions.sortBy) {
       case 'Price Low to High':
         this.filteredProducts.sort((a, b) => a.price - b.price);
+        this.selectedSortByEnum = SortByEnum.LowPrice;
         break;
       case 'Price High to Low':
         this.filteredProducts.sort((a, b) => b.price - a.price);
+        this.selectedSortByEnum = SortByEnum.HighPrice;
+
         break;
       case 'Rating':
         this.filteredProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        this.selectedSortByEnum = SortByEnum.Rate;
+
         break;
       case 'Name A-Z':
         this.filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+        this.selectedSortByEnum = SortByEnum.NameFromAtoZ;
+
         break;
       case 'Name Z-A':
         this.filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+        this.selectedSortByEnum = SortByEnum.NameFromZtoA;
+
         break;
       case 'Latest':
         this.filteredProducts.sort((a, b) => b.id - a.id);
+        this.selectedSortByEnum = SortByEnum.Latest;
         break;
       default: // All - no sorting, show all products
         // Keep original order
@@ -185,11 +216,49 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onPageChange(page: number) {
     this.currentPage = page;
+    const base = this.currentFilters ?? { PageNumber: page, PageSize: this.itemsPerPage, SearchTerm: null, TagIds: null, Rate: null, SortBy: null };
+    const query = { ...base, PageNumber: page, PageSize: base.PageSize ?? this.itemsPerPage };
+    this.productService.GetProducts(query).subscribe({
+      next: (response) => {
+        this.products = response.data;
+        this.filteredProducts = [...this.products];
+        this.updateSearchOptions();
+      },
+      error: (error) => {
+        console.error('Error changing page:', error);
+        this.toastService.showError('Failed to load page. Please try again.');
+      }
+    });
   }
 
   onFilterChange(filters: any) {
-    // TODO: Implement filter logic
     console.log('Filters changed:', filters);
+  }
+
+  onApplyFilters() {
+    // this.currentFilters = query;
+    this.currentPage = 1;
+    this.itemsPerPage = 10;
+    let query = {
+      pageNumber:1,
+      pageSize:10,
+      searchTerm:this.searchOptions.query,
+      tagIds:this.filterSidebar.filterOptions.tags.filter(x=>x.isSelected).map(tag => tag.id),
+      rate:null,
+      sortBy:this.selectedSortByEnum,
+    }
+    this.productService.GetProducts(query).subscribe({
+      next: (response) => {
+        this.products = response.data;
+        this.filteredProducts = [...this.products];
+        this.sortProducts();
+        this.updateSearchOptions();
+      },
+      error: (error) => {
+        console.error('Error applying filters:', error);
+        this.toastService.showError('Failed to apply filters. Please try again.');
+      }
+    });
   }
 
   onToggleFilterSidebar() {
@@ -221,3 +290,13 @@ export class ShopComponent implements OnInit, OnDestroy {
     return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
   }
 }
+
+  export enum SortByEnum
+  {
+      Latest = 1,
+      HighPrice = 2,
+      LowPrice = 3,
+      Rate = 4,
+      NameFromAtoZ = 5,
+      NameFromZtoA = 6
+  }

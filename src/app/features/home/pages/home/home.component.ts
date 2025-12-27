@@ -75,7 +75,14 @@ export class HomeComponent implements OnInit {
     });
   }
   loadProducts() {
-    this.productService.GetProducts().subscribe({
+    this.productService.GetProducts({
+      pageNumber:1,
+      pageSize:10,
+      searchTerm:null,
+      tagIds:[],
+      rate:null,
+      sortBy:null,
+    }).subscribe({
       next: (response) => {
         debugger;
         this.products = response.data;
@@ -117,16 +124,16 @@ export class HomeComponent implements OnInit {
   }
 
   filterProducts() {
-    if (!this.searchOptions.query.trim()) {
-      this.filteredProducts = [...this.products];
-    } else {
-      this.filteredProducts = this.products.filter(product =>
-        product.name.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
-        product.category?.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
-        product.tags?.some(tag => tag.toLowerCase().includes(this.searchOptions.query.toLowerCase()))
-      );
-    }
-    this.updateSearchOptions();
+    // if (!this.searchOptions.query.trim()) {
+    //   this.filteredProducts = [...this.products];
+    // } else {
+    //   this.filteredProducts = this.products.filter(product =>
+    //     product.name.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
+    //     product.category?.toLowerCase().includes(this.searchOptions.query.toLowerCase()) ||
+    //     product.tags?.some(tag => tag.toLowerCase().includes(this.searchOptions.query.toLowerCase()))
+    //   );
+    // }
+    // this.updateSearchOptions();
   }
 
   sortProducts() {

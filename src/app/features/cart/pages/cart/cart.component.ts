@@ -34,6 +34,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.cart$
       .pipe(takeUntil(this.destroy$))
       .subscribe(cart => {
+        debugger;
         this.cart = cart;
       });
   }
@@ -52,7 +53,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onReturnToShop(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/products']);
   }
 
   onUpdateCart(): void {

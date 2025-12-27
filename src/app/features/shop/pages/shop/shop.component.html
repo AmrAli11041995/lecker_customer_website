@@ -9,7 +9,7 @@
       <div class="two-column-layout">
         <!-- Left Sidebar - Hidden on Mobile -->
         <div class="left-sidebar" [class.hidden-mobile]="true">
-          <app-filter-sidebar
+          <app-filter-sidebar #filterSidebar
             [isOpen]="isFilterSidebarOpen"
             (filterChange)="onFilterChange($event)"
             (toggleSidebar)="onToggleFilterSidebar()"
@@ -20,15 +20,15 @@
         <div class="right-content">
           <!-- Search Bar -->
           <app-search-bar
-            [searchQuery]="searchOptions.query"
-            [sortBy]="searchOptions.sortBy"
-            [resultsCount]="searchOptions.resultsCount"
+            [searchQuery]="searchOptions.query!"
+            [sortBy]="searchOptions.sortBy!"
+            [resultsCount]="searchOptions.resultsCount!"
             (searchChange)="onSearchChange($event)"
             (sortChange)="onSortChange($event)"
             (categoryChange)="onCategoryChange($event)"
           ></app-search-bar>
            <div class="meta">
-      <button class="shop">Apply Filter</button>
+      <button class="shop" (click)="onApplyFilters()">Apply Filter</button>
     </div>
 
           <!-- Product Grid -->

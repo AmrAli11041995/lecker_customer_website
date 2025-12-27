@@ -1,6 +1,7 @@
 <div class="product-card" (click)="onViewProduct()">
   <div class="product-image-container">
-    <img [src]="fileBaseURL + (product.image?.imageUrl ?? '')" [alt]="product.name" class="product-image">
+    <img *ngIf="product.image?.imageUrl" [src]="fileBaseURL + (product.image?.imageUrl ?? '')" [alt]="product.name" class="product-image">
+    <img *ngIf="!product.image?.imageUrl"[src]="'assets/img/cookies.png'" [alt]="product.name" class="product-image">
     <div class="product-actions">
       <button class="action-btn wishlist-btn" [class.in-wishlist]="isInWishlist()" (click)="onAddToWishlist($event)" [title]="isInWishlist() ? 'Remove from Wishlist' : 'Add to Wishlist'">
         <svg width="16" height="16" viewBox="0 0 24 24" [attr.fill]="isInWishlist() ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">

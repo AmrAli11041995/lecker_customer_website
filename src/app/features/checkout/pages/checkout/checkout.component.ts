@@ -129,6 +129,11 @@ export class CheckoutComponent implements OnInit {
     }));
     let orderObj = {
       date: new Date(),
+      email: checkoutData.billingInfo.email,
+      phoneNumber: checkoutData.billingInfo.phone,
+      companyName: checkoutData.billingInfo.companyName,
+      firstName: checkoutData.billingInfo.firstName,
+      lastName: checkoutData.billingInfo.lastName,
       PaymentMethod: checkoutData.paymentMethod,
       totalPrice: checkoutData.orderSummary.total,
       orderAddress:{

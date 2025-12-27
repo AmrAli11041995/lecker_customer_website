@@ -11,9 +11,9 @@ export class ProductService {
 
  constructor(public httpClient: HttpClient) { }
 
-  GetProducts(): Observable<any> {
+  GetProducts(query: any): Observable<any> {
     return this.httpClient.post<any>(
-      this.apiURl + '/Site/List',{pageNumber:1,pageSize:10} 
+      this.apiURl + '/Site/List',query 
     );
   }
   

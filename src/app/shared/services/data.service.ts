@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Product, Category, FilterOptions, SearchOptions } from '../../features/products/models/product.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  public selectedTopSellerProduct: Product | null = null;
+  private filterQuerySubject = new Subject<{ PageNumber: number; PageSize: number; SearchTerm: string | null; TagIds: (number | null)[] | null; Rate: number | null; SortBy: string | null }>();
+  filterQuery$ = this.filterQuerySubject.asObservable();
+  applyFilters(query: { PageNumber: number; PageSize: number; SearchTerm: string | null; TagIds: (number | null)[] | null; Rate: number | null; SortBy: string | null }) { this.filterQuerySubject.next(query); }
   
   getDummyProducts(): Product[] {
     return [

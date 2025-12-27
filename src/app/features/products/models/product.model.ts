@@ -17,7 +17,7 @@ export interface Product {
   orderedQuantity?: number;
   skw?:string;
   brand?:string;
-  description?:string;
+  descreption?:string;
   brandId?:number;
 }
 export interface Image{
@@ -58,7 +58,7 @@ export interface FilterOptions {
 }
 
 export interface SearchOptions {
-  query: string;
-  sortBy: string;
-  resultsCount: number;
+  query?: string;
+  sortBy?: string;
+  resultsCount?: number;
 }
