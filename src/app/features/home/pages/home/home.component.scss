@@ -1,0 +1,203 @@
+.home-page {
+  position: relative; /* This is crucial for positioning the image inside it */
+  min-height: 100vh;
+  background: #FFF6E8;
+  overflow-x: hidden; /* Prevents a horizontal scrollbar from the half-hidden cookie */
+}
+/*
+ * Add this to your home-page.component.css file
+ */
+
+/* 1. Make the home-page a positioning container */
+
+
+/* 2. Define the spinning animation */
+@keyframes spin {
+  from {
+    transform: translateX(50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(50%) rotate(360deg);
+  }
+}
+
+/* 3. Style the cookie image */
+.rotating-cookie-image {
+  position: absolute;
+  /* Adjust this 'top' value to place it perfectly between your sections */
+  top: 450px; 
+  right: 0;
+  width: 400px; /* Adjust the size of the cookie as needed */
+  z-index: 10;
+  
+  /* Apply the animation */
+  animation: spin 25s linear infinite;
+}
+
+/* 4. Hide the image on smaller screens to avoid clutter */
+@media (max-width: 992px) {
+  .rotating-cookie-image {
+    display: none;
+  }
+}
+
+
+.main-content {
+  padding: 40px 0;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.left-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+// ========================================
+// RESPONSIVE DESIGN - ENHANCED UX/UI
+// ========================================
+
+// Tablet Landscape & Small Desktop
+@media (max-width: 1200px) {
+  .content-container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .two-column-layout {
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+// Tablet Portrait
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 32px 0;
+  }
+  
+  .content-container {
+    padding: 0 20px;
+  }
+  
+  .two-column-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  
+  .left-sidebar {
+    top: 90px;
+  }
+}
+
+// Mobile Landscape & Small Tablets
+@media (max-width: 768px) {
+  .main-content {
+    padding: 24px 0;
+  }
+  
+  .content-container {
+    padding: 0 16px;
+  }
+  
+  .two-column-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .left-sidebar.hidden-mobile {
+    display: none;
+  }
+  
+  .right-content {
+    width: 100%;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+// Mobile Portrait
+@media (max-width: 600px) {
+  .main-content {
+    padding: 20px 0;
+  }
+  
+  .content-container {
+    padding: 0 16px;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+// Small Mobile
+@media (max-width: 480px) {
+  .main-content {
+    padding: 16px 0;
+  }
+  
+  .content-container {
+    padding: 0 12px;
+  }
+  
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+// Extra Small Mobile
+@media (max-width: 360px) {
+  .content-container {
+    padding: 0 8px;
+  }
+  
+  .product-grid {
+    gap: 12px;
+  }
+}

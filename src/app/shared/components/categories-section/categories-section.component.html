@@ -1,0 +1,20 @@
+<section class="categories-section">
+  <div class="container">
+    <h2 class="section-title">Categories</h2>
+    <div class="categories-grid">
+      <button class="category-card" *ngFor="let c of categories" (click)="onSelect(c)">
+        <span class="image-wrap">
+          <!-- <img [src]="c.image" [alt]="c.name" /> -->
+          <img [src]="fileBaseURL +c.fileUrl" [alt]="c.name" />
+        </span>
+        <span class="name">{{ c.name }}</span>
+        <span class="count">{{ c.count }} items</span>
+      </button>
+    </div>
+    <div class="meta">
+      <button class="shop" routerLink="/products">Shop All</button>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,49 @@
+<div class="search-bar-container">
+  <div class="search-section">
+    <div class="search-input-container">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search For Product"
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()"
+      >
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+    </div>
+    
+    <!-- Mobile Category Selector -->
+    <div class="mobile-category-selector">
+      <select 
+        class="category-select" 
+        [(ngModel)]="selectedCategory"
+        (change)="onCategoryChange()"
+      >
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category?.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="results-section">
+    <div class="sort-container">
+      <label class="sort-label">Sort by:</label>
+      <select 
+        class="sort-select" 
+        [(ngModel)]="sortBy"
+        (change)="onSortChange()"
+      >
+        <option *ngFor="let option of sortOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+    <div class="results-count">
+      {{ resultsCount }} Results Found
+    </div>
+  </div>
+</div>

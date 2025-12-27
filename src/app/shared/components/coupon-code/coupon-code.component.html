@@ -1,0 +1,29 @@
+<div class="coupon-code-section">
+  <h4 class="coupon-label">Coupon Code</h4>
+  <div class="coupon-input-group">
+    <input 
+      type="text" 
+      class="coupon-input" 
+      placeholder="Enter code"
+      [(ngModel)]="couponCode"
+      [disabled]="isApplied"
+    >
+    <button 
+      class="apply-coupon-btn" 
+      (click)="onApplyCoupon()"
+      [disabled]="isApplied"
+    >
+      {{ isApplied ? 'Applied' : 'Apply Coupon' }}
+    </button>
+    <button 
+      *ngIf="isApplied" 
+      class="remove-coupon-btn" 
+      (click)="onRemoveCoupon()"
+    >
+      Remove
+    </button>
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>

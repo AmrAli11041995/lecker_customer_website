@@ -1,0 +1,9 @@
+.wishlist-page { background:#FFF6E8; padding:40px 0; }
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+.title { margin:0 0 20px; color:#6b3a12; font-size:34px; font-weight:900; text-align:center; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.empty { text-align:center; color:#6b3a12; opacity:.8; }
+@media (max-width:1024px){ .grid{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .grid{ grid-template-columns:1fr;} }
+
+

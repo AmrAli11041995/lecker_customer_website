@@ -1,0 +1,26 @@
+<div class="checkout-page">
+  <div class="checkout-container">
+    <div class="checkout-layout">
+      <!-- Left Column - Billing Form -->
+      <div class="billing-form-column">
+        <app-billing-form
+          (billingInfoChange)="onBillingInfoChange($event)"
+        ></app-billing-form>
+      </div>
+      
+      <!-- Right Column - Order Summary -->
+      <div class="order-summary-column">
+        <app-order-summary
+          [orderSummary]="orderSummary"
+          [selectedPaymentMethod]="selectedPaymentMethod"
+          (paymentMethodChange)="onPaymentMethodChange($event)"
+          (placeOrder)="onPlaceOrder()"
+          (couponApplied)="onCouponApplied($event)"
+        ></app-order-summary>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notifications -->
+<app-toast></app-toast>

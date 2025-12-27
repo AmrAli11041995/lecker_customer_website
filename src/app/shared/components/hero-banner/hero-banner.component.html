@@ -1,0 +1,48 @@
+<section class="hero-banner">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h2 class="best-deals">LIMITED TIME OFFER</h2>
+        <h1 class="sale-title">{{ bannerPost?.articleTitle??"50% OFF Everything!" }}</h1>
+        <div class="countdown-timer">
+          <div class="time-unit">
+            <span class="time-value">{{ countdown.days.toString().padStart(2, '0') }}</span>
+            <span class="time-label">DAYS</span>
+          </div>
+          <span class="time-separator">:</span>
+          <div class="time-unit">
+            <span class="time-value">{{ countdown.hours.toString().padStart(2, '0') }}</span>
+            <span class="time-label">HOURS</span>
+          </div>
+          <span class="time-separator">:</span>
+          <div class="time-unit">
+            <span class="time-value">{{ countdown.minutes.toString().padStart(2, '0') }}</span>
+            <span class="time-label">MINS</span>
+          </div>
+          <span class="time-separator">:</span>
+          <div class="time-unit">
+            <span class="time-value">{{ countdown.seconds.toString().padStart(2, '0') }}</span>
+            <span class="time-label">SECS</span>
+          </div>
+        </div>
+        <button class="shop-now-btn"  (click)="onShopNow()">
+          Shop Now →
+        </button>
+      </div>
+      <div class="hero-image">
+        <div class="candy-image-container">
+          <!-- <img src="assets/img/candy.png" alt="Lecker 24 Candy Collection" class="candy-image"> -->
+          <img *ngIf="bannerPost?.urlSlug" [src]="fileBaseURL + (bannerPost?.urlSlug)" alt="Lecker 24 Candy Collection" class="candy-image">
+          <img *ngIf="!bannerPost?.urlSlug" [src]="'assets/img/candy.png'" alt="Lecker 24 Candy Collection" class="candy-image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Wave Separator -->
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="wave-svg">
+      <path d="M0,30 C60,10 120,50 180,30 C240,10 300,50 360,30 C420,10 480,50 540,30 C600,10 660,50 720,30 C780,10 840,50 900,30 C960,10 1020,50 1080,30 C1140,10 1200,50 1260,30 C1320,10 1380,50 1440,30 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,248 @@
+.hero-banner {
+  background: linear-gradient(135deg, #E2B808 0%, #D4A574 100%);
+  padding: 100px 0; // increased height
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,0 50,50 T100,50 L100,100 L0,100 Z" fill="%238B4513" opacity="0.1"/></svg>') no-repeat;
+    background-size: cover;
+  }
+}
+
+// Bottom Wave under hero
+.hero-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 60px;
+  line-height: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  .wave-svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+
+  path {
+    fill: #FFF6E8; // cream color to match section below
+  }
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1;
+  color: white;
+  z-index: 2;
+  position: relative;
+}
+
+.best-deals {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.sale-title {
+  font-size: 64px;
+  font-weight: 900;
+  margin: 0 0 32px 0;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  min-width: 80px;
+}
+
+.time-value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.time-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.time-separator {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.shop-now-btn {
+  background: #8B4513;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+  
+  &:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+  }
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.candy-image-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.candy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 60px 0; // slightly taller on tablet/mobile
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  
+  .sale-title {
+    font-size: 48px;
+  }
+  
+  .countdown-timer {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .time-unit {
+    min-width: 60px;
+    padding: 8px 12px;
+  }
+  
+  .time-value {
+    font-size: 24px;
+  }
+  
+  .candy-image-container {
+    max-width: 400px;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .hero-banner {
+    padding: 45px 0; // a bit taller on small phones
+  }
+  
+  .sale-title {
+    font-size: 36px;
+  }
+  
+  .countdown-timer {
+    gap: 8px;
+  }
+  
+  .time-unit {
+    min-width: 50px;
+    padding: 6px 8px;
+  }
+  
+  .time-value {
+    font-size: 20px;
+  }
+  
+  .time-label {
+    font-size: 10px;
+  }
+  
+  .shop-now-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+  
+  .candy-image-container {
+    max-width: 300px;
+  }
+  
+.meta { padding: 16px 16px 20px; color: #6b3a12; }
+.meta h3 { margin: 0 0 8px; font-size: 18px; font-weight: 800; }
+.meta .desc { margin: 0 0 12px; font-size: 13px; opacity: .9; }
+.meta .shop { background:#6b3a12; color:#fff; border:none; border-radius: 10px; padding: 10px 16px; font-weight:700; cursor:pointer; margin-inline: 45%; }
+
+}

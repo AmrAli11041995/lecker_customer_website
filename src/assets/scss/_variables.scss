@@ -1,0 +1,81 @@
+/* src/styles/_variables.scss */
+
+/* ---------------------------
+   CSS Custom Properties (runtime)
+   --------------------------- */
+:root {
+  /* Colors */
+  --color-primary: #1e88e5;
+  --color-primary-600: #1565c0;
+  --color-accent: #ffb300;
+  --color-success: #2e7d32;
+  --color-danger:  #d32f2f;
+  --color-muted:   #6b7280;
+  --color-bg:      #ffffff;
+  --color-surface: #f8fafc;
+  --color-text:    #111827;
+
+  /* Spacing (base unit = 4px) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Typography */
+  --font-family-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-size-base: 16px;
+
+  /* Radii, shadow, transition */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+  --transition-fast: 200ms ease;
+}
+
+/* Dark theme variables (toggle by applying .theme-dark on <body>) */
+.theme-dark {
+  --color-primary: #90caf9;
+  --color-primary-600: #64b5f6;
+  --color-accent: #ffb74d;
+  --color-success: #81c784;
+  --color-danger:  #ef9a9a;
+  --color-muted:   #9ca3af;
+  --color-bg:      #0b1220;
+  --color-surface: #0f1724;
+  --color-text:    #e6eef8;
+}
+
+/* ---------------------------
+   SCSS helpers (optional)
+   --------------------------- */
+$colors: (
+  "primary": #1e88e5,
+  "primary-600": #1565c0,
+  "accent": #ffb300,
+  "success": #2e7d32,
+  "danger": #d32f2f,
+  "muted": #6b7280,
+  "bg": #ffffff,
+  "surface": #f8fafc,
+  "text": #111827
+);
+
+$spacings: (
+  xs: 4px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
+  xl: 32px
+);
+
+/* small mixin to read CSS var fallback to SCSS color */
+@function css-var($name, $fallback: null) {
+  @if $fallback == null {
+    @return unquote("var(--#{$name})");
+  } @else {
+    @return unquote("var(--#{$name}, #{$fallback})");
+  }
+}

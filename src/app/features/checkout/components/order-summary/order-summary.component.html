@@ -1,0 +1,71 @@
+<div class="order-summary-container">
+  <h2 class="summary-title">Order Summary</h2>
+  
+  <!-- Product List -->
+  <div class="product-list">
+    <div *ngFor="let item of orderSummary.items" class="product-item">
+      <img [src]="item.image" [alt]="item.name" class="product-image">
+      <div class="product-details">
+        <span class="product-name">{{ item.name }} x{{ item.quantity }}</span>
+        <span class="product-price">${{ item.subtotal.toFixed(2) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Box -->
+  <div class="summary-box">
+    <div class="summary-row">
+      <span class="summary-label">Subtotal:</span>
+      <span class="summary-value">${{ orderSummary.subtotal.toFixed(2) }}</span>
+    </div>
+    
+    <div class="summary-row">
+      <span class="summary-label">Shipping:</span>
+      <span class="summary-value">{{ getShippingText() }}</span>
+    </div>
+    
+    <div class="summary-row total-row">
+      <span class="summary-label">Total:</span>
+      <span class="summary-value total-value">${{ orderSummary.total.toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <!-- Coupon Code Section -->
+  <div class="coupon-section">
+    <h3 class="coupon-title">Coupon Code</h3>
+    <div class="coupon-input-group">
+      <input 
+        type="text" 
+        [(ngModel)]="couponCode"
+        placeholder="Enter coupon code"
+        class="coupon-input"
+        (keyup.enter)="onApplyCoupon()"
+      >
+      <button class="apply-coupon-btn" (click)="onApplyCoupon()">Apply</button>
+    </div>
+  </div>
+
+  <!-- Payment Method -->
+  <div class="payment-section">
+    <h3 class="payment-title">Payment Method</h3>
+    
+    <div class="payment-options">
+      <label *ngFor="let method of paymentMethods" class="payment-option">
+        <input 
+          type="radio" 
+          name="paymentMethod" 
+          [value]="method.type"
+          [checked]="selectedPaymentMethod === method.type"
+          (change)="onPaymentMethodChange(method.type)"
+          class="payment-radio"
+        >
+        <span class="payment-label">{{ method.label }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Place Order Button -->
+  <button class="place-order-btn" (click)="onPlaceOrder()">
+    Place Order
+  </button>
+</div>

@@ -1,0 +1,40 @@
+<section class="top-sellers">
+  <!-- Top Wave like Hero -->
+  <div class="section-wave section-wave--top" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="wave-svg">
+      <path d="M0,30 C60,10 120,50 180,30 C240,10 300,50 360,30 C420,10 480,50 540,30 C600,10 660,50 720,30 C780,10 840,50 900,30 C960,10 1020,50 1080,30 C1140,10 1200,50 1260,30 C1320,10 1380,50 1440,30 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h2>Our Top Sellers</h2>
+      <div class="arrows">
+        <button class="arrow" aria-label="Previous" (click)="onPrev()">&#8592;</button>
+        <button class="arrow" aria-label="Next" (click)="onNext()">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="cards" #track>
+      <div class="card" *ngFor="let p of products">
+        <div class="image-wrap">
+          <img [src]="imageEndPoint + (p.image?.imageUrl ?? '')" [alt]="p.name" />
+        </div>
+        <div class="meta">
+          <h3>{{ p.name }}</h3>
+          <p class="desc">Handpicked favorites loved by our shoppers.</p>
+          <button class="shop">Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Wave like Hero -->
+  <div class="section-wave section-wave--bottom" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="wave-svg">
+      <path d="M0,30 C60,10 120,50 180,30 C240,10 300,50 360,30 C420,10 480,50 540,30 C600,10 660,50 720,30 C780,10 840,50 900,30 C960,10 1020,50 1080,30 C1140,10 1200,50 1260,30 C1320,10 1380,50 1440,30 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+</section>
+
+

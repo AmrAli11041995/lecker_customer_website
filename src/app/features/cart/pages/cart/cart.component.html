@@ -1,0 +1,28 @@
+<div class="cart-page">
+  <div class="cart-container">
+    <h1 class="cart-title">My Shopping Cart</h1>
+    
+    <div class="cart-layout">
+      <!-- Left Column - Cart Table -->
+      <div class="cart-table-column">
+        <app-cart-table
+          [cartItems]="cart.items"
+          (quantityChange)="onQuantityChange($event)"
+          (removeItem)="onRemoveItem($event)"
+          (returnToShop)="onReturnToShop()"
+          (updateCart)="onUpdateCart()"
+        ></app-cart-table>
+      </div>
+      
+      <!-- Right Column - Cart Total -->
+      <div class="cart-total-column">
+        <app-cart-total
+          [subtotal]="cart.subtotal"
+          [shipping]="cart.shipping"
+          [total]="cart.total"
+          (proceedToCheckout)="onProceedToCheckout()"
+        ></app-cart-total>
+      </div>
+    </div>
+  </div>
+</div>

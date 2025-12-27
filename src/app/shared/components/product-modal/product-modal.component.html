@@ -1,0 +1,184 @@
+<!-- Modal Overlay -->
+<div 
+  *ngIf="isOpen" 
+  class="modal-overlay"
+  (click)="onBackdropClick($event)"
+>
+  <!-- Modal Content -->
+  <div class="modal-content" *ngIf="product">
+    <div class="modal-body">
+      <!-- Left Section - Product Images -->
+      <div class="product-images">
+        <!-- Desktop: Thumbnail Gallery + Main Image -->
+        <div class="desktop-image-view">
+          <!-- Thumbnail Gallery -->
+          <div class="thumbnail-gallery">
+            <div 
+              *ngFor="let image of productImages; let i = index"
+              class="thumbnail"
+              [class.active]="i === selectedImageIndex"
+              (click)="selectImage(i)"
+            >
+              <img [src]="fileBaseURL +image" [alt]="product.name">
+            </div>
+            <!-- Scroll Arrow -->
+            <div class="scroll-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Main Product Image -->
+          <div class="main-image">
+            <img [src]="fileBaseURL +productImages[selectedImageIndex]" [alt]="product.name">
+          </div>
+        </div>
+
+        <!-- Mobile: Swipeable Image Carousel -->
+        <div class="mobile-image-carousel">
+          <div class="image-container" 
+               [style.transform]="'translateX(' + (-selectedImageIndex * 100) + '%)'"
+               (touchstart)="onTouchStart($event)"
+               (touchmove)="onTouchMove($event)"
+               (touchend)="onTouchEnd($event)">
+            <div 
+              *ngFor="let image of productImages; let i = index"
+              class="carousel-image"
+              [class.active]="i === selectedImageIndex"
+            >
+              <img [src]="fileBaseURL + image" [alt]="product.name">
+            </div>
+          </div>
+          
+          <!-- Image Indicators -->
+          <div class="image-indicators" *ngIf="productImages.length > 1">
+            <div 
+              *ngFor="let image of productImages; let i = index"
+              class="indicator"
+              [class.active]="i === selectedImageIndex"
+              (click)="selectImage(i)"
+            ></div>
+          </div>
+          
+          <!-- Swipe Navigation Arrows -->
+          <div class="swipe-nav" *ngIf="productImages.length > 1">
+            <button 
+              class="nav-arrow nav-prev"
+              (click)="previousImage()"
+              [disabled]="selectedImageIndex === 0"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+            <button 
+              class="nav-arrow nav-next"
+              (click)="nextImage()"
+              [disabled]="selectedImageIndex === productImages.length - 1"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section - Product Info -->
+      <div class="product-info">
+        <!-- Close Button -->
+        <button class="close-btn" (click)="onCloseModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- Product Header -->
+        <div class="product-header">
+          <div class="product-title-row">
+            <h2 class="product-name">{{ product.name }}</h2>
+            <div class="status-badge" 
+            [class.in-stock]="product.isInStock" [class.out-of-stock]="!product.isInStock">
+              {{ product.isInStock ? 'In Stock' : 'Out of Stock' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Rating and SKU -->
+        <div class="product-meta">
+          <div class="rating">
+            <div class="stars">
+              <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= (product!.rating || 0)">★</span>
+            </div>
+            <span class="review-count">{{ product.rating }} Review</span>
+          </div>
+          <div class="sku">SKU: {{ product.id }}</div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing">
+          <div class="price-row">
+            <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
+            <span class="current-price">${{ product.price }}</span>
+            <div class="discount-badge" *ngIf="product.salePercentage">
+              {{ product.salePercentage }}% Off
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand -->
+        <div class="brand">
+          <span class="brand-label">Brand:</span>
+          <span class="brand-name">farmary</span>
+        </div>
+
+        <!-- Description -->
+        <div class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        </div>
+
+        <!-- Quantity Selector -->
+        <div class="quantity-selector">
+          <button class="quantity-btn" (click)="decreaseQuantity()">-</button>
+          <span class="quantity-value">{{ quantity }}</span>
+          <button class="quantity-btn" (click)="increaseQuantity()">+</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button 
+            class="add-to-cart-btn" 
+            [disabled]="!product.isInStock"
+            (click)="onAddToCart()"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            Add to Cart
+          </button>
+          <button class="wishlist-btn" (click)="onAddToWishlist()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Category and Tags -->
+        <div class="product-details">
+          <div class="detail-item">
+            <span class="detail-label">Category:</span>
+            <span class="detail-value">{{ product.category }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Tag:</span>
+            <span class="detail-value">{{ product!.tags?.join(' ') || 'N/A' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

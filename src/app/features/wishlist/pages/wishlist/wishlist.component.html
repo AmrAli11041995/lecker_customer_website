@@ -1,0 +1,19 @@
+<div class="wishlist-page">
+  <div class="container">
+    <h1 class="title">My Wishlist</h1>
+    <div class="grid" *ngIf="wishlist.items.length; else empty">
+      <app-product-card
+        *ngFor="let product of wishlist.items"
+        [product]="product"
+      ></app-product-card>
+    </div>
+    <ng-template #empty>
+      <p class="empty">Your wishlist is empty.</p>
+    </ng-template>
+  </div>
+</div>
+
+<!-- Toast Notifications -->
+<app-toast></app-toast>
+
+

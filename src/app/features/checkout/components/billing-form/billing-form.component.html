@@ -1,0 +1,163 @@
+<div class="billing-form-container">
+  <h2 class="form-title">Billing Information</h2>
+  
+  <form [formGroup]="billingForm" (ngSubmit)="onSubmit()">
+    <!-- First Name & Last Name Row -->
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">First Name *</label>
+        <input 
+          type="text" 
+          formControlName="firstName"
+          placeholder="Your first name"
+          class="form-input"
+          [class.error]="isFieldInvalid('firstName')"
+        >
+        <div *ngIf="isFieldInvalid('firstName')" class="error-message">
+          {{ getFieldError('firstName') }}
+        </div>
+      </div>
+      
+      <div class="form-field">
+        <label class="field-label">Last Name *</label>
+        <input 
+          type="text" 
+          formControlName="lastName"
+          placeholder="Your last name"
+          class="form-input"
+          [class.error]="isFieldInvalid('lastName')"
+        >
+        <div *ngIf="isFieldInvalid('lastName')" class="error-message">
+          {{ getFieldError('lastName') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Name Row -->
+    <div class="form-row">
+      <div class="form-field full-width">
+        <label class="field-label">Company Name (optional)</label>
+        <input 
+          type="text" 
+          formControlName="companyName"
+          placeholder="Company name"
+          class="form-input"
+        >
+      </div>
+    </div>
+
+    <!-- Street Address Row -->
+    <div class="form-row">
+      <div class="form-field full-width">
+        <label class="field-label">Street Address *</label>
+        <input 
+          type="text" 
+          formControlName="streetAddress"
+          placeholder="Street Address"
+          class="form-input"
+          [class.error]="isFieldInvalid('streetAddress')"
+        >
+        <div *ngIf="isFieldInvalid('streetAddress')" class="error-message">
+          {{ getFieldError('streetAddress') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Country & City Row -->
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Country / Region *</label>
+        <select 
+          formControlName="country"
+          class="form-select"
+          [class.error]="isFieldInvalid('country')"
+        >
+          <option value="">Select Country</option>
+          <option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('country')" class="error-message">
+          {{ getFieldError('country') }}
+        </div>
+      </div>
+      
+      <div class="form-field">
+        <label class="field-label">City *</label>
+        <select 
+          formControlName="city"
+          class="form-select"
+          [class.error]="isFieldInvalid('city')"
+        >
+          <option value="">Select City</option>
+          <option *ngFor="let city of cities" [value]="city">
+            {{ city }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('city')" class="error-message">
+          {{ getFieldError('city') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Email & Phone Row -->
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label">Email Address *</label>
+        <input 
+          type="email" 
+          formControlName="email"
+          placeholder="Email Address"
+          class="form-input"
+          [class.error]="isFieldInvalid('email')"
+        >
+        <div *ngIf="isFieldInvalid('email')" class="error-message">
+          {{ getFieldError('email') }}
+        </div>
+      </div>
+      
+      <div class="form-field">
+        <label class="field-label">Phone *</label>
+        <input 
+          type="tel" 
+          formControlName="phone"
+          placeholder="Phone number"
+          class="form-input"
+          [class.error]="isFieldInvalid('phone')"
+        >
+        <div *ngIf="isFieldInvalid('phone')" class="error-message">
+          {{ getFieldError('phone') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Ship to Different Address Checkbox -->
+    <div class="checkbox-row">
+      <label class="checkbox-label">
+        <input 
+          type="checkbox" 
+          formControlName="shipToDifferentAddress"
+          class="checkbox-input"
+        >
+        <span class="checkbox-text">Ship to a different address</span>
+      </label>
+    </div>
+
+    <!-- Additional Info Section -->
+    <div class="additional-info-section">
+      <h3 class="section-title">Additional Info</h3>
+      
+      <div class="form-row">
+        <div class="form-field full-width">
+          <label class="field-label">Order Notes (Optional)</label>
+          <textarea 
+            formControlName="orderNotes"
+            placeholder="Notes about your order, e.g. special notes for delivery"
+            class="form-textarea"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
