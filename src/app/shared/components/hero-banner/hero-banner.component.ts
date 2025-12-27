@@ -69,6 +69,7 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
       this.posts = res.data;
       if(this.posts.length > 0){
         this.bannerPost = this.posts[0];
+       console.log(this.bannerPost);
         let now = new Date();
         let endDate = new Date(this.bannerPost?.expirationDate);
         if(now < endDate){

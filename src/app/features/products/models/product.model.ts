@@ -15,6 +15,10 @@ export interface Product {
   isOnSale?: boolean;
   salePercentage?: number;
   orderedQuantity?: number;
+  skw?:string;
+  brand?:string;
+  description?:string;
+  brandId?:number;
 }
 export interface Image{
   id: number;

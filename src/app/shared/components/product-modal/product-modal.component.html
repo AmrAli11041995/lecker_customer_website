@@ -112,9 +112,9 @@
             <div class="stars">
               <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= (product!.rating || 0)">★</span>
             </div>
-            <span class="review-count">{{ product.rating }} Review</span>
+            <span class="review-count">{{ product.rating??3 }} Review</span>
           </div>
-          <div class="sku">SKU: {{ product.id }}</div>
+          <div class="sku">SKU: {{ product.skw }}</div>
         </div>
 
         <!-- Pricing -->
@@ -131,12 +131,13 @@
         <!-- Brand -->
         <div class="brand">
           <span class="brand-label">Brand:</span>
-          <span class="brand-name">farmary</span>
+          <span class="brand-name">{{ product.brand }}</span>
         </div>
 
         <!-- Description -->
         <div class="description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p> -->
+          <p>{{ product.description }}</p>
         </div>
 
         <!-- Quantity Selector -->
