@@ -13,47 +13,91 @@
 
   <!-- Main Content -->
   <div class="main-content">
-    <div class="content-container">
-      <!-- Two Column Layout -->
-      <div class="two-column-layout">
-        <!-- Left Sidebar - Hidden on Mobile -->
-        <div class="left-sidebar" [class.hidden-mobile]="true">
-          <app-filter-sidebar
-            [isOpen]="isFilterSidebarOpen"
-            (filterChange)="onFilterChange($event)"
-            (toggleSidebar)="onToggleFilterSidebar()"
-          ></app-filter-sidebar>
+    <div class="content-container contact-section">
+      <div class="contact-card">
+        <div class="contact-image">
+          <img src="assets/img/home/LeftSideImage.png" alt="Assorted candy bars" />
         </div>
 
-        <!-- Right Content Area -->
-        <div class="right-content">
-          <!-- Search Bar -->
-          <app-search-bar
-            [searchQuery]="searchOptions.query!"
-            [sortBy]="searchOptions.sortBy!"
-            [resultsCount]="searchOptions.resultsCount!"
-            (searchChange)="onSearchChange($event)"
-            (sortChange)="onSortChange($event)"
-            (categoryChange)="onCategoryChange($event)"
-          ></app-search-bar>
+        <div class="contact-form">
+          <h2>Sweet Addict's, Say Hi!</h2>
+          <p class="lede">
+            We'd love to hear from you! Whether you have questions about our products, need help with an order, or just want to share your favorite sweet treat, our team is here to help. Drop us a message and we'll get back to you as soon as possible!
+          </p>
 
-          <!-- Product Grid -->
-          <div class="product-grid">
-            <app-product-card
-              *ngFor="let product of paginatedProducts; let i = index"
-              [product]="product"
-              (addToCart)="onAddToCart($event)"
-              (addToWishlist)="onAddToWishlist($event)"
-              (viewProduct)="onViewProduct($event)"
-            ></app-product-card>
+          <form class="contact-form-fields" novalidate>
+            <div class="form-row">
+              <input id="contact-name" type="text" placeholder="Name*" required />
+              <input id="contact-email" type="email" placeholder="Email Id*" required />
+            </div>
+
+            <div class="form-field">
+              <input id="contact-phone" type="tel" placeholder="Phone Number*" required />
+            </div>
+
+            <div class="form-field">
+              <textarea id="contact-description" rows="5" placeholder="Description"></textarea>
+            </div>
+
+            <button type="button" class="primary-button">Send Request</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img src="assets/img/home/delivery.png" alt="Delivery icon" />
           </div>
+          <div class="feature-text">
+            <h4>Earliest Delivery</h4>
+            <p>Delivery in 3 Hours*</p>
+          </div>
+        </div>
 
-          <!-- Pagination -->
-          <app-pagination
-            [currentPage]="currentPage"
-            [totalPages]="totalPages"
-            (pageChange)="onPageChange($event)"
-          ></app-pagination>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img src="assets/img/home/support24.png" alt="24/7 Support icon" />
+          </div>
+          <div class="feature-text">
+            <h4>Support 24/7</h4>
+            <p>Happily Delivering</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img src="assets/img/home/securepayment.png" alt="Secure payments icon" />
+          </div>
+          <div class="feature-text">
+            <h4>Secure Payments</h4>
+            <p>All Major Credit &amp; Debit Cards</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img src="assets/img/home/promise.png" alt="Promise icon" />
+          </div>
+          <div class="feature-text">
+            <h4>Our Promise</h4>
+            <p>100% satisfied Customers</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="shipping-info">
+        <p class="headline">The shipping costs for your purchase in our online shop are €5.90 within Germany.</p>
+        <p>We ship your order quickly and safely with our reliable shipping partner.</p>
+        <div class="shipping-logo">
+          <img src="assets/img/home/DHLLogo.png" alt="DHL" />
+        </div>
+
+        <div class="supplier-callout">
+          <p>Are you a manufacturer or producer and would like to offer us goods?</p>
+          <p>We look forward to receiving your</p>
+          <p>offers with details of quantities and prices. Please send your offers to</p>
+          <p class="email">the following email address: <a href="mailto:info&#64;lecker24.eu">info&#64;lecker24.eu</a></p>
         </div>
       </div>
     </div>

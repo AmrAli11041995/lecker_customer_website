@@ -1,17 +1,11 @@
 .home-page {
-  position: relative; /* This is crucial for positioning the image inside it */
+  position: relative;
   min-height: 100vh;
   background: #FFF6E8;
-  overflow-x: hidden; /* Prevents a horizontal scrollbar from the half-hidden cookie */
+  overflow-x: hidden;
 }
-/*
- * Add this to your home-page.component.css file
- */
 
-/* 1. Make the home-page a positioning container */
-
-
-/* 2. Define the spinning animation */
+/* Rotating cookie animation */
 @keyframes spin {
   from {
     transform: translateX(50%) rotate(0deg);
@@ -21,183 +15,422 @@
   }
 }
 
-/* 3. Style the cookie image */
 .rotating-cookie-image {
   position: absolute;
-  /* Adjust this 'top' value to place it perfectly between your sections */
   top: 450px; 
   right: 0;
-  width: 400px; /* Adjust the size of the cookie as needed */
+  width: 400px;
   z-index: 10;
-  
-  /* Apply the animation */
   animation: spin 25s linear infinite;
 }
 
-/* 4. Hide the image on smaller screens to avoid clutter */
 @media (max-width: 992px) {
   .rotating-cookie-image {
     display: none;
   }
 }
 
-
 .main-content {
-  padding: 40px 0;
+  padding: 60px 0 80px;
 }
 
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
-}
-
-.two-column-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 40px;
-  align-items: start;
-  margin-top: 30px;
-}
-
-.left-sidebar {
-  position: sticky;
-  top: 100px;
-  height: fit-content;
-}
-
-.right-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 56px;
 }
 
-.product-grid {
+.contact-section {
+  align-items: stretch;
+}
+
+.contact-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: 0.9fr 1fr;
+  gap: 0;
+  background: #FFF6E8;
+  border-radius: 20px;
+  box-shadow: none;
+  overflow: hidden;
 }
 
-// ========================================
-// RESPONSIVE DESIGN - ENHANCED UX/UI
-// ========================================
+.contact-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: transparent;
+}
 
-// Tablet Landscape & Small Desktop
+.contact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.contact-form {
+  padding: 40px 48px;
+  color: #8B7355;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #FFF6E8;
+}
+
+.contact-form h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #D4A344;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.contact-form .lede {
+  margin: 0;
+  line-height: 1.65;
+  color: #8B7355;
+  font-size: 14px;
+}
+
+.contact-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 2px solid #F5E5C8;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #5D4E3C;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #B5A08A;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #D4A344;
+  box-shadow: 0 0 0 3px rgba(212, 163, 68, 0.1);
+}
+
+.primary-button {
+  align-self: flex-start;
+  background: #8B5A2B;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 14px 32px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(139, 90, 43, 0.3);
+}
+
+.primary-button:hover {
+  background: #754a23;
+  box-shadow: 0 6px 16px rgba(139, 90, 43, 0.4);
+}
+
+.primary-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(139, 90, 43, 0.3);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border: 3px solid #F5E5C8;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: #5D4E3C;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-text {
+  flex: 1;
+}
+
+.feature-card h4 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #D4A344;
+  line-height: 1.2;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #8B7355;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #FFF9F0;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.feature-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.shipping-info {
+  text-align: center;
+  color: #D4A344;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.shipping-info .headline {
+  font-weight: 700;
+  font-size: 18px;
+  color: #D4A344;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.shipping-info p {
+  margin: 0;
+  color: #D4A344;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.shipping-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px auto;
+  padding: 0;
+}
+
+.shipping-logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.supplier-callout {
+  margin-top: 12px;
+}
+
+.supplier-callout p {
+  margin: 6px 0;
+  color: #D4A344;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.supplier-callout .email {
+  margin-top: 8px;
+}
+
+.supplier-callout .email a {
+  color: #D4A344;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.supplier-callout .email a:hover {
+  text-decoration: underline;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 @media (max-width: 1200px) {
   .content-container {
-    max-width: 100%;
     padding: 0 20px;
   }
-  
-  .two-column-layout {
-    grid-template-columns: 280px 1fr;
-    gap: 32px;
-  }
-  
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-// Tablet Portrait
 @media (max-width: 1024px) {
   .main-content {
-    padding: 32px 0;
+    padding: 48px 0 64px;
   }
-  
-  .content-container {
-    padding: 0 20px;
-  }
-  
-  .two-column-layout {
-    grid-template-columns: 260px 1fr;
-    gap: 28px;
-  }
-  
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
-  
-  .left-sidebar {
-    top: 90px;
-  }
-}
 
-// Mobile Landscape & Small Tablets
-@media (max-width: 768px) {
-  .main-content {
-    padding: 24px 0;
+  .contact-card {
+    grid-template-columns: 1fr;
   }
-  
-  .content-container {
-    padding: 0 16px;
+
+  .contact-form {
+    padding: 32px 36px;
   }
-  
-  .two-column-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+
+  .contact-image {
+    min-height: 300px;
   }
-  
-  .left-sidebar.hidden-mobile {
-    display: none;
-  }
-  
-  .right-content {
-    width: 100%;
-  }
-  
-  .product-grid {
+
+  .features-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    margin-bottom: 24px;
   }
 }
 
-// Mobile Portrait
-@media (max-width: 600px) {
-  .main-content {
-    padding: 20px 0;
-  }
-  
+@media (max-width: 768px) {
   .content-container {
     padding: 0 16px;
+    gap: 40px;
   }
-  
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .main-content {
+    padding: 40px 0 56px;
+  }
+
+  .contact-form h2 {
+    font-size: 28px;
+  }
+
+  .contact-form {
+    padding: 28px 24px;
+  }
+
+  .features-grid {
     gap: 14px;
-    margin-bottom: 20px;
+  }
+
+  .feature-card {
+    padding: 16px 20px;
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
   }
 }
 
-// Small Mobile
-@media (max-width: 480px) {
-  .main-content {
-    padding: 16px 0;
+@media (max-width: 640px) {
+  .contact-card {
+    border-radius: 16px;
   }
-  
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .primary-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shipping-info .headline,
+  .shipping-info p {
+    font-size: 15px;
+  }
+
+  .supplier-callout p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
   .content-container {
     padding: 0 12px;
+    gap: 32px;
   }
-  
-  .product-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+
+  .contact-form {
+    padding: 24px 20px;
+  }
+
+  .contact-form h2 {
+    font-size: 24px;
+  }
+
+  .contact-form .lede {
+    font-size: 13px;
+  }
+
+  .feature-card {
+    padding: 14px 16px;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
   }
 }
 
-// Extra Small Mobile
-@media (max-width: 360px) {
-  .content-container {
-    padding: 0 8px;
-  }
-  
-  .product-grid {
-    gap: 12px;
-  }
-}
+
+
+
+
+
+
