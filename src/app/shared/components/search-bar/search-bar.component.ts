@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Category } from '../../../features/products/models/product.model';
 
 @Component({
@@ -9,7 +11,7 @@ import { Category } from '../../../features/products/models/product.model';
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })
-export class SearchBarComponent {
+export class SearchBarComponent implements OnInit, OnDestroy {
   @Input() searchQuery: string = '';
   @Input() sortBy: string = 'All';
   @Input() resultsCount: number = 0;
@@ -19,11 +21,28 @@ export class SearchBarComponent {
   @Output() categoryChange = new EventEmitter<Category>();
 
   selectedCategory: Category;
+  private searchSubject = new Subject<string>();
+  private searchSubscription!: Subscription;
 
   constructor() {
     this.selectedCategory = {} as Category;
   }
   
+  ngOnInit() {
+    this.searchSubscription = this.searchSubject.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe(query => {
+      this.searchChange.emit(query);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
+
   sortOptions = [
     { value: 'All', label: 'All' },
     { value: 'Latest', label: 'Latest' },
@@ -37,7 +56,8 @@ export class SearchBarComponent {
   categories :Category[] = [];
 
   onSearchChange() {
-    this.searchChange.emit(this.searchQuery);
+    this.searchSubject.next(this.searchQuery);
+        // this.searchChange.emit(this.searchQuery);
   }
 
   onSortChange() {

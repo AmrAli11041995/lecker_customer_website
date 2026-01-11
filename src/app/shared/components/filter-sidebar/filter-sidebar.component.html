@@ -3,6 +3,12 @@
   <button class="filter-btn" (click)="onFilterClick()">
     Filter ⚙️
   </button>
+  <button class="close-btn" (click)="onResetFilterClick()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
 
   <!-- Mobile Header -->
   <div class="mobile-header" (click)="onFilterClick()">
@@ -13,15 +19,58 @@
   <!-- Sidebar Content -->
   <div class="sidebar-content">
     <!-- Close Button (Mobile only) -->
-    <button class="close-btn" (click)="onFilterClick()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
     
+  
+    
+      <!-- category -->
+    <div class="filter-section">
+      <div class="section-header" (click)="toggleCollapse('categories')">
+        <h3>All Categories</h3>
+        <span class="collapse-icon" [class.collapsed]="isCollapsed.categories">▼</span>
+      </div>
+      <div class="section-content" [class.collapsed]="isCollapsed.categories">
+        <div class="categories-list">
+          <label *ngFor="let category of filterOptions.categories" class="rating-item">
+            <input 
+              type="radio" 
+              name="category"
+              [checked]="category.isSelected"
+              (change)="onCategoryChange(category)"
+            >
+            <!-- <div class="stars">
+              <span *ngFor="let i of [1,2,3,4,5]" class="star" [class.filled]="i <= category.id">
+                {{ i <= category.id ? '★' : '☆' }}
+              </span>
+            </div> -->
+            <span class="category-label">{{ category.name }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
 
     
+
+    <!-- Price Range -->
+    <div class="filter-section">
+      <div class="section-header" (click)="toggleCollapse('price')">
+        <h3>Price Range</h3>
+        <span class="collapse-icon" [class.collapsed]="isCollapsed.price">▼</span>
+      </div>
+      <div class="section-content" [class.collapsed]="isCollapsed.price">
+        <div class="price-slider" style="padding: 10px;">
+          <div class="range-inputs" style="display: flex; flex-direction: column; gap: 10px;">
+            <label>
+              Min Price: ${{rangeValues[0]}}
+              <input type="range" [(ngModel)]="rangeValues[0]" [min]="0" [max]="2000" (change)="onPriceRangeChange()" style="width: 100%;">
+            </label>
+            <label>
+              Max Price: ${{rangeValues[1]}}
+              <input type="range" [(ngModel)]="rangeValues[1]" [min]="0" [max]="2000" (change)="onPriceRangeChange()" style="width: 100%;">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Rating -->
     <div class="filter-section">

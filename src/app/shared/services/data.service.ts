@@ -435,13 +435,13 @@ export class DataService {
       categories: this.getCategories(),
       priceRange: {
         min: 0,
-        max: 2000,
-        currentMin: 50,
-        currentMax: 1500
+        max: 0,
+        currentMin: 0,
+        currentMax: 0
       },
       ratings: [
         { value: 5, label: '5.0', isSelected: false },
-        { value: 4, label: '4.0 & up', isSelected: true },
+        { value: 4, label: '4.0 & up', isSelected: false },
         { value: 3, label: '3.0 & up', isSelected: false },
         { value: 2, label: '2.0 & up', isSelected: false },
         { value: 1, label: '1.0 & up', isSelected: false }

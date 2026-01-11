@@ -8,8 +8,8 @@
 }
 
 .filter-btn {
-  display: none; // Hidden on desktop
-  position: fixed;
+  // display: none; // Hidden on desktop
+  // position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1001;
@@ -38,8 +38,28 @@
 }
 
 .close-btn {
-  display: none; // Hidden on desktop
+  // display: none; // Hidden on desktop
+  // margin-inline-start: 20px;
+  margin-inline-start: 10px;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  padding: 12px 20px;
+  background: #fa1f02;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
   
+  &:hover {
+    background: #aa3c09;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
   // Show only on mobile
   .mobile-filter-card & {
     display: flex;
@@ -99,7 +119,8 @@
 }
 
 .filter-section {
-  margin-bottom: 24px;
+  margin-top: 24px;
+  // margin-bottom: 24px;
   background: white;
   border-radius: 16px;
   padding: 24px;

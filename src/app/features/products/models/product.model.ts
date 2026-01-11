@@ -40,10 +40,10 @@ export interface Category {
 export interface FilterOptions {
   categories: Category[];
   priceRange: {
-    min: number;
-    max: number;
-    currentMin: number;
-    currentMax: number;
+    min?: number;
+    max?: number;
+    currentMin?: number;
+    currentMax?: number;
   };
   ratings: {
     value: number;

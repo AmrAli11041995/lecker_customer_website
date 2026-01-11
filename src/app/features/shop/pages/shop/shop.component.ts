@@ -121,10 +121,12 @@ export class ShopComponent implements OnInit, OnDestroy {
   onSearchChange(query: string) {
     this.searchOptions.query = query;
     this.filterProducts();
+    this.onApplyFilters();
   }
 
   onSortChange(sortBy: string) {
     this.searchOptions.sortBy = sortBy;
+    this.onApplyFilters()
     // this.sortProducts();
   }
 
@@ -233,18 +235,24 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onFilterChange(filters: any) {
     console.log('Filters changed:', filters);
+    // this.onApplyFilters();
   }
 
   onApplyFilters() {
     // this.currentFilters = query;
+    debugger;
     this.currentPage = 1;
     this.itemsPerPage = 10;
     let query = {
       pageNumber:1,
       pageSize:10,
       searchTerm:this.searchOptions.query,
+      minPrice:this.filterSidebar.filterOptions.priceRange?.min ?? null,
+      maxPrice:this.filterSidebar.filterOptions.priceRange?.max ?? null,
+      categoryId:this.filterSidebar.filterOptions.categories.find(x=>x.isSelected)?.id ?? null,
       tagIds:this.filterSidebar.filterOptions.tags.filter(x=>x.isSelected).map(tag => tag.id),
       rate:null,
+      rates: this.filterSidebar.filterOptions.ratings.filter(x=>x.isSelected).map(tag => tag.value),
       sortBy:this.selectedSortByEnum,
     }
     this.productService.GetProducts(query).subscribe({

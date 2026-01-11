@@ -16,6 +16,8 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { Category, Product, SearchOptions } from '../../../products/models/product.model';
 import { HomeService } from '../../services/home.service';
 import { ProductService } from '../../../products/services/product.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,8 @@ import { ProductService } from '../../../products/services/product.service';
     ProductCardComponent,
     PaginationComponent,
     ProductModalComponent,
+    ReactiveFormsModule,
+
     ToastComponent
   ],
   templateUrl: './home.component.html',
@@ -45,16 +49,36 @@ export class HomeComponent implements OnInit {
   // Modal state
   selectedProduct: Product | null = null;
   isModalOpen = false;
+  contactForm!: FormGroup;
+  submitted = false;
 
+   get paginatedProducts(): Product[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.filteredProducts.slice(startIndex, endIndex);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+  }
+  
   constructor(
     private dataService: DataService,
     private productService: ProductService,
     private homeService: HomeService,
+    private emailService: EmailService,
     private cartService: CartService,
+        private fb: FormBuilder,
     private toastService: ToastService
   ) {}
 
   ngOnInit() {
+     this.contactForm = this.fb.group({
+      name: ['', [Validators.required]],
+      emailTo: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required]],
+      description: ['']
+    });
     this.loadProducts();
     this.loadCategories();
     this.handleResponsiveSidebar();
@@ -71,7 +95,7 @@ export class HomeComponent implements OnInit {
   loadCategories(){
      this.homeService.GetCategories().subscribe((res ) => {
       debugger;
-      this.categories = [...res.data] 
+      this.categories = [...res.entities.items] 
     });
   }
   loadProducts() {
@@ -215,13 +239,22 @@ export class HomeComponent implements OnInit {
     this.onAddToWishlist(product);
   }
 
-  get paginatedProducts(): Product[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.filteredProducts.slice(startIndex, endIndex);
-  }
-
-  get totalPages(): number {
-    return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+ 
+  onSendRequest() {
+    this.submitted = true;
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+    const payload = this.contactForm.value;
+    this.emailService.sendEmail(payload).subscribe(res=>{
+      this.toastService.showSuccess('Email sent successfully!');
+      this.contactForm.reset();
+      this.submitted = false;
+    },
+  (er)=>{
+          this.toastService.showError('Email not sent!');
+  })
+    console.log('Contact form submitted:', payload);
   }
 }

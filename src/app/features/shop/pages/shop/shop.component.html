@@ -12,6 +12,7 @@
           <app-filter-sidebar #filterSidebar
             [isOpen]="isFilterSidebarOpen"
             (filterChange)="onFilterChange($event)"
+            (applyFilterChange)="onApplyFilters()"
             (toggleSidebar)="onToggleFilterSidebar()"
           ></app-filter-sidebar>
         </div>
@@ -27,9 +28,9 @@
             (sortChange)="onSortChange($event)"
             (categoryChange)="onCategoryChange($event)"
           ></app-search-bar>
-           <div class="meta">
+           <!-- <div class="meta">
       <button class="shop" (click)="onApplyFilters()">Apply Filter</button>
-    </div>
+    </div> -->
 
           <!-- Product Grid -->
           <div class="product-grid">

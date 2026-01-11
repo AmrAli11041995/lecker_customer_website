@@ -25,21 +25,27 @@
             We'd love to hear from you! Whether you have questions about our products, need help with an order, or just want to share your favorite sweet treat, our team is here to help. Drop us a message and we'll get back to you as soon as possible!
           </p>
 
-          <form class="contact-form-fields" novalidate>
+          <form class="contact-form-fields" novalidate [formGroup]="contactForm" (ngSubmit)="onSendRequest()">
             <div class="form-row">
-              <input id="contact-name" type="text" placeholder="Name*" required />
-              <input id="contact-email" type="email" placeholder="Email Id*" required />
+              <input id="contact-name" type="text" placeholder="Name*" formControlName="name" />
+              <input id="contact-email" type="email" placeholder="Email Id*" formControlName="emailTo" />
+            </div>
+            <div class="form-row">
+              <div class="error" *ngIf="(submitted || contactForm.get('name')?.touched) && contactForm.get('name')?.hasError('required')">Name is required</div>
+              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('required')">Email is required</div>
+              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('email')">Enter a valid email</div>
             </div>
 
             <div class="form-field">
-              <input id="contact-phone" type="tel" placeholder="Phone Number*" required />
+              <input id="contact-phone" type="tel" placeholder="Phone Number*" formControlName= "phoneNumber" />
+              <div class="error" *ngIf="(submitted || contactForm.get('phoneNumber')?.touched) && contactForm.get('phoneNumber')?.hasError('required')">Phone number is required</div>
             </div>
 
             <div class="form-field">
-              <textarea id="contact-description" rows="5" placeholder="Description"></textarea>
+              <textarea id="contact-description" rows="5" placeholder="Description" formControlName="description"></textarea>
             </div>
 
-            <button type="button" class="primary-button">Send Request</button>
+            <button type="submit" class="primary-button" [disabled]="contactForm.invalid">Send Request</button>
           </form>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterOptions, Category, Product } from '../../../features/products/models/product.model';
 import { DataService } from '../../services/data.service';
 import { ProductTagsService } from '../../../features/products/services/ProductTags.service';
+import { HomeService } from '../../../features/home/services/home.service';
 
 @Component({
   selector: 'app-filter-sidebar',
@@ -14,10 +15,13 @@ import { ProductTagsService } from '../../../features/products/services/ProductT
 export class FilterSidebarComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Output() filterChange = new EventEmitter<any>();
+  @Output() applyFilterChange = new EventEmitter<void>();
   @Output() toggleSidebar = new EventEmitter<void>();
 
   filterOptions!: FilterOptions;
   saleProducts: Product[] = [];
+  rangeValues: number[] = [0, 0];
+
   isCollapsed = {
     categories: false,
     price: false,
@@ -27,12 +31,14 @@ export class FilterSidebarComponent implements OnInit {
   };
 
   constructor(private dataService: DataService,
-    private productTagsService: ProductTagsService
+    private productTagsService: ProductTagsService,
+    private homeService: HomeService,
   ) {}
 
   ngOnInit() {
      this.filterOptions = this.dataService.getFilterOptions();
     this.getTags();
+    this.getCategories();
 
     this.saleProducts = this.dataService.getSaleProducts();
   }
@@ -42,11 +48,24 @@ export class FilterSidebarComponent implements OnInit {
   }
 
   onCategoryChange(category: Category) {
-    category.isSelected = !category.isSelected;
+    this.filterOptions.categories.forEach(c => c.isSelected = false);
+    category.isSelected = true;
     this.emitFilterChange();
   }
 
   onPriceRangeChange() {
+    debugger;
+    if (this.rangeValues[0] > this.rangeValues[1]) {
+      const temp = this.rangeValues[0];
+      this.rangeValues[0] = this.rangeValues[1];
+      this.rangeValues[1] = temp;
+    }
+    this.filterOptions.priceRange = {
+      min: this.rangeValues[0],
+      max: this.rangeValues[1],
+      currentMin: this.rangeValues[0],
+      currentMax: this.rangeValues[1],
+    };
     this.emitFilterChange();
   }
 
@@ -61,7 +80,27 @@ export class FilterSidebarComponent implements OnInit {
   }
 
   onFilterClick() {
-    this.toggleSidebar.emit();
+    // this.toggleSidebar.emit();
+    this.filterChange.emit(this.filterOptions);
+    this.applyFilterChange.emit();
+
+  }
+  
+  onResetFilterClick() {
+    // this.toggleSidebar.emit();
+    this.filterOptions.categories.forEach(c => c.isSelected = false);
+    this.filterOptions.priceRange = {
+      min: 0,
+      max: 0,
+      currentMin: 0,
+      currentMax: 0,
+    };
+    this.filterOptions.ratings.forEach(r => r.isSelected = false);
+    this.filterOptions.tags.forEach(t => t.isSelected = false);
+    this.rangeValues = [0, 0];
+    this.filterChange.emit(this.filterOptions);
+    this.applyFilterChange.emit();
+
   }
 
   private emitFilterChange() {
@@ -74,6 +113,16 @@ export class FilterSidebarComponent implements OnInit {
         name: tag.name,
         isSelected: false,
         id: tag.id
+      }));
+    });
+  }
+  
+  getCategories() {
+    this.homeService.GetCategories().subscribe((res) => {
+      this.filterOptions.categories = res.data.map((category: any) => ({
+        name: category.name,
+        isSelected: false,
+        id: category.id
       }));
     });
   }
