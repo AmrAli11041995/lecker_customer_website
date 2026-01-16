@@ -1,1 +1,129 @@
-<p>register works!</p>
+<div class="register-page">
+    <div class="background-wrapper">
+        <div class="background-overlay"></div>
+        <div class="background-pattern"></div>
+        <img src="assets/img/candy.png" alt="Candy" class="background-candy">
+    </div>
+
+    <div class="register-card">
+        <div class="logo-section">
+            <img src="assets/img/mainlogo.png" alt="Lecker 24" class="logo">
+        </div>
+
+        <div class="welcome-header">
+            <h1 class="welcome-title">Join Lecker!</h1>
+            <p class="welcome-subtitle">Create your account</p>
+        </div>
+
+        <div class="progress-indicator">
+            <div class="progress-step" [class.active]="currentStep === 1" [class.completed]="currentStep > 1">
+                <div class="step-number">1</div>
+            </div>
+            <div class="progress-line" [class.completed]="currentStep > 1"></div>
+            <div class="progress-step" [class.active]="currentStep === 2">
+                <div class="step-number">2</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Personal Information -->
+        <form *ngIf="currentStep === 1" class="register-form">
+            <div class="form-row">
+                <div class="form-group half">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-input" placeholder="John" [(ngModel)]="formData.firstName"
+                        name="firstName" required>
+                </div>
+                <div class="form-group half">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-input" placeholder="Doe" [(ngModel)]="formData.lastName"
+                        name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="john@example.com" [(ngModel)]="formData.email"
+                    name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <div class="phone-wrapper">
+                    <select class="country-code" [(ngModel)]="formData.countryCode" name="countryCode">
+                        <option value="+1">+1</option>
+                        <option value="+44">+44</option>
+                        <option value="+971">+971</option>
+                        <option value="+966">+966</option>
+                        <option value="+20">+20</option>
+                    </select>
+                    <input type="tel" class="form-input phone-input" placeholder="555-0000" [(ngModel)]="formData.phone"
+                        name="phone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Country</label>
+                <select class="form-input" [(ngModel)]="formData.country" name="country" required>
+                    <option value="">Select your country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="UAE">United Arab Emirates</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="EG">Egypt</option>
+                </select>
+            </div>
+
+            <button type="button" class="submit-btn" (click)="nextStep()">
+                Continue
+            </button>
+        </form>
+
+        <!-- Step 2: Security -->
+        <form *ngIf="currentStep === 2" class="register-form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="input-wrapper">
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-input"
+                        placeholder="Create a password" [(ngModel)]="formData.password" name="password" required>
+                    <button type="button" class="password-toggle" (click)="togglePassword()">
+                        <svg *ngIf="!showPassword" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg *ngIf="showPassword" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-input" placeholder="Confirm password"
+                    [(ngModel)]="formData.confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" [(ngModel)]="formData.agreeTerms" name="agreeTerms" required>
+                    <span>I agree to the <a href="#" class="link">Terms</a></span>
+                </label>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="back-btn" (click)="previousStep()">Back</button>
+                <button type="submit" class="submit-btn flex-1" [disabled]="!formData.agreeTerms">Create
+                    Account</button>
+            </div>
+        </form>
+
+        <div class="signin-prompt">
+            Have an account? <a routerLink="/auth/login" class="signin-link">Sign in</a>
+        </div>
+    </div>
+</div>
