@@ -20,32 +20,30 @@
         </div>
 
         <div class="contact-form">
-          <h2>Sweet Addict's, Say Hi!</h2>
-          <p class="lede">
-            We'd love to hear from you! Whether you have questions about our products, need help with an order, or just want to share your favorite sweet treat, our team is here to help. Drop us a message and we'll get back to you as soon as possible!
-          </p>
+          <h2>{{ 'HOME.CONTACT.TITLE' | translate }}</h2>
+          <p class="lede">{{ 'HOME.CONTACT.LEDE' | translate }}</p>
 
           <form class="contact-form-fields" novalidate [formGroup]="contactForm" (ngSubmit)="onSendRequest()">
             <div class="form-row">
-              <input id="contact-name" type="text" placeholder="Name*" formControlName="name" />
-              <input id="contact-email" type="email" placeholder="Email Id*" formControlName="emailTo" />
+              <input id="contact-name" type="text" placeholder="{{ 'HOME.CONTACT.PLACEHOLDERS.NAME' | translate }}" formControlName="name" />
+              <input id="contact-email" type="email" placeholder="{{ 'HOME.CONTACT.PLACEHOLDERS.EMAIL' | translate }}" formControlName="emailTo" />
             </div>
             <div class="form-row">
-              <div class="error" *ngIf="(submitted || contactForm.get('name')?.touched) && contactForm.get('name')?.hasError('required')">Name is required</div>
-              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('required')">Email is required</div>
-              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('email')">Enter a valid email</div>
+              <div class="error" *ngIf="(submitted || contactForm.get('name')?.touched) && contactForm.get('name')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
+              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.EMAIL_REQUIRED' | translate }}</div>
+              <div class="error" *ngIf="(submitted || contactForm.get('emailTo')?.touched) && contactForm.get('emailTo')?.hasError('email')">{{ 'HOME.CONTACT.ERROR.EMAIL_INVALID' | translate }}</div>
             </div>
 
             <div class="form-field">
-              <input id="contact-phone" type="tel" placeholder="Phone Number*" formControlName= "phoneNumber" />
-              <div class="error" *ngIf="(submitted || contactForm.get('phoneNumber')?.touched) && contactForm.get('phoneNumber')?.hasError('required')">Phone number is required</div>
+              <input id="contact-phone" type="tel" placeholder="{{ 'HOME.CONTACT.PLACEHOLDERS.PHONE' | translate }}" formControlName= "phoneNumber" />
+              <div class="error" *ngIf="(submitted || contactForm.get('phoneNumber')?.touched) && contactForm.get('phoneNumber')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.PHONE_REQUIRED' | translate }}</div>
             </div>
 
             <div class="form-field">
-              <textarea id="contact-description" rows="5" placeholder="Description" formControlName="description"></textarea>
+              <textarea id="contact-description" rows="5" placeholder="{{ 'HOME.CONTACT.PLACEHOLDERS.DESCRIPTION' | translate }}" formControlName="description"></textarea>
             </div>
 
-            <button type="submit" class="primary-button" [disabled]="contactForm.invalid">Send Request</button>
+            <button type="submit" class="primary-button" [disabled]="contactForm.invalid">{{ 'HOME.CONTACT.BUTTON.SEND' | translate }}</button>
           </form>
         </div>
       </div>
@@ -56,8 +54,8 @@
             <img src="assets/img/home/delivery.png" alt="Delivery icon" />
           </div>
           <div class="feature-text">
-            <h4>Earliest Delivery</h4>
-            <p>Delivery in 3 Hours*</p>
+            <h4>{{ 'HOME.FEATURES.DELIVERY.TITLE' | translate }}</h4>
+            <p>{{ 'HOME.FEATURES.DELIVERY.SUBTITLE' | translate }}</p>
           </div>
         </div>
 
@@ -66,8 +64,8 @@
             <img src="assets/img/home/support24.png" alt="24/7 Support icon" />
           </div>
           <div class="feature-text">
-            <h4>Support 24/7</h4>
-            <p>Happily Delivering</p>
+            <h4>{{ 'HOME.FEATURES.SUPPORT.TITLE' | translate }}</h4>
+            <p>{{ 'HOME.FEATURES.SUPPORT.SUBTITLE' | translate }}</p>
           </div>
         </div>
 
@@ -76,8 +74,8 @@
             <img src="assets/img/home/securepayment.png" alt="Secure payments icon" />
           </div>
           <div class="feature-text">
-            <h4>Secure Payments</h4>
-            <p>All Major Credit &amp; Debit Cards</p>
+            <h4>{{ 'HOME.FEATURES.PAYMENTS.TITLE' | translate }}</h4>
+            <p>{{ 'HOME.FEATURES.PAYMENTS.SUBTITLE' | translate }}</p>
           </div>
         </div>
 
@@ -86,24 +84,24 @@
             <img src="assets/img/home/promise.png" alt="Promise icon" />
           </div>
           <div class="feature-text">
-            <h4>Our Promise</h4>
-            <p>100% satisfied Customers</p>
+            <h4>{{ 'HOME.FEATURES.PROMISE.TITLE' | translate }}</h4>
+            <p>{{ 'HOME.FEATURES.PROMISE.SUBTITLE' | translate }}</p>
           </div>
         </div>
       </div>
 
       <div class="shipping-info">
-        <p class="headline">The shipping costs for your purchase in our online shop are €5.90 within Germany.</p>
-        <p>We ship your order quickly and safely with our reliable shipping partner.</p>
+        <p class="headline">{{ 'HOME.SHIPPING.HEADLINE' | translate }}</p>
+        <p>{{ 'HOME.SHIPPING.TEXT1' | translate }}</p>
         <div class="shipping-logo">
           <img src="assets/img/home/DHLLogo.png" alt="DHL" />
         </div>
 
         <div class="supplier-callout">
-          <p>Are you a manufacturer or producer and would like to offer us goods?</p>
-          <p>We look forward to receiving your</p>
-          <p>offers with details of quantities and prices. Please send your offers to</p>
-          <p class="email">the following email address: <a href="mailto:info&#64;lecker24.eu">info&#64;lecker24.eu</a></p>
+          <p>{{ 'HOME.SUPPLIER.LINE1' | translate }}</p>
+          <p>{{ 'HOME.SUPPLIER.LINE2' | translate }}</p>
+          <p>{{ 'HOME.SUPPLIER.LINE3' | translate }}</p>
+          <p class="email">{{ 'HOME.SUPPLIER.EMAIL_PREFIX' | translate }} <a href="mailto:info&#64;lecker24.eu">info&#64;lecker24.eu</a></p>
         </div>
       </div>
     </div>

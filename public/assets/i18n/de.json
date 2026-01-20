@@ -1,0 +1,210 @@
+{
+  "HEADER": {
+    "TITLE": "Lecker Laden",
+    "CART": "Warenkorb",
+    "WISHLIST": "Wunschliste",
+    "NAV": { "HOME": "Startseite", "SHOP": "Shop", "CONTACT": "Kontakt" },
+    "CART_LABEL": "Warenkorb:",
+    "LANG": { "EN": "Englisch", "DE": "Deutsch" }
+  },
+  "HOME": {
+    "CATEGORIES": "Kategorien",
+    "ITEMS": "Artikel",
+    "SHOP_ALL": "Alle Produkte",
+    "CONTACT": {
+      "TITLE": "Süße Naschkatzen, sagt Hallo!",
+      "LEDE": "Wir freuen uns, von Ihnen zu hören! Ob Sie Fragen zu unseren Produkten haben, Hilfe bei einer Bestellung benötigen oder einfach Ihre Lieblingssüßigkeit teilen möchten – unser Team ist für Sie da. Schreiben Sie uns eine Nachricht und wir melden uns so schnell wie möglich!",
+      "PLACEHOLDERS": {
+        "NAME": "Name*",
+        "EMAIL": "E-Mail-Adresse*",
+        "PHONE": "Telefonnummer*",
+        "DESCRIPTION": "Beschreibung"
+      },
+      "BUTTON": { "SEND": "Anfrage senden" },
+      "ERROR": {
+        "NAME_REQUIRED": "Name ist erforderlich",
+        "EMAIL_REQUIRED": "E-Mail ist erforderlich",
+        "EMAIL_INVALID": "Bitte eine gültige E‑Mail eingeben",
+        "PHONE_REQUIRED": "Telefonnummer ist erforderlich"
+      }
+    },
+    "FEATURES": {
+      "DELIVERY": { "TITLE": "Schnellste Lieferung", "SUBTITLE": "Lieferung in 3 Stunden*" },
+      "SUPPORT": { "TITLE": "Support 24/7", "SUBTITLE": "Mit Freude geliefert" },
+      "PAYMENTS": { "TITLE": "Sichere Zahlungen", "SUBTITLE": "Alle gängigen Kredit- & Debitkarten" },
+      "PROMISE": { "TITLE": "Unser Versprechen", "SUBTITLE": "100% zufriedene Kunden" }
+    },
+    "SHIPPING": {
+      "HEADLINE": "Die Versandkosten für Ihren Einkauf in unserem Onlineshop betragen 5,90 € innerhalb Deutschlands.",
+      "TEXT1": "Wir versenden Ihre Bestellung schnell und sicher mit unserem zuverlässigen Versandpartner."
+    },
+    "SUPPLIER": {
+      "LINE1": "Sind Sie Hersteller oder Produzent und möchten uns Waren anbieten?",
+      "LINE2": "Wir freuen uns auf Ihre",
+      "LINE3": "Angebote mit Angaben zu Mengen und Preisen. Bitte senden Sie Ihre Angebote an",
+      "EMAIL_PREFIX": "folgende E‑Mail-Adresse:"
+    }
+  },
+  "BUTTON": {
+    "FILTER": "Filter",
+    "RESET_FILTERS": "Filter zurücksetzen"
+  },
+  "PRODUCT": {
+    "WISHLIST": { "ADD": "Zur Wunschliste", "REMOVE": "Von der Wunschliste entfernen" },
+    "VIEW": "Produkt ansehen",
+    "IN_STOCK": "Auf Lager",
+    "OUT_OF_STOCK": "Nicht auf Lager",
+    "ADD_TO_CART": "In den Warenkorb",
+    "REVIEW": "Bewertung",
+    "SKU": "SKU",
+    "OFF": "Rabatt",
+    "BRAND": "Marke",
+    "CATEGORY": "Kategorie:",
+    "TAG": "Stichwort:"
+  },
+  "PRODUCT_DETAIL": { "WORKS": "Produktdetails funktionieren!" },
+  "PRODUCT_LIST": { "WORKS": "Produktliste funktioniert!" },
+  "COMMON": { "NA": "Nicht verfügbar" },
+  "LOGIN": {
+    "WELCOME_TITLE": "Willkommen zurück!",
+    "WELCOME_SUBTITLE": "Melden Sie sich an, um weiter einzukaufen",
+    "EMAIL_LABEL": "Email-Adresse",
+    "EMAIL_PLACEHOLDER": "Email eingeben",
+    "PASSWORD_LABEL": "Passwort",
+    "PASSWORD_PLACEHOLDER": "Passwort eingeben",
+    "TOGGLE_PASSWORD": "Passwort anzeigen/ausblenden",
+    "SUBMIT": "Anmelden",
+    "OR_CONTINUE_WITH": "Oder fortfahren mit",
+    "DONT_HAVE_ACCOUNT": "Sie haben noch kein Konto?",
+    "SIGN_UP": "Registrieren",
+    "ENTER_AS_GUEST_PREFIX": "Eintreten",
+    "ENTER_AS_GUEST": "Als Gast",
+    "CANDY_ALT": "Süßigkeit",
+    "LOGO_ALT": "Lecker 24",
+    "UI_ONLY_ALERT": "Nur Login-UI – keine Authentifizierung implementiert"
+  },
+  "REGISTER": {
+    "WELCOME_TITLE": "Lecker beitreten!",
+    "WELCOME_SUBTITLE": "Erstellen Sie Ihr Konto",
+    "FIRST_NAME": "Vorname",
+    "LAST_NAME": "Nachname",
+    "EMAIL": "E‑Mail",
+    "PHONE_NUMBER": "Telefonnummer",
+    "COUNTRY": "Land",
+    "PASSWORD": "Passwort",
+    "CONFIRM_PASSWORD": "Passwort bestätigen",
+    "AGREE_TERMS": "Ich stimme den",
+    "TERMS_LINK": "Bedingungen",
+    "CONTINUE": "Weiter",
+    "BACK": "Zurück",
+    "CREATE_ACCOUNT": "Konto erstellen",
+    "HAVE_ACCOUNT": "Haben Sie bereits ein Konto?",
+    "SIGN_IN": "Anmelden",
+    "PLACEHOLDERS": {
+      "FIRST_NAME": "Max",
+      "LAST_NAME": "Mustermann",
+      "EMAIL": "max@example.com",
+      "PHONE": "555-0000",
+      "PASSWORD": "Passwort erstellen",
+      "CONFIRM_PASSWORD": "Passwort bestätigen",
+      "SELECT_COUNTRY": "Land auswählen"
+    },
+    "COUNTRIES": { "US": "Vereinigte Staaten", "UK": "Vereinigtes Königreich", "UAE": "Vereinigte Arabische Emirate", "SA": "Saudi-Arabien", "EG": "Ägypten" },
+    "ERROR": {
+      "FILL_ALL_FIELDS": "Bitte alle Felder ausfüllen",
+      "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein!",
+      "ACCEPT_TERMS": "Bitte stimmen Sie den Bedingungen zu"
+    },
+    "UI_ONLY_ALERT": "Nur Registrierungs-UI – keine Backend-Integration"
+  },
+  "TOP_SELLERS": {
+    "OUR_TOP_SELLERS": "Unsere Bestseller",
+    "SHOP_NOW": "Jetzt einkaufen"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Donec sit amet nibh vestibulum ipsum cursus rhoncus. Duis ac tortor gravida ligula eleifend finibus sed vel tellus.",
+    "LAND_REGION": "Land/Region",
+    "GET_IN_TOUCH": "Kontakt aufnehmen",
+    "ADDRESS": "Nr. 58 A, Madison Street Baltimore, MD, USA 4508",
+    "PHONE": "+00 (0) 123 456 789",
+    "EMAIL": "info@lecker24.eu",
+    "SHOP": "SHOP",
+    "CHOCOLATE_BARS": "Schokolade & Riegel",
+    "SHIPS_SNACKS": "Chips & Snacks",
+    "DRINKS": "Getränke",
+    "CEREAL_MUESLI": "Cerealien & Müsli",
+    "CAKES": "Kuchen",
+    "COPYRIGHT": "© 2024, Lecker24",
+    "WIDERRUFSRECHT": "Widerrufsrecht",
+    "DATENSCHUTZERKLARUNG": "Datenschutzerklärung",
+    "AGB": "AGB",
+    "VERSAND": "Versand",
+    "KONTAKTINFORMATIONEN": "Kontaktinformationen",
+    "IMPRESSUM": "Impressum",
+    "PAYMENT_METHODS_ALT": "Zahlungsmethoden"
+  },
+  "ORDER_SUMMARY": {
+    "ORDER_SUMMARY": "Bestellübersicht",
+    "SUBTOTAL": "Zwischensumme",
+    "SHIPPING": "Versand",
+    "TOTAL": "Gesamt",
+    "COUPON_CODE": "Gutscheincode",
+    "ENTER_COUPON_CODE": "Gutscheincode eingeben",
+    "APPLY": "Anwenden",
+    "PAYMENT_METHOD": "Zahlungsmethode",
+    "PLACE_ORDER": "Bestellung aufgeben",
+    "FREE": "Kostenlos",
+    "PAYMENT_METHODS": { "cash": "Nachnahme", "other": "Andere" }
+  },
+  "CART_TOTAL": { "TITLE": "Warenkorb Gesamt", "SUBTOTAL": "Zwischensumme", "SHIPPING": "Versand", "TOTAL": "Gesamt", "PROCEED_TO_CHECKOUT": "Zur Kasse", "FREE": "Kostenlos" },
+  "CART_TABLE": {
+    "PRODUCT": "Produkt",
+    "PRICE": "Preis",
+    "QUANTITY": "Menge",
+    "SUBTOTAL": "Zwischensumme",
+    "QUANTITY_LABEL": "Menge",
+    "SUBTOTAL_LABEL": "Zwischensumme",
+    "REMOVE_ITEM": "Artikel entfernen",
+    "RETURN_TO_SHOP": "Zurück zum Shop",
+    "UPDATE_CART": "Warenkorb aktualisieren"
+  },
+  "CART": { "TITLE": "Mein Warenkorb" },
+  "WISHLIST": { "TITLE": "Meine Wunschliste", "EMPTY": "Ihre Wunschliste ist leer." },
+  "COUPON_CODE": {
+    "TITLE": "Gutscheincode",
+    "PLACEHOLDER": "Code eingeben",
+    "APPLIED": "Angewendet",
+    "APPLY": "Gutschein anwenden",
+    "REMOVE": "Entfernen",
+    "ERROR": { "REQUIRED": "Bitte einen Gutscheincode eingeben", "INVALID": "Ungültiger Gutscheincode" }
+  },
+  "SEARCH_BAR": { "PLACEHOLDER": "Produkt suchen", "ALL_CATEGORIES": "Alle Kategorien", "SORT_BY": "Sortieren nach:", "RESULTS_FOUND": "{{count}} Ergebnisse" },
+  "CONTACT": {
+    "PAGE_TITLE": "Kontakt",
+    "GET_IN_TOUCH": "Kontakt aufnehmen",
+    "INTRO": "Wir freuen uns auf Ihre Nachricht. Schreiben Sie uns und wir antworten so schnell wie möglich.",
+    "ADDRESS": "Adresse",
+    "PHONE": "Telefon",
+    "EMAIL": "E‑Mail",
+    "SEND_MESSAGE": "Nachricht senden",
+    "FORM": { "NAME": "Name", "EMAIL": "E‑Mail", "SUBJECT": "Betreff", "MESSAGE": "Nachricht" },
+    "PLACEHOLDERS": { "NAME": "Ihr vollständiger Name", "EMAIL": "ihre.email@beispiel.de", "MESSAGE": "Erzählen Sie uns mehr über Ihr Anliegen..." },
+    "BUTTON": { "SUBMIT": "Nachricht senden", "SENDING": "Wird gesendet..." },
+    "SUCCESS": "Ihre Nachricht wurde erfolgreich gesendet!"
+  },
+  "FORM_ERRORS": { "REQUIRED": "{{field}} ist erforderlich", "EMAIL": "Bitte eine gültige email eingeben", "MINLENGTH": "{{field}} muss mindestens {{length}} Zeichen haben" },
+  "BILLING": {
+    "TITLE": "Rechnungsinformationen",
+    "FIRST_NAME": "Vorname",
+    "LAST_NAME": "Nachname",
+    "COUNTRY": "Land / Region",
+    "CITY": "Stadt",
+    "PLACEHOLDERS": {
+      "FIRST_NAME": "Ihr Vorname",
+      "LAST_NAME": "Ihr Nachname",
+      "SELECT_COUNTRY": "Land auswählen",
+      "SELECT_CITY": "Stadt auswählen"
+    },
+    "ERROR": { "PHONE_PATTERN": "Bitte eine gültige Telefonnummer eingeben" }
+  }
+}

@@ -5,10 +5,10 @@
       <table class="cart-table">
         <thead>
           <tr>
-            <th class="product-header">PRODUCT</th>
-            <th class="price-header">PRICE</th>
-            <th class="quantity-header">QUANTITY</th>
-            <th class="subtotal-header">SUBTOTAL</th>
+            <th class="product-header">{{ 'CART_TABLE.PRODUCT' | translate }}</th>
+            <th class="price-header">{{ 'CART_TABLE.PRICE' | translate }}</th>
+            <th class="quantity-header">{{ 'CART_TABLE.QUANTITY' | translate }}</th>
+            <th class="subtotal-header">{{ 'CART_TABLE.SUBTOTAL' | translate }}</th>
             <th class="actions-header"></th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@
               <span class="subtotal">${{ item.subtotal.toFixed(2) }}</span>
             </td>
             <td class="actions-cell">
-              <button class="remove-btn" (click)="onRemoveItem(item.id)" title="Remove item">
+              <button class="remove-btn" (click)="onRemoveItem(item.id)" title="{{ 'CART_TABLE.REMOVE_ITEM' | translate }}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -67,7 +67,7 @@
       
       <div class="card-body">
         <div class="quantity-section">
-          <label class="quantity-label">Quantity:</label>
+          <label class="quantity-label">{{ 'CART_TABLE.QUANTITY_LABEL' | translate }}:</label>
           <app-quantity-selector
             [quantity]="item.quantity"
             (quantityChange)="onQuantityChange(item.id, $event)"
@@ -75,7 +75,7 @@
         </div>
         
         <div class="subtotal-section">
-          <span class="subtotal-label">Subtotal:</span>
+          <span class="subtotal-label">{{ 'CART_TABLE.SUBTOTAL_LABEL' | translate }}:</span>
           <span class="subtotal-mobile">${{ item.subtotal.toFixed(2) }}</span>
         </div>
       </div>
@@ -84,10 +84,10 @@
 
   <div class="cart-actions">
     <button class="return-to-shop-btn" (click)="onReturnToShop()">
-      Return to shop
+      {{ 'CART_TABLE.RETURN_TO_SHOP' | translate }}
     </button>
     <button class="update-cart-btn" (click)="onUpdateCart()">
-      Update Cart
+      {{ 'CART_TABLE.UPDATE_CART' | translate }}
     </button>
   </div>
 </div>

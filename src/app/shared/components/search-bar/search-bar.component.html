@@ -4,7 +4,7 @@
       <input 
         type="text" 
         class="search-input" 
-        placeholder="Search For Product"
+        placeholder="{{ 'SEARCH_BAR.PLACEHOLDER' | translate }}"
         [(ngModel)]="searchQuery"
         (input)="onSearchChange()"
       >
@@ -21,7 +21,7 @@
         [(ngModel)]="selectedCategory"
         (change)="onCategoryChange()"
       >
-        <option value="">All Categories</option>
+        <option value="">{{ 'SEARCH_BAR.ALL_CATEGORIES' | translate }}</option>
         <option *ngFor="let category of categories" [value]="category">
           {{ category?.name }}
         </option>
@@ -31,7 +31,7 @@
   
   <div class="results-section">
     <div class="sort-container">
-      <label class="sort-label">Sort by:</label>
+      <label class="sort-label">{{ 'SEARCH_BAR.SORT_BY' | translate }}</label>
       <select 
         class="sort-select" 
         [(ngModel)]="sortBy"
@@ -43,7 +43,7 @@
       </select>
     </div>
     <div class="results-count">
-      {{ resultsCount }} Results Found
+      {{ 'SEARCH_BAR.RESULTS_FOUND' | translate:{ count: resultsCount } }}
     </div>
   </div>
 </div>

@@ -1,24 +1,24 @@
 <div class="cart-total-container">
-  <h3 class="cart-total-title">Cart Total</h3>
+  <h3 class="cart-total-title">{{ 'CART_TOTAL.TITLE' | translate }}</h3>
   
   <div class="total-details">
     <div class="total-row">
-      <span class="total-label">Subtotal:</span>
+      <span class="total-label">{{ 'CART_TOTAL.SUBTOTAL' | translate }}:</span>
       <span class="total-value">${{ subtotal.toFixed(2) }}</span>
     </div>
     
     <div class="total-row">
-      <span class="total-label">Shipping:</span>
+      <span class="total-label">{{ 'CART_TOTAL.SHIPPING' | translate }}:</span>
       <span class="total-value">{{ getShippingText() }}</span>
     </div>
     
     <div class="total-row total-final">
-      <span class="total-label">Total:</span>
+      <span class="total-label">{{ 'CART_TOTAL.TOTAL' | translate }}:</span>
       <span class="total-value">${{ total.toFixed(2) }}</span>
     </div>
   </div>
   
   <button class="checkout-btn" (click)="onProceedToCheckout()">
-    Proceed to checkout
+    {{ 'CART_TOTAL.PROCEED_TO_CHECKOUT' | translate }}
   </button>
 </div>

@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angu
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../features/products/models/product.model';
 import { environment } from '../../../../environments/environment.development';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,TranslateModule],
   templateUrl: './product-modal.component.html',
   styleUrl: './product-modal.component.scss'
 })

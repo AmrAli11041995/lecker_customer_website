@@ -4,12 +4,13 @@ import { DataService } from '../../services/data.service';
 import { Category } from '../../../features/products/models/product.model';
 import { HomeService } from '../../../features/home/services/home.service';
 import { AuthRoutingModule } from "../../../features/auth/auth-routing.module";
+import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-categories-section',
   standalone: true,
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [CommonModule, AuthRoutingModule, TranslateModule],
   templateUrl: './categories-section.component.html',
   styleUrl: './categories-section.component.scss'
 })

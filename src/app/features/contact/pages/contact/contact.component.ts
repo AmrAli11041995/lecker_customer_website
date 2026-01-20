@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { ToastComponent } from '../../../../shared/components/toast/toast.component';
@@ -8,7 +9,7 @@ import { ToastComponent } from '../../../../shared/components/toast/toast.compon
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ToastComponent],
+  imports: [CommonModule, ReactiveFormsModule, ToastComponent, TranslateModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
@@ -19,7 +20,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -39,13 +41,13 @@ export class ContactComponent implements OnInit {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field.touched) {
       if (field.errors['required']) {
-        return `${this.getFieldLabel(fieldName)} is required`;
+        return this.translate.instant('FORM_ERRORS.REQUIRED', { field: this.getFieldLabel(fieldName) });
       }
       if (field.errors['email']) {
-        return 'Please enter a valid email address';
+        return this.translate.instant('FORM_ERRORS.EMAIL');
       }
       if (field.errors['minlength']) {
-        return `${this.getFieldLabel(fieldName)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+        return this.translate.instant('FORM_ERRORS.MINLENGTH', { field: this.getFieldLabel(fieldName), length: field.errors['minlength'].requiredLength });
       }
     }
     return '';
@@ -73,7 +75,7 @@ export class ContactComponent implements OnInit {
       // Simulate form submission
       setTimeout(() => {
         this.isSubmitting = false;
-        this.toastService.showSuccess('Your message has been sent successfully!');
+        this.toastService.showSuccess(this.translate.instant('CONTACT.SUCCESS'));
         this.contactForm.reset();
       }, 1500);
     } else {

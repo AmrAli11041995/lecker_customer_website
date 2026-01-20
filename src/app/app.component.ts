@@ -4,6 +4,8 @@ import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from './shared/services/translation-helper.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +18,19 @@ export class AppComponent implements OnInit {
   title = 'lecker-customer';
   showHeaderFooter = true;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    public translationService: TranslationService
+  ) {
+    // translate.addLangs(['en', 'de']);
+    // translate.setDefaultLang('en');
+    //  const browserLang = translate.getBrowserLang();
+    // translate.use(browserLang?.startsWith('de') ? 'de' : 'en');
+
+   }
 
   ngOnInit() {
+    this.translationService.initializeLanguage();
     // Listen to route changes
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -27,4 +39,7 @@ export class AppComponent implements OnInit {
         this.showHeaderFooter = !event.url.includes('/auth');
       });
   }
+  // changeLanguage(lang: 'en' | 'de') {
+  //   this.translate.use(lang);
+  // }
 }

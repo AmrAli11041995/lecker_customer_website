@@ -1,13 +1,13 @@
 <div class="contact-page">
   <div class="contact-container">
-    <h1 class="page-title">Contact Us</h1>
+    <h1 class="page-title">{{ 'CONTACT.PAGE_TITLE' | translate }}</h1>
     
     <div class="contact-layout">
       <!-- Company Information -->
       <div class="company-info">
-        <h2 class="section-title">Get In Touch</h2>
+        <h2 class="section-title">{{ 'CONTACT.GET_IN_TOUCH' | translate }}</h2>
         <p class="section-description">
-          We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          {{ 'CONTACT.INTRO' | translate }}
         </p>
         
         <div class="contact-details">
@@ -19,7 +19,7 @@
               </svg>
             </div>
             <div class="contact-info">
-              <h3 class="contact-label">Address</h3>
+              <h3 class="contact-label">{{ 'CONTACT.ADDRESS' | translate }}</h3>
               <p class="contact-text">No: 58 A, Madison Street<br>Baltimore, MD, USA 4508</p>
             </div>
           </div>
@@ -31,7 +31,7 @@
               </svg>
             </div>
             <div class="contact-info">
-              <h3 class="contact-label">Phone</h3>
+              <h3 class="contact-label">{{ 'CONTACT.PHONE' | translate }}</h3>
               <p class="contact-text">+00 (0) 123 456 789</p>
             </div>
           </div>
@@ -44,7 +44,7 @@
               </svg>
             </div>
             <div class="contact-info">
-              <h3 class="contact-label">Email</h3>
+              <h3 class="contact-label">{{ 'CONTACT.EMAIL' | translate }}</h3>
               <p class="contact-text">info&#64;lecker24.eu</p>
             </div>
           </div>
@@ -53,16 +53,16 @@
       
       <!-- Contact Form -->
       <div class="contact-form-section">
-        <h2 class="section-title">Send us a Message</h2>
+        <h2 class="section-title">{{ 'CONTACT.SEND_MESSAGE' | translate }}</h2>
         
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-row">
             <div class="form-field">
-              <label class="field-label">Name *</label>
+              <label class="field-label">{{ 'CONTACT.FORM.NAME' | translate }} *</label>
               <input 
                 type="text" 
                 formControlName="name"
-                placeholder="Your full name"
+                placeholder="{{ 'CONTACT.PLACEHOLDERS.NAME' | translate }}"
                 class="form-input"
                 [class.error]="isFieldInvalid('name')"
               >
@@ -72,11 +72,11 @@
             </div>
             
             <div class="form-field">
-              <label class="field-label">Email *</label>
+              <label class="field-label">{{ 'CONTACT.FORM.EMAIL' | translate }} *</label>
               <input 
                 type="email" 
                 formControlName="email"
-                placeholder="your.email@example.com"
+                placeholder="{{ 'CONTACT.PLACEHOLDERS.EMAIL' | translate }}"
                 class="form-input"
                 [class.error]="isFieldInvalid('email')"
               >
@@ -87,7 +87,7 @@
           </div>
           
           <div class="form-field">
-            <label class="field-label">Subject *</label>
+            <label class="field-label">{{ 'CONTACT.FORM.SUBJECT' | translate }} *</label>
             <input 
               type="text" 
               formControlName="subject"
@@ -101,10 +101,10 @@
           </div>
           
           <div class="form-field">
-            <label class="field-label">Message *</label>
+            <label class="field-label">{{ 'CONTACT.FORM.MESSAGE' | translate }} *</label>
             <textarea 
               formControlName="message"
-              placeholder="Tell us more about your inquiry..."
+              placeholder="{{ 'CONTACT.PLACEHOLDERS.MESSAGE' | translate }}"
               class="form-textarea"
               rows="6"
               [class.error]="isFieldInvalid('message')"
@@ -119,8 +119,8 @@
             class="submit-btn"
             [disabled]="isSubmitting"
           >
-            <span *ngIf="!isSubmitting">Send Message</span>
-            <span *ngIf="isSubmitting">Sending...</span>
+            <span *ngIf="!isSubmitting">{{ 'CONTACT.BUTTON.SUBMIT' | translate }}</span>
+            <span *ngIf="isSubmitting">{{ 'CONTACT.BUTTON.SENDING' | translate }}</span>
           </button>
         </form>
       </div>

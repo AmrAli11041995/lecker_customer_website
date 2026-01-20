@@ -9,11 +9,11 @@
 
     <!-- Left Navigation -->
     <nav class="nav-left" [class.mobile-open]="isMobileMenuOpen">
-      <a routerLink="/" class="nav-link" (click)="closeMobileMenu()">Home</a>
+      <a routerLink="/" class="nav-link" (click)="closeMobileMenu()">{{ 'HEADER.NAV.HOME' | translate }}</a>
       
-      <a routerLink="/products" class="nav-link" (click)="closeMobileMenu()">Shop</a>
+      <a routerLink="/products" class="nav-link" (click)="closeMobileMenu()">{{ 'HEADER.NAV.SHOP' | translate }}</a>
       
-      <a routerLink="/contact" class="nav-link" (click)="closeMobileMenu()">Contact</a>
+      <a routerLink="/contact" class="nav-link" (click)="closeMobileMenu()">{{ 'HEADER.NAV.CONTACT' | translate }}</a>
     </nav>
 
     <!-- Center Logo -->
@@ -30,9 +30,9 @@
           <span class="dropdown-arrow">▼</span>
         </div>
         <div class="dropdown-menu language-dropdown">
-          <div class="dropdown-item" (click)="selectLanguage('EN')" [class.active]="selectedLanguage === 'EN'">English</div>
-          <div class="dropdown-item" (click)="selectLanguage('AR')" [class.active]="selectedLanguage === 'AR'">العربية</div>
-          <div class="dropdown-item" (click)="selectLanguage('FR')" [class.active]="selectedLanguage === 'FR'">Français</div>
+          <div class="dropdown-item" (click)="selectLanguage('DE')" [class.active]="selectedLanguage === 'DE'">  <span class="flag-icon">🇩🇪</span>{{ 'HEADER.LANG.DE' | translate }}</div>
+          <div class="dropdown-item" (click)="selectLanguage('EN')"  [class.active]="selectedLanguage === 'EN'"> <span class="flag-icon">🇬🇧</span>{{ 'HEADER.LANG.EN' | translate }}</div>
+          <!-- <div class="dropdown-item" (click)="selectLanguage('AR')" (click)="selectLanguage('EN')" [class.active]="selectedLanguage === 'AR'">العربية</div> -->
         </div>
       </div>
       
@@ -57,7 +57,7 @@
           <span class="cart-badge" *ngIf="cart.itemCount > 0">{{ cart.itemCount }}</span>
         </div>
         <div class="cart-info">
-          <span class="cart-label">Shopping cart:</span>
+          <span class="cart-label">{{ 'HEADER.CART_LABEL' | translate }}</span>
           <span class="cart-total">${{ cart.total.toFixed(2) }}</span>
         </div>
       </div>

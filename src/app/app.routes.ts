@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth',
+    // redirectTo: 'home',
     pathMatch: 'full'   // default route
   },
   {

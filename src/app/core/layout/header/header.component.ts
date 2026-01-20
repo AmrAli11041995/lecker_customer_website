@@ -5,11 +5,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { Cart } from '../../../features/cart/models/cart.model';
 import { WishlistService } from '../../../shared/services/wishlist.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -25,14 +26,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
   isShopDropdownOpen = false;
   isLanguageDropdownOpen = false;
-  selectedLanguage = 'EN';
+  selectedLanguage = 'DE';
 
   private destroy$ = new Subject<void>();
 
   constructor(
     private cartService: CartService,
     private router: Router,
-    private wishlist: WishlistService
+    private wishlist: WishlistService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -105,8 +107,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectLanguage(language: string) {
     this.selectedLanguage = language;
     this.isLanguageDropdownOpen = false;
-    // TODO: Implement language switching functionality
-    console.log('Language selected:', language);
+    const langCode = language === 'DE' ? 'de' : 'en';
+    this.translate.use(langCode);
   }
 
 }

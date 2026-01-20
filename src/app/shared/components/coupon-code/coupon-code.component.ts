@@ -1,15 +1,17 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-coupon-code',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './coupon-code.component.html',
   styleUrl: './coupon-code.component.scss'
 })
 export class CouponCodeComponent {
+  constructor(private translate: TranslateService) {}
   couponCode: string = '';
   isApplied: boolean = false;
   errorMessage: string = '';
@@ -18,7 +20,7 @@ export class CouponCodeComponent {
 
   onApplyCoupon(): void {
     if (!this.couponCode.trim()) {
-      this.errorMessage = 'Please enter a coupon code';
+      this.errorMessage = 'COUPON_CODE.ERROR.REQUIRED';
       return;
     }
 
@@ -30,7 +32,7 @@ export class CouponCodeComponent {
       this.errorMessage = '';
       this.couponApplied.emit(this.couponCode);
     } else {
-      this.errorMessage = 'Invalid coupon code';
+      this.errorMessage = 'COUPON_CODE.ERROR.INVALID';
       this.isApplied = false;
     }
   }

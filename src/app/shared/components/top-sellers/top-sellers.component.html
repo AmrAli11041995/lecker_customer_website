@@ -8,7 +8,7 @@
 
   <div class="container">
     <div class="header">
-      <h2>Our Top Sellers</h2>
+      <h2>{{ 'TOP_SELLERS.OUR_TOP_SELLERS' | translate }}</h2>
       <!-- <div class="arrows">
         <button class="arrow" aria-label="Previous" (click)="onPrev()">&#8592;</button>
         <button class="arrow" aria-label="Next" (click)="onNext()">&#8594;</button>
@@ -18,13 +18,13 @@
     <div class="cards" #track>
       <div class="card" *ngFor="let p of products">
         <div class="image-wrap">
-          <img *ngIf="p.image" [src]="fileBaseURL + (p.image?.imageUrl)" [alt]="p.name" />
+          <img *ngIf="p.image" [src]="fileBaseURL + (p.image.imageUrl )" [alt]="p.name" />
           <img *ngIf="!p.image" src="assets/img/cookies.png" [alt]="p.name" />
         </div>
         <div class="meta">
           <h3>{{ p.name }}</h3>
           <p class="desc">{{ p.descreption }}</p>
-          <button class="shop" (click)="selectProduct(p)" routerLink="/products">Shop Now</button>
+          <button class="shop" (click)="selectProduct(p)" routerLink="/products">{{ 'TOP_SELLERS.SHOP_NOW' | translate }}</button>
         </div>
       </div>
     </div>

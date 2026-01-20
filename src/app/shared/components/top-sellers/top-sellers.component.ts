@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { DataService } from '../../services/data.service';
 import { Product } from '../../../features/products/models/product.model';
 import { ProductService } from '../../../features/products/services/product.service';
@@ -9,7 +10,7 @@ import { AuthRoutingModule } from "../../../features/auth/auth-routing.module";
 @Component({
   selector: 'app-top-sellers',
   standalone: true,
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [CommonModule, AuthRoutingModule, TranslateModule],
   templateUrl: './top-sellers.component.html',
   styleUrl: './top-sellers.component.scss'
 })

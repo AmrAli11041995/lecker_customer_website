@@ -1,10 +1,10 @@
 <div class="coupon-code-section">
-  <h4 class="coupon-label">Coupon Code</h4>
+  <h4 class="coupon-label">{{ 'COUPON_CODE.TITLE' | translate }}</h4>
   <div class="coupon-input-group">
     <input 
       type="text" 
       class="coupon-input" 
-      placeholder="Enter code"
+      placeholder="{{ 'COUPON_CODE.PLACEHOLDER' | translate }}"
       [(ngModel)]="couponCode"
       [disabled]="isApplied"
     >
@@ -13,17 +13,17 @@
       (click)="onApplyCoupon()"
       [disabled]="isApplied"
     >
-      {{ isApplied ? 'Applied' : 'Apply Coupon' }}
+      {{ isApplied ? ('COUPON_CODE.APPLIED' | translate) : ('COUPON_CODE.APPLY' | translate) }}
     </button>
     <button 
       *ngIf="isApplied" 
       class="remove-coupon-btn" 
       (click)="onRemoveCoupon()"
     >
-      Remove
+      {{ 'COUPON_CODE.REMOVE' | translate }}
     </button>
   </div>
   <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
+    {{ errorMessage | translate }}
   </div>
 </div>

@@ -4,10 +4,11 @@ import { Product } from '../../../features/products/models/product.model';
 import { WishlistService } from '../../services/wishlist.service';
 import { ToastService } from '../../services/toast.service';
 import { environment } from '../../../../environments/environment.development';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule],
+  imports: [CommonModule,TranslateModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })

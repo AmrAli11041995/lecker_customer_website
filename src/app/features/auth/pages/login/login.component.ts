@@ -1,33 +1,60 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
+  loginForm!: FormGroup;
   showPassword: boolean = false;
-  rememberMe: boolean = false;
+submitted= false;
+  constructor(private fb: FormBuilder, private translate: TranslateService ,private authService: AuthService , private router: Router, private toastService: ToastService) {}
+
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
+      // rememberMe: [false]
+    });
+  }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
   onSubmit() {
-    // This is just UI - no actual authentication
-    console.log('Login attempted with:', {
-      email: this.email,
-      password: '***',
-      rememberMe: this.rememberMe
-    });
-    
-    // You can add a toast notification here
-    alert('Login UI only - no authentication implemented');
+    this.submitted= true;
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (res) => {
+          if(res.status === true){
+          console.log(res);
+          localStorage.setItem('token', res.data);
+          this.router.navigate(['/home']);
+          }
+          else{
+            this.toastService.showError(`Login failed!`);
+          }
+          // alert(this.translate.instant('LOGIN.UI_ONLY_ALERT'));
+        },
+        error: (err) => {
+          console.log(err);
+          alert(this.translate.instant('LOGIN.UI_ONLY_ALERT'));
+        }
+      });
+      // const { email, rememberMe } = this.loginForm.value;
+      // console.log('Login attempted with:', { email, password: '***', rememberMe });
+      // alert(this.translate.instant('LOGIN.UI_ONLY_ALERT'));
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 }

@@ -1,5 +1,5 @@
 <div class="order-summary-container">
-  <h2 class="summary-title">Order Summary</h2>
+  <h2 class="summary-title">{{ 'ORDER_SUMMARY.ORDER_SUMMARY' | translate }}</h2>
   
   <!-- Product List -->
   <div class="product-list">
@@ -15,39 +15,39 @@
   <!-- Summary Box -->
   <div class="summary-box">
     <div class="summary-row">
-      <span class="summary-label">Subtotal:</span>
+      <span class="summary-label">{{ 'ORDER_SUMMARY.SUBTOTAL' | translate }}:</span>
       <span class="summary-value">${{ orderSummary.subtotal.toFixed(2) }}</span>
     </div>
     
     <div class="summary-row">
-      <span class="summary-label">Shipping:</span>
+      <span class="summary-label">{{ 'ORDER_SUMMARY.SHIPPING' | translate }}:</span>
       <span class="summary-value">{{ getShippingText() }}</span>
     </div>
     
     <div class="summary-row total-row">
-      <span class="summary-label">Total:</span>
+      <span class="summary-label">{{ 'ORDER_SUMMARY.TOTAL' | translate }}:</span>
       <span class="summary-value total-value">${{ orderSummary.total.toFixed(2) }}</span>
     </div>
   </div>
 
   <!-- Coupon Code Section -->
   <div class="coupon-section">
-    <h3 class="coupon-title">Coupon Code</h3>
+    <h3 class="coupon-title">{{ 'ORDER_SUMMARY.COUPON_CODE' | translate }}</h3>
     <div class="coupon-input-group">
       <input 
         type="text" 
         [(ngModel)]="couponCode"
-        placeholder="Enter coupon code"
+        placeholder="{{ 'ORDER_SUMMARY.ENTER_COUPON_CODE' | translate }}"
         class="coupon-input"
         (keyup.enter)="onApplyCoupon()"
       >
-      <button class="apply-coupon-btn" (click)="onApplyCoupon()">Apply</button>
+      <button class="apply-coupon-btn" (click)="onApplyCoupon()">{{ 'ORDER_SUMMARY.APPLY' | translate }}</button>
     </div>
   </div>
 
   <!-- Payment Method -->
   <div class="payment-section">
-    <h3 class="payment-title">Payment Method</h3>
+    <h3 class="payment-title">{{ 'ORDER_SUMMARY.PAYMENT_METHOD' | translate }}</h3>
     
     <div class="payment-options">
       <label *ngFor="let method of paymentMethods" class="payment-option">
@@ -59,13 +59,13 @@
           (change)="onPaymentMethodChange(method.type)"
           class="payment-radio"
         >
-        <span class="payment-label">{{ method.label }}</span>
+        <span class="payment-label">{{ ('ORDER_SUMMARY.PAYMENT_METHODS.' + method.type) | translate }}</span>
       </label>
     </div>
   </div>
 
   <!-- Place Order Button -->
   <button class="place-order-btn" (click)="onPlaceOrder()">
-    Place Order
+    {{ 'ORDER_SUMMARY.PLACE_ORDER' | translate }}
   </button>
 </div>

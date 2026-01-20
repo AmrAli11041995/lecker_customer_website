@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BillingInfo } from '../../models/checkout.model';
 
 @Component({
   selector: 'app-billing-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './billing-form.component.html',
   styleUrl: './billing-form.component.scss'
 })
@@ -44,7 +45,7 @@ export class BillingFormComponent implements OnInit {
     'San Jose'
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -78,16 +79,16 @@ export class BillingFormComponent implements OnInit {
     const field = this.billingForm.get(fieldName);
     if (field?.errors && field.touched) {
       if (field.errors['required']) {
-        return `${this.getFieldLabel(fieldName)} is required`;
+        return this.translate.instant('FORM_ERRORS.REQUIRED', { field: this.getFieldLabel(fieldName) });
       }
       if (field.errors['email']) {
-        return 'Please enter a valid email address';
+        return this.translate.instant('FORM_ERRORS.EMAIL');
       }
       if (field.errors['minlength']) {
-        return `${this.getFieldLabel(fieldName)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+        return this.translate.instant('FORM_ERRORS.MINLENGTH', { field: this.getFieldLabel(fieldName), length: field.errors['minlength'].requiredLength });
       }
       if (field.errors['pattern']) {
-        return 'Please enter a valid phone number';
+        return this.translate.instant('BILLING.ERROR.PHONE_PATTERN');
       }
     }
     return '';

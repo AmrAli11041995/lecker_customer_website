@@ -104,7 +104,7 @@
             <h2 class="product-name">{{ product.name }}</h2>
             <div class="status-badge" 
             [class.in-stock]="product.isInStock" [class.out-of-stock]="!product.isInStock">
-              {{ product.isInStock ? 'In Stock' : 'Out of Stock' }}
+              {{ product.isInStock ? ('PRODUCT.IN_STOCK' | translate) : ('PRODUCT.OUT_OF_STOCK' | translate) }}
             </div>
           </div>
         </div>
@@ -115,9 +115,9 @@
             <div class="stars">
               <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= (product!.rating || 0)">★</span>
             </div>
-            <span class="review-count">{{ product.rating??3 }} Review</span>
+            <span class="review-count">{{ product.rating??3 }} {{ 'PRODUCT.REVIEW' | translate }}</span>
           </div>
-          <div class="sku">SKU: {{ product.skw }}</div>
+          <div class="sku">{{ 'PRODUCT.SKU' | translate }}: {{ product.skw }}</div>
         </div>
 
         <!-- Pricing -->
@@ -126,16 +126,16 @@
             <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
             <span class="current-price">${{ product.price }}</span>
             <div class="discount-badge" *ngIf="product.salePercentage">
-              {{ product.salePercentage }}% Off
+              {{ product.salePercentage }}% {{ 'PRODUCT.OFF' | translate }}
             </div>
           </div>
         </div>
 
         <!-- Brand -->
         <div class="brand">
-          <span class="brand-label">Brand:</span>
-          <span class="brand-name">{{ product.brand }}</span>
-        </div>
+            <span class="brand-label">{{ 'PRODUCT.BRAND' | translate }}:</span>
+            <span class="brand-name">{{ product.brand }}</span>
+          </div>
 
         <!-- Description -->
         <div class="description">
@@ -162,7 +162,7 @@
               <circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            Add to Cart
+            {{ 'PRODUCT.ADD_TO_CART' | translate }}
           </button>
           <button class="wishlist-btn" (click)="onAddToWishlist()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -174,12 +174,12 @@
         <!-- Category and Tags -->
         <div class="product-details">
           <div class="detail-item">
-            <span class="detail-label">Category:</span>
+            <span class="detail-label">{{ 'PRODUCT.CATEGORY' | translate }}</span>
             <span class="detail-value">{{ product.category }}</span>
           </div>
           <div class="detail-item">
-            <span class="detail-label">Tag:</span>
-            <span class="detail-value">{{ product!.tags?.join(' ') || 'N/A' }}</span>
+            <span class="detail-label">{{ 'PRODUCT.TAG' | translate }}</span>
+            <span class="detail-value">{{ product!.tags?.join(' ') || ( 'COMMON.NA' | translate ) }}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { Cart, CartItem } from '../../models/cart.model';
@@ -10,7 +11,7 @@ import { CartTotalComponent } from '../../components/cart-total/cart-total.compo
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CartTableComponent, CartTotalComponent],
+  imports: [CommonModule, CartTableComponent, CartTotalComponent, TranslateModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

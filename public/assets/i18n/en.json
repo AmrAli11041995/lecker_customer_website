@@ -1,0 +1,211 @@
+{
+  "HEADER": {
+    "TITLE": "Lecker Shop",
+    "CART": "Cart",
+    "WISHLIST": "Wishlist",
+    "NAV": { "HOME": "Home", "SHOP": "Shop", "CONTACT": "Contact" },
+    "CART_LABEL": "Shopping cart:",
+    "LANG": { "EN": "English", "DE": "German" }
+  },
+  "HOME": {
+    "CATEGORIES": "Categories",
+    "ITEMS": "items",
+    "SHOP_ALL": "Shop All",
+    "CONTACT": {
+      "TITLE": "Sweet Addict's, Say Hi!",
+      "LEDE": "We'd love to hear from you! Whether you have questions about our products, need help with an order, or just want to share your favorite sweet treat, our team is here to help. Drop us a message and we'll get back to you as soon as possible!",
+      "PLACEHOLDERS": {
+        "NAME": "Name*",
+        "EMAIL": "Email Id*",
+        "PHONE": "Phone Number*",
+        "DESCRIPTION": "Description"
+      },
+      "BUTTON": { "SEND": "Send Request" },
+      "ERROR": {
+        "NAME_REQUIRED": "Name is required",
+        "EMAIL_REQUIRED": "Email is required",
+        "EMAIL_INVALID": "Enter a valid email",
+        "PHONE_REQUIRED": "Phone number is required"
+      }
+    },
+    "FEATURES": {
+      "DELIVERY": { "TITLE": "Earliest Delivery", "SUBTITLE": "Delivery in 3 Hours*" },
+      "SUPPORT": { "TITLE": "Support 24/7", "SUBTITLE": "Happily Delivering" },
+      "PAYMENTS": { "TITLE": "Secure Payments", "SUBTITLE": "All Major Credit & Debit Cards" },
+      "PROMISE": { "TITLE": "Our Promise", "SUBTITLE": "100% satisfied Customers" }
+    },
+    "SHIPPING": {
+      "HEADLINE": "The shipping costs for your purchase in our online shop are €5.90 within Germany.",
+      "TEXT1": "We ship your order quickly and safely with our reliable shipping partner."
+    },
+    "SUPPLIER": {
+      "LINE1": "Are you a manufacturer or producer and would like to offer us goods?",
+      "LINE2": "We look forward to receiving your",
+      "LINE3": "offers with details of quantities and prices. Please send your offers to",
+      "EMAIL_PREFIX": "the following email address:"
+    }
+  },
+  "BUTTON": {
+    "FILTER": "Filter",
+    "RESET_FILTERS": "Reset filters"
+  },
+  "PRODUCT": {
+    "WISHLIST": { "ADD": "Add to Wishlist", "REMOVE": "Remove from Wishlist" },
+    "VIEW": "View Product",
+    "IN_STOCK": "In Stock",
+    "OUT_OF_STOCK": "Out of Stock",
+    "ADD_TO_CART": "Add to Cart",
+    "REVIEW": "Review",
+    "SKU": "SKU",
+    "OFF": "Off",
+    "BRAND": "Brand",
+    "CATEGORY": "Category:",
+    "TAG": "Tag:"
+  },
+  "PRODUCT_DETAIL": { "WORKS": "Product detail works!" },
+  "PRODUCT_LIST": { "WORKS": "Product list works!" },
+  "COMMON": { "NA": "N/A" },
+  "LOGIN": {
+    "WELCOME_TITLE": "Welcome Back!",
+    "WELCOME_SUBTITLE": "Sign in to continue shopping",
+    "EMAIL_LABEL": "Email Address",
+    "EMAIL_PLACEHOLDER": "Enter your email",
+    "PASSWORD_LABEL": "Password",
+    "PASSWORD_PLACEHOLDER": "Enter your password",
+    "TOGGLE_PASSWORD": "Toggle password visibility",
+    "SUBMIT": "Sign In",
+    "OR_CONTINUE_WITH": "Or continue with",
+    "DONT_HAVE_ACCOUNT": "Don't have an account?",
+    "SIGN_UP": "Sign up",
+    "ENTER_AS_GUEST_PREFIX": "Enter",
+    "ENTER_AS_GUEST": "As a guest",
+    "CANDY_ALT": "Candy",
+    "LOGO_ALT": "Lecker 24",
+    "UI_ONLY_ALERT": "Login UI only - no authentication implemented"
+  },
+  "REGISTER": {
+    "WELCOME_TITLE": "Join Lecker!",
+    "WELCOME_SUBTITLE": "Create your account",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email",
+    "PHONE_NUMBER": "Phone Number",
+    "COUNTRY": "Country",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "AGREE_TERMS": "I agree to the",
+    "TERMS_LINK": "Terms",
+    "CONTINUE": "Continue",
+    "BACK": "Back",
+    "CREATE_ACCOUNT": "Create Account",
+    "HAVE_ACCOUNT": "Have an account?",
+    "SIGN_IN": "Sign in",
+    "PLACEHOLDERS": {
+      "FIRST_NAME": "John",
+      "LAST_NAME": "Doe",
+      "EMAIL": "john@example.com",
+      "PHONE": "555-0000",
+      "PASSWORD": "Create a password",
+      "CONFIRM_PASSWORD": "Confirm password",
+      "SELECT_COUNTRY": "Select your country"
+    },
+    "COUNTRIES": { "US": "United States", "UK": "United Kingdom", "UAE": "United Arab Emirates", "SA": "Saudi Arabia", "EG": "Egypt" },
+    "ERROR": {
+      "FILL_ALL_FIELDS": "Please fill in all fields",
+      "PASSWORD_MISMATCH": "Passwords do not match!",
+      "ACCEPT_TERMS": "Please accept the terms and conditions"
+    },
+    "UI_ONLY_ALERT": "Registration UI only - no backend integration"
+  },
+  "TOP_SELLERS": {
+    "OUR_TOP_SELLERS": "Our Top Sellers",
+    "SHOP_NOW": "Shop Now"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Donec sit amet nibh vestibulum ipsum cursus rhoncus. Duis ac tortor gravida ligula eleifend finibus sed vel tellus.",
+    "LAND_REGION": "Country/Region",
+    "GET_IN_TOUCH": "GET IN TOUCH",
+    "ADDRESS": "No: 58 A, Madison Street Baltimore, MD, USA 4508",
+    "PHONE": "+00 (0) 123 456 789",
+    "EMAIL": "info@lecker24.eu",
+    "SHOP": "SHOP",
+    "CHOCOLATE_BARS": "Chocolate & bars",
+    "SHIPS_SNACKS": "Chips & Snacks",
+    "DRINKS": "Drinks",
+    "CEREAL_MUESLI": "Cereals & Muesli",
+    "CAKES": "Cakes",
+    "COPYRIGHT": "© 2024, Lecker24",
+    "WIDERRUFSRECHT": "Right of Withdrawal",
+    "DATENSCHUTZERKLARUNG": "Privacy Policy",
+    "AGB": "Terms & Conditions",
+    "VERSAND": "Shipping",
+    "KONTAKTINFORMATIONEN": "Contact Information",
+    "IMPRESSUM": "Imprint",
+    "PAYMENT_METHODS_ALT": "Payment Methods"
+  },
+  "ORDER_SUMMARY": {
+    "ORDER_SUMMARY": "Order Summary",
+    "SUBTOTAL": "Subtotal",
+    "SHIPPING": "Shipping",
+    "TOTAL": "Total",
+    "COUPON_CODE": "Coupon Code",
+    "ENTER_COUPON_CODE": "Enter coupon code",
+    "APPLY": "Apply",
+    "PAYMENT_METHOD": "Payment Method",
+    "PLACE_ORDER": "Place Order",
+    "FREE": "Free",
+    "PAYMENT_METHODS": { "cash": "Cash on Delivery", "other": "Other" }
+  },
+  "CART_TOTAL": { "TITLE": "Cart Total", "SUBTOTAL": "Subtotal", "SHIPPING": "Shipping", "TOTAL": "Total", "PROCEED_TO_CHECKOUT": "Proceed to checkout", "FREE": "Free" },
+  "CART_TABLE": {
+    "PRODUCT": "Product",
+    "PRICE": "Price",
+    "QUANTITY": "Quantity",
+    "SUBTOTAL": "Subtotal",
+    "QUANTITY_LABEL": "Quantity",
+    "SUBTOTAL_LABEL": "Subtotal",
+    "REMOVE_ITEM": "Remove item",
+    "RETURN_TO_SHOP": "Return to shop",
+    "UPDATE_CART": "Update Cart"
+  },
+  "CART": { "TITLE": "My Shopping Cart" },
+  "WISHLIST": { "TITLE": "My Wishlist", "EMPTY": "Your wishlist is empty." },
+  "COUPON_CODE": {
+    "TITLE": "Coupon Code",
+    "PLACEHOLDER": "Enter code",
+    "APPLIED": "Applied",
+    "APPLY": "Apply Coupon",
+    "REMOVE": "Remove",
+    "ERROR": { "REQUIRED": "Please enter a coupon code", "INVALID": "Invalid coupon code" }
+  },
+  "SEARCH_BAR": { "PLACEHOLDER": "Search For Product", "ALL_CATEGORIES": "All Categories", "SORT_BY": "Sort by:", "RESULTS_FOUND": "{{count}} Results Found" },
+  "CONTACT": {
+    "PAGE_TITLE": "Contact Us",
+    "GET_IN_TOUCH": "Get In Touch",
+    "INTRO": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "ADDRESS": "Address",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "SEND_MESSAGE": "Send us a Message",
+    "FORM": { "NAME": "Name", "EMAIL": "Email", "SUBJECT": "Subject", "MESSAGE": "Message" },
+    "PLACEHOLDERS": { "NAME": "Your full name", "EMAIL": "your.email@example.com", "MESSAGE": "Tell us more about your inquiry..." },
+    "BUTTON": { "SUBMIT": "Send Message", "SENDING": "Sending..." },
+    "SUCCESS": "Your message has been sent successfully!"
+  },
+  "FORM_ERRORS":
+   { "REQUIRED": "{{field}} is required", "EMAIL": "Please enter a valid email address", "MINLENGTH": "{{field}} must be at least {{length}} characters" },
+  "BILLING": {
+    "TITLE": "Billing Information",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "COUNTRY": "Country / Region",
+    "CITY": "City",
+    "PLACEHOLDERS": {
+      "FIRST_NAME": "Your first name",
+      "LAST_NAME": "Your last name",
+      "SELECT_COUNTRY": "Select Country",
+      "SELECT_CITY": "Select City"
+    },
+    "ERROR": { "PHONE_PATTERN": "Please enter a valid phone number" }
+  }
+}

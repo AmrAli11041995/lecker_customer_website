@@ -18,6 +18,7 @@ import { HomeService } from '../../services/home.service';
 import { ProductService } from '../../../products/services/product.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,7 @@ import { EmailService } from '../../services/email.service';
     PaginationComponent,
     ProductModalComponent,
     ReactiveFormsModule,
-
+    TranslateModule,
     ToastComponent
   ],
   templateUrl: './home.component.html',

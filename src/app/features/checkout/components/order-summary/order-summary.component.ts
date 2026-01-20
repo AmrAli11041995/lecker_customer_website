@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { OrderSummary, OrderItem, PaymentMethod } from '../../models/checkout.model';
 
 @Component({
   selector: 'app-order-summary',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.scss'
 })
@@ -16,6 +17,8 @@ export class OrderSummaryComponent {
   @Output() paymentMethodChange = new EventEmitter<string>();
   @Output() placeOrder = new EventEmitter<void>();
   @Output() couponApplied = new EventEmitter<string>();
+
+  constructor(private translate: TranslateService) {}
 
   paymentMethods: PaymentMethod[] = [
     { type: 'cash', label: 'Cash on Delivery' },
@@ -41,6 +44,6 @@ export class OrderSummaryComponent {
   }
 
   getShippingText(): string {
-    return this.orderSummary.shipping === 0 ? 'Free' : `$${this.orderSummary.shipping.toFixed(2)}`;
+    return this.orderSummary.shipping === 0 ? this.translate.instant('ORDER_SUMMARY.FREE') : `${this.orderSummary.shipping.toFixed(2)}`;
   }
 }

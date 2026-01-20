@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { CartItem } from '../../models/cart.model';
 import { QuantitySelectorComponent } from '../../../../shared/components/quantity-selector/quantity-selector.component';
 
 @Component({
   selector: 'app-cart-table',
   standalone: true,
-  imports: [CommonModule, QuantitySelectorComponent],
+  imports: [CommonModule, QuantitySelectorComponent, TranslateModule],
   templateUrl: './cart-table.component.html',
   styleUrl: './cart-table.component.scss'
 })
