@@ -32,58 +32,56 @@
                     <div class="form-group half">
                         <label class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</label>
                         <input type="text" class="form-input" placeholder="John" formControlName="firstName" required>
+                        <div class="error" *ngIf="(submitted || registerForm.get('firstName')?.touched) && registerForm.get('firstName')?.hasError('required')">{{ 'REGISTER.ERROR.FIRST_NAME_REQUIRED' | translate }}</div>
+                    
                     </div>
-                    <div class="error" *ngIf="(submitted || registerForm.get('firstName')?.touched) && registerForm.get('firstName')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
 
                     <div class="form-group half">
                         <label class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</label>
                         <input type="text" class="form-input" placeholder="Doe" formControlName="lastName" required>
+                        <div class="error" *ngIf="(submitted || registerForm.get('lastName')?.touched) && registerForm.get('lastName')?.hasError('required')">{{ 'REGISTER.ERROR.LAST_NAME_REQUIRED' | translate }}</div>
+                   
                     </div>
-                    <div class="error" *ngIf="(submitted || registerForm.get('lastName')?.touched) && registerForm.get('lastName')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">{{ 'REGISTER.EMAIL' | translate }}</label>
                     <input type="email" class="form-input" placeholder="john@example.com" formControlName="email" required>
+                    <div class="error" *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.EMAIL_REQUIRED' | translate }}</div>
+                    <div class="error" *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.hasError('email')">{{ 'HOME.CONTACT.ERROR.EMAIL_INVALID' | translate }}</div>
+                
                 </div>
-                <div class="error" *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.EMAIL_REQUIRED' | translate }}</div>
-                <div class="error" *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.hasError('email')">{{ 'HOME.CONTACT.ERROR.EMAIL_INVALID' | translate }}</div>
                 
                 <div class="form-group">
                     <label class="form-label">{{ 'REGISTER.USERNAME' | translate }}</label>
-                    <input type="text" class="form-input" placeholder="EnterUserName" formControlName="username" required>
+                    <input type="text" class="form-input" placeholder="{{ 'REGISTER.ENTER_USERNAME' | translate }}" formControlName="username" required>
+                    <div class="error" *ngIf="(submitted || registerForm.get('username')?.touched) && registerForm.get('username')?.hasError('required')">{{ 'REGISTER.ERROR.USERNAME_REQUIRED' | translate }}</div>
                 </div>
-                <div class="error" *ngIf="(submitted || registerForm.get('username')?.touched) && registerForm.get('username')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.USERNAME_REQUIRED' | translate }}</div>
 
                 <div class="form-group">
                     <label class="form-label">{{ 'REGISTER.PHONE_NUMBER' | translate }}</label>
-                    <input type="tel" class="form-input" placeholder="555-0000" formControlName="phone" required>
-                    <!-- <div class="phone-wrapper"> -->
-                        <!-- <select class="country-code" formControlName="countryCode">
-                            <option value="+1">+1</option>
-                            <option value="+44">+44</option>
-                            <option value="+971">+971</option>
-                            <option value="+966">+966</option>
-                            <option value="+20">+20</option>
-                        </select> -->
-                    <!-- </div> -->
+                    <input type="tel" class="form-input" placeholder="{{ 'REGISTER.PLACEHOLDERS.PHONE' | translate }}" formControlName="phone" required>
+                    <div class="error" *ngIf="(submitted || registerForm.get('phone')?.touched) && registerForm.get('phone')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.PHONE_REQUIRED' | translate }}</div>
+                    
                 </div>
-                <div class="error" *ngIf="(submitted || registerForm.get('phone')?.touched) && registerForm.get('phone')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.PHONE_REQUIRED' | translate }}</div>
 
                 <div class="form-group">
                     <label class="form-label">{{ 'REGISTER.COMPANY_NAME' | translate }}</label>
-                    <input type="text" class="form-input" placeholder="Company Name" formControlName="companyName" required>
+                    <input type="text" class="form-input" placeholder="{{ 'REGISTER.ENTER_COMPANY_NAME' | translate }}" formControlName="companyName" required>
+                    <div class="error" *ngIf="(submitted || registerForm.get('companyName')?.touched) && registerForm.get('companyName')?.hasError('required')">{{ 'REGISTER.ERROR.COMPANY_NAME_REQUIRED' | translate }}</div>
+
                 </div>
-                <div class="error" *ngIf="(submitted || registerForm.get('companyName')?.touched) && registerForm.get('companyName')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.COMPANY_NAME_REQUIRED' | translate }}</div>
 
                 <div class="form-group">
                     <label class="form-label">{{ 'REGISTER.TAX_ID' | translate }}</label>
-                    <input type="text" class="form-input" placeholder="Tax ID" formControlName="taxId" required>
+                    <input type="text" class="form-input" placeholder="{{ 'REGISTER.ENTER_TAX_ID' | translate }}" formControlName="taxId" required>
+                    <div class="error" *ngIf="(submitted || registerForm.get('taxId')?.touched) && registerForm.get('taxId')?.hasError('required')">{{ 'REGISTER.ERROR.TAX_ID_REQUIRED' | translate }}</div>
+                    
                 </div>
-                <div class="error" *ngIf="(submitted || registerForm.get('taxId')?.touched) && registerForm.get('taxId')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.taxId_REQUIRED' | translate }}</div>
 
                  <input type="file" #fileInput (change)="onFileSelected($event)">
 
+                <div class="error" *ngIf="(submitted && !selectedFile)">{{ 'REGISTER.ERROR.UPLOAD_FILE' | translate }}</div>
 
                 <!-- <button type="button" class="submit-btn" (click)="nextStep()">
                     {{ 'REGISTER.CONTINUE' | translate }}

@@ -100,6 +100,12 @@
     "CREATE_ACCOUNT": "Konto erstellen",
     "HAVE_ACCOUNT": "Haben Sie bereits ein Konto?",
     "SIGN_IN": "Anmelden",
+    "USERNAME": "Benutzername",
+    "ENTER_USERNAME": "Benutzername eingeben",
+    "COMPANY_NAME": "Firmenname",
+    "ENTER_COMPANY_NAME": "Firmenname eingeben", 
+    "TAX_ID": "Umsatzsteuernummer", 
+    "ENTER_TAX_ID": "Umsatzsteuernummer eingeben",
     "PLACEHOLDERS": {
       "FIRST_NAME": "Max",
       "LAST_NAME": "Mustermann",
@@ -113,7 +119,14 @@
     "ERROR": {
       "FILL_ALL_FIELDS": "Bitte alle Felder ausfüllen",
       "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein!",
-      "ACCEPT_TERMS": "Bitte stimmen Sie den Bedingungen zu"
+      "ACCEPT_TERMS": "Bitte stimmen Sie den Bedingungen zu",
+      "REGISTRATION_SUCCESS": "Registrierung erfolgreich!",
+      "UPLOAD_FILE": "Bitte laden Sie eine Datei hoch",
+      "USERNAME_REQUIRED": "Benutzername ist erforderlich",
+      "COMPANY_NAME_REQUIRED": "Firmenname ist erforderlich",
+      "TAX_ID_REQUIRED": "Umsatzsteuernummer ist erforderlich",
+      "FIRST_NAME_REQUIRED": "Vorname ist erforderlich",
+      "LAST_NAME_REQUIRED": "Nachname ist erforderlich"
     },
     "UI_ONLY_ALERT": "Nur Registrierungs-UI – keine Backend-Integration"
   },

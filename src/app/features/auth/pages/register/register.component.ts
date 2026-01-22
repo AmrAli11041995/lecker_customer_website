@@ -98,27 +98,28 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
+    if (this.selectedFile) {
 
-    const { password, confirmPassword } = this.registerForm.value;
-
-    // Password validation
-    if (password !== confirmPassword) {
-      alert(this.translate.instant('REGISTER.ERROR.PASSWORD_MISMATCH'));
-      return;
     }
 
+    // const { password, confirmPassword } = this.registerForm.value;
+
+    // Password validation
+    // if (password !== confirmPassword) {
+    //   alert(this.translate.instant('REGISTER.ERROR.PASSWORD_MISMATCH'));
+    //   return;
+    // }
      this.customerService.createCustomer(this.prepareFormData()).subscribe(res=>{
-            debugger
             console.log(res);
-            this.toastService.showSuccess(`Registration successful!`);
+            this.toastService.showSuccess(`${this.translate.instant('REGISTER.ERROR.REGISTRATION_SUCCESS')}`);
               this.router.navigate(['/auth/login']);
           },
         (er)=>{ 
-    debugger;
     console.log(er);
   })
   //   let body= this.registerForm.value;

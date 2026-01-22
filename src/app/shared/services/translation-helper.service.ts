@@ -24,7 +24,6 @@ export class TranslationService {
   constructor(private translateService: TranslateService) { }
 
   initializeLanguage() {
-    debugger;
     if (
       !localStorage.getItem('lang') ||
       localStorage.getItem('lang') === null
@@ -57,27 +56,6 @@ export class TranslationService {
     //this.setDynamicClass();
   }
 
-  // setDynamicClass(){
-  //   if(this.currentLang.Name == LanguageName.English){
-  //     setTimeout(() => {
-
-  //       let mm = document.getElementsByClassName('content-body')[0];
-  //       if(mm !== null && mm !== undefined){
-  //         mm.className = "content-body content-body-en";
-  //       }
-  //     }, 100);
-  //   }
-  //   else{
-  //     setTimeout(() => {
-
-  //       let mm = document.getElementsByClassName('content-body')[0];
-  //       if(mm !== null && mm !== undefined){
-  //         mm.className = "content-body";
-  //       }
-  //     }, 100);
-  //   }
-  // }
-
   switchLanguage() {
     if (this.currentLang.toLocaleLowerCase() == 'en') {
       this.currentLang = 'de';
@@ -88,13 +66,8 @@ export class TranslationService {
     }
 
     localStorage.setItem('lang', this.currentLang);
-    document
-      .getElementsByTagName('html')[0]
-      .setAttribute('dir', 'ltr');
-      document
-      .getElementsByTagName('html')[0]
-      .setAttribute('lang', this.currentLang);
-
+    document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
+    document.getElementsByTagName('html')[0].setAttribute('lang', this.currentLang);
     this.translateService.use(this.currentLang);
     this.languageChangeItem.next(this.currentLang);
     this.languageChangeSource.next(this.currentLang);

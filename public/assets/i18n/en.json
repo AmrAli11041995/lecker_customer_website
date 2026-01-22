@@ -100,6 +100,12 @@
     "CREATE_ACCOUNT": "Create Account",
     "HAVE_ACCOUNT": "Have an account?",
     "SIGN_IN": "Sign in",
+    "USERNAME": "Username",
+    "ENTER_USERNAME": "Enter UserName",
+    "COMPANY_NAME": "Company Name",
+    "ENTER_COMPANY_NAME": "Enter Company Name", 
+    "TAX_ID": "Tax ID", 
+    "ENTER_TAX_ID": "Enter Tax ID",
     "PLACEHOLDERS": {
       "FIRST_NAME": "John",
       "LAST_NAME": "Doe",
@@ -113,7 +119,14 @@
     "ERROR": {
       "FILL_ALL_FIELDS": "Please fill in all fields",
       "PASSWORD_MISMATCH": "Passwords do not match!",
-      "ACCEPT_TERMS": "Please accept the terms and conditions"
+      "ACCEPT_TERMS": "Please accept the terms and conditions",
+      "REGISTRATION_SUCCESS": "Registration successful!",
+      "UPLOAD_FILE": "Please upload a file",
+      "USERNAME_REQUIRED": "Username is required",
+      "COMPANY_NAME_REQUIRED": "Company name is required",
+      "TAX_ID_REQUIRED": "Tax ID is required",
+      "FIRST_NAME_REQUIRED": "First name is required",
+      "LAST_NAME_REQUIRED": "Last name is required"
     },
     "UI_ONLY_ALERT": "Registration UI only - no backend integration"
   },
