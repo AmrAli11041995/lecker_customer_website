@@ -31,24 +31,22 @@
         <!-- Step 1: Personal Information -->
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div *ngIf="currentStep === 1" class="register-form">
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</label>
-                        <input type="text" class="form-input" placeholder="John" formControlName="firstName" required>
-                        <div class="error"
-                            *ngIf="(submitted || registerForm.get('firstName')?.touched) && registerForm.get('firstName')?.hasError('required')">
-                            {{ 'REGISTER.ERROR.FIRST_NAME_REQUIRED' | translate }}</div>
+                <div class="form-group">
+                    <label class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</label>
+                    <input type="text" class="form-input" placeholder="John" formControlName="firstName" required>
+                    <div class="error"
+                        *ngIf="(submitted || registerForm.get('firstName')?.touched) && registerForm.get('firstName')?.hasError('required')">
+                        {{ 'REGISTER.ERROR.FIRST_NAME_REQUIRED' | translate }}</div>
 
-                    </div>
+                </div>
 
-                    <div class="form-group half">
-                        <label class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</label>
-                        <input type="text" class="form-input" placeholder="Doe" formControlName="lastName" required>
-                        <div class="error"
-                            *ngIf="(submitted || registerForm.get('lastName')?.touched) && registerForm.get('lastName')?.hasError('required')">
-                            {{ 'REGISTER.ERROR.LAST_NAME_REQUIRED' | translate }}</div>
+                <div class="form-group">
+                    <label class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</label>
+                    <input type="text" class="form-input" placeholder="Doe" formControlName="lastName" required>
+                    <div class="error"
+                        *ngIf="(submitted || registerForm.get('lastName')?.touched) && registerForm.get('lastName')?.hasError('required')">
+                        {{ 'REGISTER.ERROR.LAST_NAME_REQUIRED' | translate }}</div>
 
-                    </div>
                 </div>
 
                 <div class="form-group">
@@ -103,15 +101,17 @@
 
                 </div>
 
-                <input type="file" #fileInput (change)="onFileSelected($event)">
-
-                <div class="error" *ngIf="(submitted && !selectedFile)">{{ 'REGISTER.ERROR.UPLOAD_FILE' | translate }}
+                <div class="form-group file-upload-group">
+                    <input type="file" #fileInput (change)="onFileSelected($event)" class="file-input">
+                    <div class="error" *ngIf="(submitted && !selectedFile)">{{ 'REGISTER.ERROR.UPLOAD_FILE' | translate
+                        }}
+                    </div>
                 </div>
 
                 <!-- <button type="button" class="submit-btn" (click)="nextStep()">
                     {{ 'REGISTER.CONTINUE' | translate }}
                 </button> -->
-                <button type="submit" class="submit-btn flex-1">{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</button>
+                <button type="submit" class="submit-btn full-width">{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</button>
 
             </div>
 
