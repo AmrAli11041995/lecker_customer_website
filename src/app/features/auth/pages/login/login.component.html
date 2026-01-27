@@ -8,6 +8,9 @@
 
   <!-- Centered Login Card -->
   <div class="login-card">
+    <div class="lang-selector-wrapper">
+      <app-language-selector></app-language-selector>
+    </div>
     <!-- Logo -->
     <div class="logo-section">
       <img src="assets/img/mainlogo.png" alt="{{ 'LOGIN.LOGO_ALT' | translate }}" class="logo">
@@ -30,10 +33,13 @@
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
-          <input type="email" id="email" class="form-input" placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}" formControlName="email">
+          <input type="email" id="email" class="form-input" placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}"
+            formControlName="email">
 
         </div>
-          <div class="error" *ngIf="(submitted || loginForm.get('email')?.touched) && loginForm.get('email')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
+        <div class="error"
+          *ngIf="(submitted || loginForm.get('email')?.touched) && loginForm.get('email')?.hasError('required')">{{
+          'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
 
       </div>
 
@@ -47,7 +53,7 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
           <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-input"
-            placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}" formControlName="password" >
+            placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}" formControlName="password">
 
           <button type="button" class="password-toggle" (click)="togglePassword()">
             <svg *ngIf="!showPassword" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -64,7 +70,9 @@
             </svg>
           </button>
         </div>
-          <div class="error" *ngIf="(submitted || loginForm.get('password')?.touched) && loginForm.get('password')?.hasError('required')">{{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
+        <div class="error"
+          *ngIf="(submitted || loginForm.get('password')?.touched) && loginForm.get('password')?.hasError('required')">
+          {{ 'HOME.CONTACT.ERROR.NAME_REQUIRED' | translate }}</div>
 
       </div>
 
@@ -115,11 +123,13 @@
 
     <!-- Sign Up Link -->
     <div class="signup-prompt">
-      {{ 'LOGIN.DONT_HAVE_ACCOUNT' | translate }} <a routerLink="/auth/register" class="signup-link">{{ 'LOGIN.SIGN_UP' | translate }}</a>
+      {{ 'LOGIN.DONT_HAVE_ACCOUNT' | translate }} <a routerLink="/auth/register" class="signup-link">{{ 'LOGIN.SIGN_UP'
+        | translate }}</a>
     </div>
 
-     <div class="signup-prompt">
-      {{ 'LOGIN.ENTER_AS_GUEST_PREFIX' | translate }} <a routerLink="/home" class="signup-link">{{ 'LOGIN.ENTER_AS_GUEST' | translate }}</a>
+    <div class="signup-prompt">
+      {{ 'LOGIN.ENTER_AS_GUEST_PREFIX' | translate }} <a routerLink="/home" class="signup-link">{{
+        'LOGIN.ENTER_AS_GUEST' | translate }}</a>
     </div>
   </div>
 </div>

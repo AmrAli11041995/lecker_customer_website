@@ -1,0 +1,69 @@
+{
+    "LOGIN": {
+        "CANDY_ALT": "Candy background",
+        "LOGO_ALT": "Lecker 24 Logo",
+        "WELCOME_TITLE": "Welcome to Lecker",
+        "WELCOME_SUBTITLE": "Please sign in to your account",
+        "EMAIL_LABEL": "Email Address",
+        "EMAIL_PLACEHOLDER": "Enter your email",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_PLACEHOLDER": "Enter your password",
+        "SUBMIT": "Sign In",
+        "OR_CONTINUE_WITH": "Or continue with",
+        "DONT_HAVE_ACCOUNT": "Don't have an account?",
+        "SIGN_UP": "Sign up",
+        "ENTER_AS_GUEST_PREFIX": "Or just",
+        "ENTER_AS_GUEST": "Enter as Guest",
+        "UI_ONLY_ALERT": "This is a UI demo only.",
+        "ERROR": {
+            "NAME_REQUIRED": "This field is required",
+            "EMAIL_REQUIRED": "Email is required",
+            "EMAIL_INVALID": "Please enter a valid email",
+            "PASSWORD_REQUIRED": "Password is required"
+        }
+    },
+    "REGISTER": {
+        "WELCOME_TITLE": "Create Account",
+        "WELCOME_SUBTITLE": "Join us today!",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email Address",
+        "USERNAME": "Username",
+        "ENTER_USERNAME": "Choose a username",
+        "PHONE_NUMBER": "Phone Number",
+        "PLACEHOLDERS": {
+            "PHONE": "+1 234 567 8900"
+        },
+        "COMPANY_NAME": "Company Name",
+        "ENTER_COMPANY_NAME": "Enter company name",
+        "TAX_ID": "Tax ID",
+        "ENTER_TAX_ID": "Enter Tax ID",
+        "UPLOAD_FILE": "Upload Document",
+        "CREATE_ACCOUNT": "Create Account",
+        "HAVE_ACCOUNT": "Already have an account?",
+        "SIGN_IN": "Sign in",
+        "BACK": "Back",
+        "CONTINUE": "Continue",
+        "ERROR": {
+            "FIRST_NAME_REQUIRED": "First name is required",
+            "LAST_NAME_REQUIRED": "Last name is required",
+            "USERNAME_REQUIRED": "Username is required",
+            "COMPANY_NAME_REQUIRED": "Company name is required",
+            "TAX_ID_REQUIRED": "Tax ID is required",
+            "UPLOAD_FILE": "Please upload a document",
+            "FILL_ALL_FIELDS": "Please fill all required fields",
+            "PASSWORD_MISMATCH": "Passwords do not match",
+            "REGISTRATION_SUCCESS": "Registration successful!"
+        }
+    },
+    "HOME": {
+        "CONTACT": {
+            "ERROR": {
+                "NAME_REQUIRED": "This field is required",
+                "EMAIL_REQUIRED": "Email is required",
+                "PHONE_REQUIRED": "Phone number is required",
+                "EMAIL_INVALID": "Invalid email format"
+            }
+        }
+    }
+}

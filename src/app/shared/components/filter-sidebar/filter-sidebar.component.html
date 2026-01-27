@@ -1,37 +1,44 @@
 <div class="filter-sidebar" [class.open]="isOpen">
 
 
-  <!-- Mobile Header -->
-  <div class="mobile-header" (click)="onFilterClick()">
-    <h3>Filters</h3>
-    <span class="toggle-icon" [class.collapsed]="!isOpen">▼</span>
-  </div>
 
-  <!-- Sidebar Content -->
-  <div class="sidebar-content">
-    <!-- Close Button (Mobile only) -->
+  <!-- Filter Card -->
+  <div class="filter-card">
 
-
-
-    <!-- category -->
-    <!-- Single Filter Card -->
-    <div class="filter-card">
-      <div class="filter-header-desktop">
-        <h3>Filters</h3>
-        <button class="reset-btn" (click)="onResetFilterClick()">Reset</button>
+    <!-- Top Actions Header -->
+    <div class="filter-header-actions">
+      <div class="header-title">
+        <span class="filter-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"></path>
+          </svg>
+        </span>
+        <span class="title-text">Filter</span>
       </div>
+      <div class="action-buttons">
+        <button class="clear-btn" (click)="onResetFilterClick()">Clear</button>
+        <button class="apply-btn-small" (click)="onFilterClick()">Apply</button>
+      </div>
+    </div>
 
-      <!-- category -->
+    <div class="scrollable-content">
+      <!-- Categories -->
       <div class="filter-section">
         <div class="section-header" (click)="toggleCollapse('categories')">
           <h3>All Categories</h3>
-          <span class="collapse-icon" [class.collapsed]="isCollapsed.categories">▼</span>
+          <span class="collapse-icon" [class.collapsed]="isCollapsed.categories">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor">
+              <path d="M1 1L6 6L11 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </div>
         <div class="section-content" [class.collapsed]="isCollapsed.categories">
           <div class="categories-list">
-            <label *ngFor="let category of filterOptions.categories" class="rating-item">
+            <label *ngFor="let category of filterOptions.categories" class="category-item">
               <input type="radio" name="category" [checked]="category.isSelected" (change)="onCategoryChange(category)">
-              <span class="category-label">{{ category.name }}</span>
+              <span class="radio-custom"></span>
+              <span class="category-label">{{ category.name }} <span class="count"
+                  *ngIf="category.count">({{category.count}})</span></span>
             </label>
           </div>
         </div>
@@ -40,22 +47,28 @@
       <!-- Price Range -->
       <div class="filter-section">
         <div class="section-header" (click)="toggleCollapse('price')">
-          <h3>Price Range</h3>
-          <span class="collapse-icon" [class.collapsed]="isCollapsed.price">▼</span>
+          <h3>Price</h3>
+          <span class="collapse-icon" [class.collapsed]="isCollapsed.price">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor">
+              <path d="M1 1L6 6L11 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </div>
-        <div class="section-content" [class.collapsed]="isCollapsed.price">
-          <div class="price-slider" style="padding: 10px 0;">
-            <div class="range-inputs" style="display: flex; flex-direction: column; gap: 10px;">
-              <label>
-                Min Price: ${{rangeValues[0]}}
-                <input type="range" class="range-input" [(ngModel)]="rangeValues[0]" [min]="0" [max]="2000"
-                  (change)="onPriceRangeChange()" style="width: 100%;">
-              </label>
-              <label>
-                Max Price: ${{rangeValues[1]}}
-                <input type="range" class="range-input" [(ngModel)]="rangeValues[1]" [min]="0" [max]="2000"
-                  (change)="onPriceRangeChange()" style="width: 100%;">
-              </label>
+        <div class="section-content overflow-visible" [class.collapsed]="isCollapsed.price">
+          <div class="price-slider-container">
+            <div class="slider-track-container">
+              <div class="slider-track">
+                <div class="slider-range" [style.left.%]="(rangeValues[0] / 2000) * 100"
+                  [style.right.%]="100 - (rangeValues[1] / 2000) * 100"></div>
+              </div>
+              <input type="range" class="range-input min" [(ngModel)]="rangeValues[0]" [min]="0" [max]="2000"
+                (change)="onPriceRangeChange()">
+              <input type="range" class="range-input max" [(ngModel)]="rangeValues[1]" [min]="0" [max]="2000"
+                (change)="onPriceRangeChange()">
+            </div>
+
+            <div class="price-values">
+              <span class="price-label">Price: <span class="value">{{rangeValues[0]}} — {{rangeValues[1]}}</span></span>
             </div>
           </div>
         </div>
@@ -65,17 +78,21 @@
       <div class="filter-section">
         <div class="section-header" (click)="toggleCollapse('rating')">
           <h3>Rating</h3>
-          <span class="collapse-icon" [class.collapsed]="isCollapsed.rating">▼</span>
+          <span class="collapse-icon" [class.collapsed]="isCollapsed.rating">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor">
+              <path d="M1 1L6 6L11 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </div>
         <div class="section-content" [class.collapsed]="isCollapsed.rating">
           <div class="rating-list">
             <label *ngFor="let rating of filterOptions.ratings" class="rating-item">
               <input type="checkbox" [checked]="rating.isSelected" (change)="onRatingChange(rating)">
+              <span class="checkbox-custom"></span>
               <div class="stars">
-                <span *ngFor="let i of [1,2,3,4,5]" class="star" [class.filled]="i <= rating.value">
-                  {{ i <= rating.value ? '★' : '☆' }} </span>
+                <span *ngFor="let i of [1,2,3,4,5]" class="star" [class.filled]="i <= rating.value">★</span>
               </div>
-              <span class="rating-label">{{ rating.label }}</span>
+              <span class="rating-text">{{ rating.label }}</span>
             </label>
           </div>
         </div>
@@ -85,7 +102,11 @@
       <div class="filter-section">
         <div class="section-header" (click)="toggleCollapse('tags')">
           <h3>Popular Tag</h3>
-          <span class="collapse-icon" [class.collapsed]="isCollapsed.tags">▼</span>
+          <span class="collapse-icon" [class.collapsed]="isCollapsed.tags">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor">
+              <path d="M1 1L6 6L11 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </div>
         <div class="section-content" [class.collapsed]="isCollapsed.tags">
           <div class="tags-container">
@@ -96,31 +117,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Sale Products -->
-      <div class="filter-section no-border">
-        <div class="section-header" (click)="toggleCollapse('saleProducts')">
-          <h3>Sale Products</h3>
-          <span class="collapse-icon" [class.collapsed]="isCollapsed.saleProducts">▼</span>
-        </div>
-        <div class="section-content" [class.collapsed]="isCollapsed.saleProducts">
-          <div class="sale-products">
-            <div *ngFor="let product of saleProducts" class="sale-product-item">
-              <img [src]="product.imageUrl" [alt]="product.name" class="sale-product-image">
-              <div class="sale-product-info">
-                <h4 class="sale-product-name">{{ product.name }}</h4>
-                <div class="sale-product-pricing">
-                  <span class="sale-price">${{ product.price.toFixed(2) }}</span>
-                  <span class="original-price">${{ product.originalPrice?.toFixed(2) }}</span>
-                </div>
-                <div class="sale-product-rating">
-                  <span *ngFor="let i of [1,2,3,4,5]" class="star filled">★</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+
   </div>
 </div>

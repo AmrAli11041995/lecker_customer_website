@@ -27,16 +27,16 @@ export class AppComponent implements OnInit {
     //  const browserLang = translate.getBrowserLang();
     // translate.use(browserLang?.startsWith('de') ? 'de' : 'en');
 
-   }
+  }
 
   ngOnInit() {
     this.translationService.initializeLanguage();
     // Listen to route changes
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
+      .subscribe((event: NavigationEnd) => {
         // Hide header/footer on auth routes
-        this.showHeaderFooter = !event.url.includes('/auth');
+        this.showHeaderFooter = !event.urlAfterRedirects.includes('/auth');
       });
   }
   // changeLanguage(lang: 'en' | 'de') {

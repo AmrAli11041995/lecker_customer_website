@@ -1,0 +1,69 @@
+{
+    "LOGIN": {
+        "CANDY_ALT": "Süßigkeiten Hintergrund",
+        "LOGO_ALT": "Lecker 24 Logo",
+        "WELCOME_TITLE": "Willkommen bei Lecker",
+        "WELCOME_SUBTITLE": "Bitte melden Sie sich an",
+        "EMAIL_LABEL": "E-Mail-Adresse",
+        "EMAIL_PLACEHOLDER": "Geben Sie Ihre E-Mail ein",
+        "PASSWORD_LABEL": "Passwort",
+        "PASSWORD_PLACEHOLDER": "Geben Sie Ihr Passwort ein",
+        "SUBMIT": "Anmelden",
+        "OR_CONTINUE_WITH": "Oder weiter mit",
+        "DONT_HAVE_ACCOUNT": "Noch kein Konto?",
+        "SIGN_UP": "Registrieren",
+        "ENTER_AS_GUEST_PREFIX": "Oder einfach",
+        "ENTER_AS_GUEST": "Als Gast eintreten",
+        "UI_ONLY_ALERT": "Dies ist nur eine UI-Demo.",
+        "ERROR": {
+            "NAME_REQUIRED": "Dieses Feld ist erforderlich",
+            "EMAIL_REQUIRED": "E-Mail ist erforderlich",
+            "EMAIL_INVALID": "Bitte geben Sie eine gültige E-Mail ein",
+            "PASSWORD_REQUIRED": "Passwort ist erforderlich"
+        }
+    },
+    "REGISTER": {
+        "WELCOME_TITLE": "Konto erstellen",
+        "WELCOME_SUBTITLE": "Treten Sie uns heute bei!",
+        "FIRST_NAME": "Vorname",
+        "LAST_NAME": "Nachname",
+        "EMAIL": "E-Mail-Adresse",
+        "USERNAME": "Benutzername",
+        "ENTER_USERNAME": "Wählen Sie einen Benutzernamen",
+        "PHONE_NUMBER": "Telefonnummer",
+        "PLACEHOLDERS": {
+            "PHONE": "+49 123 456 7890"
+        },
+        "COMPANY_NAME": "Firmenname",
+        "ENTER_COMPANY_NAME": "Firmennamen eingeben",
+        "TAX_ID": "Steuer-ID",
+        "ENTER_TAX_ID": "Steuer-ID eingeben",
+        "UPLOAD_FILE": "Dokument hochladen",
+        "CREATE_ACCOUNT": "Konto erstellen",
+        "HAVE_ACCOUNT": "Haben Sie bereits ein Konto?",
+        "SIGN_IN": "Anmelden",
+        "BACK": "Zurück",
+        "CONTINUE": "Weiter",
+        "ERROR": {
+            "FIRST_NAME_REQUIRED": "Vorname ist erforderlich",
+            "LAST_NAME_REQUIRED": "Nachname ist erforderlich",
+            "USERNAME_REQUIRED": "Benutzername ist erforderlich",
+            "COMPANY_NAME_REQUIRED": "Firmenname ist erforderlich",
+            "TAX_ID_REQUIRED": "Steuer-ID ist erforderlich",
+            "UPLOAD_FILE": "Bitte laden Sie ein Dokument hoch",
+            "FILL_ALL_FIELDS": "Bitte füllen Sie alle erforderlichen Felder aus",
+            "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein",
+            "REGISTRATION_SUCCESS": "Registrierung erfolgreich!"
+        }
+    },
+    "HOME": {
+        "CONTACT": {
+            "ERROR": {
+                "NAME_REQUIRED": "Dieses Feld ist erforderlich",
+                "EMAIL_REQUIRED": "E-Mail ist erforderlich",
+                "PHONE_REQUIRED": "Telefonnummer ist erforderlich",
+                "EMAIL_INVALID": "Ungültiges E-Mail-Format"
+            }
+        }
+    }
+}

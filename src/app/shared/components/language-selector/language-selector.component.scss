@@ -1,0 +1,96 @@
+.language-selector {
+  position: relative;
+  display: inline-block;
+
+  .current-lang-btn {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    // backdrop-filter: blur(5px); // Not needed on white card
+
+    &:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .arrow {
+      font-size: 10px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &.open .current-lang-btn .arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    min-width: 140px;
+    z-index: 1000;
+    display: none;
+    animation: fadeIn 0.2s ease;
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+
+      .lang-label {
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
+      &.active {
+        background: #f0f7ff;
+
+        .lang-label {
+          color: #007bff;
+        }
+      }
+    }
+  }
+
+  &.open .dropdown-menu {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

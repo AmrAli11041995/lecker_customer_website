@@ -7,9 +7,11 @@ import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { CustomerService } from '../../services/customer.service';
 
+import { LanguageSelectorComponent } from '../../../../shared/components/language-selector/language-selector.component';
+
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule, LanguageSelectorComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

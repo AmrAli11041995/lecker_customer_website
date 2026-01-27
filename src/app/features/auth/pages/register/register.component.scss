@@ -83,9 +83,16 @@
     margin-bottom: 16px;
 
     .logo {
-        height: 50px;
+        height: 60px;
         width: auto;
     }
+}
+
+.lang-selector-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
 }
 
 .welcome-header {
