@@ -130,6 +130,16 @@
     },
     "UI_ONLY_ALERT": "Nur Registrierungs-UI – keine Backend-Integration"
   },
+  "HERO_BANNER": {
+    "LIMITED_TIME_OFFER": "ANGEBOT NUR FÜR KURZE ZEIT",
+    "SALE_TITLE_FALLBACK": "50% RABATT auf alles!",
+    "DAYS": "TAGE",
+    "HOURS": "STUNDEN",
+    "MINS": "MIN",
+    "SECS": "SEK",
+    "SHOP_NOW": "Jetzt einkaufen",
+    "CANDY_ALT": "Lecker 24 Süßwarenkollektion"
+  },
   "TOP_SELLERS": {
     "OUR_TOP_SELLERS": "Unsere Bestseller",
     "SHOP_NOW": "Jetzt einkaufen"

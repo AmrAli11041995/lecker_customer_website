@@ -5,7 +5,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { Cart } from '../../../features/cart/models/cart.model';
 import { WishlistService } from '../../../shared/services/wishlist.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../../shared/services/translation-helper.service';
 
 @Component({
   selector: 'app-header',
@@ -26,7 +27,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
   isShopDropdownOpen = false;
   isLanguageDropdownOpen = false;
-  selectedLanguage = 'DE';
+  selectedLanguage ;
+
+  // selectedLanguage = 'DE';
 
   private destroy$ = new Subject<void>();
 
@@ -34,8 +37,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private router: Router,
     private wishlist: WishlistService,
-    private translate: TranslateService
-  ) {}
+     private translate: TranslationService
+    
+  ) {
+    this.selectedLanguage =   this.translate.getCurrentLanguage();
+  }
 
   ngOnInit() {
     debugger
@@ -105,10 +111,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   selectLanguage(language: string) {
-    this.selectedLanguage = language;
-    this.isLanguageDropdownOpen = false;
-    const langCode = language === 'DE' ? 'de' : 'en';
-    this.translate.use(langCode);
+    //  this.selectedLanguage = currentLang;
+    
+    // this.isLanguageDropdownOpen = false;
+    // const langCode = language === 'DE' ? 'de' : 'en';
+    // this.translate.use(langCode);
+    this.translate.switchLanguage();
+    this.selectedLanguage = this.translate.getCurrentLanguage();
   }
 
 }

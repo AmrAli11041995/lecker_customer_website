@@ -130,6 +130,16 @@
     },
     "UI_ONLY_ALERT": "Registration UI only - no backend integration"
   },
+  "HERO_BANNER": {
+    "LIMITED_TIME_OFFER": "LIMITED TIME OFFER",
+    "SALE_TITLE_FALLBACK": "50% OFF Everything!",
+    "DAYS": "DAYS",
+    "HOURS": "HOURS",
+    "MINS": "MINS",
+    "SECS": "SECS",
+    "SHOP_NOW": "Shop Now",
+    "CANDY_ALT": "Lecker 24 Candy Collection"
+  },
   "TOP_SELLERS": {
     "OUR_TOP_SELLERS": "Our Top Sellers",
     "SHOP_NOW": "Shop Now"

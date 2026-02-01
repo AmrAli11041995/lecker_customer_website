@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-hero-banner',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './hero-banner.component.html',
   styleUrl: './hero-banner.component.scss'
 })
@@ -66,19 +67,37 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
   getPosts(){
     this.postService.GetPosts().subscribe((res) => {
       console.log(res);
+      debugger;
       this.posts = res.data;
       if(this.posts.length > 0){
-        this.bannerPost = this.posts[0];
+        let bannerPosttemp:any = this.posts[0];
        console.log(this.bannerPost);
         let now = new Date();
-        let endDate = new Date(this.bannerPost?.expirationDate);
+        let endDate = new Date(bannerPosttemp?.expirationDate);
         if(now < endDate){
-          this.countdown.days = endDate.getDate() - now.getDate();
-          this.countdown.hours = endDate.getHours() - now.getHours();
-          this.countdown.minutes = endDate.getMinutes() - now.getMinutes();
-          this.countdown.seconds = endDate.getSeconds() - now.getSeconds();
-        }
+          let diff = this.getDateDiff(now, endDate);
+          this.bannerPost = this.posts[0];
+          this.countdown.seconds = diff.seconds;  
+          this.countdown.minutes = diff.minutes;
+          this.countdown.hours = diff.hours;
+          this.countdown.days = diff.days;
+        } 
       }
     });
   }
+  getDateDiff(start: Date, end: Date) {
+  const diffMs = Math.abs(end.getTime() - start.getTime());
+
+  const totalSeconds = Math.floor(diffMs / 1000);
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const totalHours   = Math.floor(totalMinutes / 60);
+  const days         = Math.floor(totalHours / 24);
+
+  return {
+    days,
+    hours: totalHours % 24,
+    minutes: totalMinutes % 60,
+    seconds: totalSeconds % 60
+  };
+}
 }

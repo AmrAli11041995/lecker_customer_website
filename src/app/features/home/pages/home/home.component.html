@@ -5,6 +5,9 @@
   <!-- Categories Section -->
   <app-categories-section
     [categories]="categories"
+    [currentPage]="currentCategoryPage"
+    [totalPages]="totalCategoryPages"
+    (pageChange)="onCategoryPageChange($event)"
    (selectCategory)="onCategoryChange($event)"></app-categories-section>
   <img src="assets/img/cookies.png" alt="Decorative cookie image" class="rotating-cookie-image">
 

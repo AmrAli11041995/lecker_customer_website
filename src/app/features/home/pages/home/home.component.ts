@@ -93,11 +93,23 @@ export class HomeComponent implements OnInit {
       this.isFilterSidebarOpen = true; // Always visible on desktop
     }
   }
+  
+  currentCategoryPage: number=1;
+  totalCategoryPages: number=1;
   loadCategories(){
-     this.homeService.GetCategories().subscribe((res ) => {
+     this.homeService.GetCategories({
+      pageNumber:this.currentCategoryPage,
+      pageSize:6,
+     }).subscribe((res ) => {
       debugger;
       this.categories = [...res.entities.items] 
+      this.totalCategoryPages = res.entities.totalPages;
+      this.currentCategoryPage = res.entities.currentPage;
     });
+  }
+  onCategoryPageChange(pageNumber: number) {
+    this.currentCategoryPage = pageNumber;
+    this.loadCategories();
   }
   loadProducts() {
     this.productService.GetProducts({

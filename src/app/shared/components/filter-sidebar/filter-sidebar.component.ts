@@ -48,8 +48,9 @@ export class FilterSidebarComponent implements OnInit {
   }
 
   onCategoryChange(category: Category) {
-    this.filterOptions.categories.forEach(c => c.isSelected = false);
-    category.isSelected = true;
+    // this.filterOptions.categories.forEach(c => c.isSelected = false);
+    // category.isSelected = true;
+        category.isSelected = !category.isSelected;
     this.emitFilterChange();
   }
 
@@ -118,8 +119,11 @@ export class FilterSidebarComponent implements OnInit {
   }
   
   getCategories() {
-    this.homeService.GetCategories().subscribe((res) => {
-      this.filterOptions.categories = res.data.map((category: any) => ({
+    this.homeService.GetCategories({
+      pageNumber:1,
+      pageSize:10000,
+    }).subscribe((res) => {
+      this.filterOptions.categories = res.entities.items.map((category: any) => ({
         name: category.name,
         isSelected: false,
         id: category.id

@@ -11,9 +11,9 @@ export class HomeService {
 
   constructor(public httpClient: HttpClient) { }
 
-  GetCategories(): Observable<any> {
+  GetCategories({pageNumber,pageSize}:{pageNumber:number,pageSize:number}): Observable<any> {
     return this.httpClient.get<any>(
-      this.apiURl + '/GetList' 
+      this.apiURl + '/GetList?pageNumber='+pageNumber+'&pageSize='+pageSize
     );
   }
 }

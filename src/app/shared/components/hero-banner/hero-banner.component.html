@@ -2,38 +2,38 @@
   <div class="hero-container">
     <div class="hero-content">
       <div class="hero-text">
-        <h2 class="best-deals">LIMITED TIME OFFER</h2>
-        <h1 class="sale-title">{{ bannerPost?.articleTitle??"50% OFF Everything!" }}</h1>
+        <h2 class="best-deals">{{ 'HERO_BANNER.LIMITED_TIME_OFFER' | translate }}</h2>
+        <h1 class="sale-title">{{ bannerPost?.articleTitle || ( 'HERO_BANNER.SALE_TITLE_FALLBACK' | translate ) }}</h1>
         <div class="countdown-timer">
           <div class="time-unit">
             <span class="time-value">{{ countdown.days.toString().padStart(2, '0') }}</span>
-            <span class="time-label">DAYS</span>
+            <span class="time-label">{{ 'HERO_BANNER.DAYS' | translate }}</span>
           </div>
           <span class="time-separator">:</span>
           <div class="time-unit">
             <span class="time-value">{{ countdown.hours.toString().padStart(2, '0') }}</span>
-            <span class="time-label">HOURS</span>
+            <span class="time-label">{{ 'HERO_BANNER.HOURS' | translate }}</span>
           </div>
           <span class="time-separator">:</span>
           <div class="time-unit">
             <span class="time-value">{{ countdown.minutes.toString().padStart(2, '0') }}</span>
-            <span class="time-label">MINS</span>
+            <span class="time-label">{{ 'HERO_BANNER.MINS' | translate }}</span>
           </div>
           <span class="time-separator">:</span>
           <div class="time-unit">
             <span class="time-value">{{ countdown.seconds.toString().padStart(2, '0') }}</span>
-            <span class="time-label">SECS</span>
+            <span class="time-label">{{ 'HERO_BANNER.SECS' | translate }}</span>
           </div>
         </div>
         <button class="shop-now-btn"  (click)="onShopNow()">
-          Shop Now →
+          {{ 'HERO_BANNER.SHOP_NOW' | translate }} →
         </button>
       </div>
       <div class="hero-image">
         <div class="candy-image-container">
           <!-- <img src="assets/img/candy.png" alt="Lecker 24 Candy Collection" class="candy-image"> -->
-          <img *ngIf="bannerPost?.urlSlug" [src]="fileBaseURL + (bannerPost?.urlSlug)" alt="Lecker 24 Candy Collection" class="candy-image">
-          <img *ngIf="!bannerPost?.urlSlug" [src]="'assets/img/candy.png'" alt="Lecker 24 Candy Collection" class="candy-image">
+          <img *ngIf="bannerPost?.urlSlug" [src]="fileBaseURL + (bannerPost?.urlSlug)" alt="{{ 'HERO_BANNER.CANDY_ALT' | translate }}" class="candy-image">
+          <img *ngIf="!bannerPost?.urlSlug" [src]="'assets/img/candy.png'" alt="{{ 'HERO_BANNER.CANDY_ALT' | translate }}" class="candy-image">
         </div>
       </div>
     </div>

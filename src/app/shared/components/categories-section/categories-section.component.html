@@ -11,6 +11,13 @@
         <span class="count">{{ c.count }} {{ 'HOME.ITEMS' | translate }}</span>
       </button>
     </div>
+    
+    <app-pagination
+            [currentPage]="currentPage"
+            [totalPages]="totalPages"
+            (pageChange)="onPageChange($event)"
+          ></app-pagination>
+
     <div class="meta">
       <button class="shop" routerLink="/products">{{ 'HOME.SHOP_ALL' | translate }}</button>
     </div>

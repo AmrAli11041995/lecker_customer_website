@@ -250,6 +250,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       minPrice:this.filterSidebar.filterOptions.priceRange?.min ?? null,
       maxPrice:this.filterSidebar.filterOptions.priceRange?.max ?? null,
       categoryId:this.filterSidebar.filterOptions.categories.find(x=>x.isSelected)?.id ?? null,
+      categoryIds:this.filterSidebar.filterOptions.categories.filter(x=>x.isSelected).map(x=>x.id) ,
       tagIds:this.filterSidebar.filterOptions.tags.filter(x=>x.isSelected).map(tag => tag.id),
       rate:null,
       rates: this.filterSidebar.filterOptions.ratings.filter(x=>x.isSelected).map(tag => tag.value),

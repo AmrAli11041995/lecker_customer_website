@@ -6,17 +6,21 @@ import { HomeService } from '../../../features/home/services/home.service';
 import { AuthRoutingModule } from "../../../features/auth/auth-routing.module";
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment.development';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-categories-section',
   standalone: true,
-  imports: [CommonModule, AuthRoutingModule, TranslateModule],
+  imports: [CommonModule, AuthRoutingModule,PaginationComponent, TranslateModule],
   templateUrl: './categories-section.component.html',
   styleUrl: './categories-section.component.scss'
 })
 export class CategoriesSectionComponent {
+  @Output() pageChange = new EventEmitter<number>();
   @Output() selectCategory = new EventEmitter<Category>();
   @Input() categories: Category[] = [];
+  @Input() currentPage: number = 1;
+  @Input() totalPages: number = 1;
   fileBaseURL = environment.fileBaseURL;
   // Display 6 categories with image placeholders
   // categories: Category[] = [];
@@ -36,18 +40,23 @@ export class CategoriesSectionComponent {
     //     ...c,
     //     image: this.placeholderImages[i % this.placeholderImages.length]
     //   }));
-    this.homeService.GetCategories().subscribe((res ) => {
-      debugger;
-      this.categories = (res.data as any[]).slice(0, 6).map((c, i) => ({
-        ...c
-        // image: 
-        // image: this.placeholderImages[i % this.placeholderImages.length]
-      }));
-    });
+    // this.homeService.GetCategories().subscribe((res ) => {
+    //   debugger;
+    //   this.categories = (res.data as any[]).slice(0, 6).map((c, i) => ({
+    //     ...c
+    //     // image: 
+    //     // image: this.placeholderImages[i % this.placeholderImages.length]
+    //   }));
+    // });
   }
 
   onSelect(category: Category) {
     this.selectCategory.emit(category);
+  }
+  onPageChange(page: number) {
+    // this.currentPage = page;
+    // this.loadProducts();
+    this.pageChange.emit(page);
   }
   // goToShopPage() {
   //   this.homeService.goToShopPage();
