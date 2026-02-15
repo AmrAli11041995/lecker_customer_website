@@ -35,10 +35,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private checkoutService : CheckoutService,
+    private checkoutService: CheckoutService,
     private toastService: ToastService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeOrderSummary();
@@ -46,7 +46,7 @@ export class CheckoutComponent implements OnInit {
 
   private initializeOrderSummary(): void {
     const cart = this.cartService.getCart();
-    
+
     this.orderSummary = {
       items: cart.items.map(item => ({
         id: item.id,
@@ -136,7 +136,7 @@ export class CheckoutComponent implements OnInit {
       lastName: checkoutData.billingInfo.lastName,
       PaymentMethod: checkoutData.paymentMethod,
       totalPrice: checkoutData.orderSummary.total,
-      orderAddress:{
+      orderAddress: {
         country: checkoutData.billingInfo.country,
         city: checkoutData.billingInfo.city,
         street: checkoutData.billingInfo.streetAddress
@@ -149,11 +149,8 @@ export class CheckoutComponent implements OnInit {
       next: (response) => {
         debugger
         this.cartService.clearCart();
-    
-    // Redirect to home after a short delay
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 2000);
+
+        this.toastService.showSuccess(`Order added successfully!`);
         console.log('Order added successfully:', response);
       },
       error: (error) => {
@@ -161,18 +158,6 @@ export class CheckoutComponent implements OnInit {
         this.toastService.showError('Failed to place order. Please try again.');
       }
     });
-    // Simulate order processing
-    // console.log('Processing order:', checkoutData);
-    
-    // // Show success message
-    // this.toastService.showSuccess('Order placed successfully!');
-    
-    // Clear cart
-    // this.cartService.clearCart();
-    
-    // // Redirect to home after a short delay
-    // setTimeout(() => {
-    //   this.router.navigate(['/']);
-    // }, 2000);
+
   }
 }
