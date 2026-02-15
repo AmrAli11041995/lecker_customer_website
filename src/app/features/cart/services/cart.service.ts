@@ -11,7 +11,7 @@ export class CartService {
   private cartSubject = new BehaviorSubject<Cart>(this.getInitialCart());
   public cart$ = this.cartSubject.asObservable();
   private getInitialCart(): Cart {
-    debugger;
+    ;
     // Dummy cart data matching the screenshot
     // const items: CartItem[] = [
     //   {
@@ -41,7 +41,7 @@ export class CartService {
     //   total: 84.00,
     //   itemCount: 6
     // };
-     try {
+    try {
       const raw = localStorage.getItem(this.STORAGE_KEY);
       if (raw) {
         const cart: Cart = JSON.parse(raw);
@@ -50,7 +50,7 @@ export class CartService {
         return cart;
       }
     } catch {
-          return { items: [], subtotal: 0, shipping: 0, total: 0, itemCount: 0 };
+      return { items: [], subtotal: 0, shipping: 0, total: 0, itemCount: 0 };
 
     }
     return { items: [], subtotal: 0, shipping: 0, total: 0, itemCount: 0 };
@@ -60,13 +60,13 @@ export class CartService {
     return this.cartSubject.value;
   }
 
-  addItem(product: any, quantity?: number ): void {
+  addItem(product: any, quantity?: number): void {
     const cart = this.getCart();
     const existingItem = cart.items.find(item => item.productId === product.id);
-    
+
     if (existingItem) {
       // If item already exists, increase quantity
-      existingItem.quantity += quantity ||1;
+      existingItem.quantity += quantity || 1;
       existingItem.subtotal = existingItem.price * existingItem.quantity;
     } else {
       // Add new item to cart
@@ -74,14 +74,14 @@ export class CartService {
         id: Date.now(), // Simple ID generation
         productId: product.id,
         name: product.name,
-        image:product.image?.imageUrl ?  environment.fileBaseURL+ product.image?.imageUrl :  'assets/img/cookies.png',
+        image: product.image?.imageUrl ? environment.fileBaseURL + product.image?.imageUrl : 'assets/img/cookies.png',
         price: product.price,
         quantity: quantity || 1,
         subtotal: product.price * (quantity || 1)
       };
       cart.items.push(newItem);
     }
-    
+
     this.calculateTotals(cart);
     this.persist(cart);
     this.cartSubject.next(cart);
@@ -90,7 +90,7 @@ export class CartService {
   updateQuantity(itemId: number, quantity: number): void {
     const cart = this.getCart();
     const item = cart.items.find(item => item.id === itemId);
-    
+
     if (item) {
       item.quantity = Math.max(1, quantity);
       item.subtotal = item.price * item.quantity;
@@ -138,11 +138,11 @@ export class CartService {
     //   total: 0,
     //   itemCount: 0
     // });
-     const empty: Cart = { items: [], subtotal: 0, shipping: 0, total: 0, itemCount: 0 };
+    const empty: Cart = { items: [], subtotal: 0, shipping: 0, total: 0, itemCount: 0 };
     this.persist(empty);
     this.cartSubject.next(empty);
   }
   private persist(cart: Cart): void {
-    try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart)); } catch {}
+    try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart)); } catch { }
   }
 }

@@ -35,11 +35,11 @@ export class ShopComponent implements OnInit, OnDestroy {
   @ViewChild('filterSidebar') filterSidebar!: FilterSidebarComponent;
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  searchOptions: SearchOptions = { query: '', sortBy: 'All' , resultsCount: 0 };
+  searchOptions: SearchOptions = { query: '', sortBy: 'All', resultsCount: 0 };
   currentPage = 1;
   itemsPerPage = 9;
   isFilterSidebarOpen = true; // Open by default on desktop
-  
+
   // Modal state
   selectedProduct: Product | null = null;
   isModalOpen = false;
@@ -53,7 +53,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private toastService: ToastService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadProducts();
@@ -98,11 +98,11 @@ export class ShopComponent implements OnInit, OnDestroy {
   //   this.updateSearchOptions();
   // }
   loadProducts() {
-    let prodId =  null
-    if(this.dataService.selectedTopSellerProduct){
+    let prodId = null
+    if (this.dataService.selectedTopSellerProduct) {
       prodId = this.dataService.selectedTopSellerProduct.id;
     }
-    const query = { PageNumber: 1, PageSize: this.itemsPerPage, SearchTerm: null, TagIds: null, Rate: null, SortBy: null,productId: prodId };
+    const query = { PageNumber: 1, PageSize: this.itemsPerPage, SearchTerm: null, TagIds: null, Rate: null, SortBy: null, productId: prodId };
     this.productService.GetProducts(query).subscribe({
       next: (response) => {
         this.products = response.data;
@@ -155,7 +155,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     // this.updateSearchOptions();
   }
 
-  selectedSortByEnum?: SortByEnum ;
+  selectedSortByEnum?: SortByEnum;
   sortProducts() {
     switch (this.searchOptions.sortBy) {
       case 'Price Low to High':
@@ -196,13 +196,13 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.searchOptions.resultsCount = this.filteredProducts.length;
   }
 
-  onAddToCart(product: Product , quantity? : number) {
+  onAddToCart(product: Product, quantity?: number) {
     if (!product.isInStock) {
       this.toastService.showError('This product is currently out of stock');
       return;
     }
-    
-    this.cartService.addItem(product,quantity);
+
+    this.cartService.addItem(product, quantity);
     this.toastService.showSuccess(`${product.name} added to cart!`);
   }
 
@@ -240,21 +240,21 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onApplyFilters() {
     // this.currentFilters = query;
-    debugger;
+    ;
     this.currentPage = 1;
     this.itemsPerPage = 10;
     let query = {
-      pageNumber:1,
-      pageSize:10,
-      searchTerm:this.searchOptions.query,
-      minPrice:this.filterSidebar.filterOptions.priceRange?.min ?? null,
-      maxPrice:this.filterSidebar.filterOptions.priceRange?.max ?? null,
-      categoryId:this.filterSidebar.filterOptions.categories.find(x=>x.isSelected)?.id ?? null,
-      categoryIds:this.filterSidebar.filterOptions.categories.filter(x=>x.isSelected).map(x=>x.id) ,
-      tagIds:this.filterSidebar.filterOptions.tags.filter(x=>x.isSelected).map(tag => tag.id),
-      rate:null,
-      rates: this.filterSidebar.filterOptions.ratings.filter(x=>x.isSelected).map(tag => tag.value),
-      sortBy:this.selectedSortByEnum,
+      pageNumber: 1,
+      pageSize: 10,
+      searchTerm: this.searchOptions.query,
+      minPrice: this.filterSidebar.filterOptions.priceRange?.min ?? null,
+      maxPrice: this.filterSidebar.filterOptions.priceRange?.max ?? null,
+      categoryId: this.filterSidebar.filterOptions.categories.find(x => x.isSelected)?.id ?? null,
+      categoryIds: this.filterSidebar.filterOptions.categories.filter(x => x.isSelected).map(x => x.id),
+      tagIds: this.filterSidebar.filterOptions.tags.filter(x => x.isSelected).map(tag => tag.id),
+      rate: null,
+      rates: this.filterSidebar.filterOptions.ratings.filter(x => x.isSelected).map(tag => tag.value),
+      sortBy: this.selectedSortByEnum,
     }
     this.productService.GetProducts(query).subscribe({
       next: (response) => {
@@ -300,12 +300,11 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 }
 
-  export enum SortByEnum
-  {
-      Latest = 1,
-      HighPrice = 2,
-      LowPrice = 3,
-      Rate = 4,
-      NameFromAtoZ = 5,
-      NameFromZtoA = 6
-  }
+export enum SortByEnum {
+  Latest = 1,
+  HighPrice = 2,
+  LowPrice = 3,
+  Rate = 4,
+  NameFromAtoZ = 5,
+  NameFromZtoA = 6
+}

@@ -29,13 +29,13 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.cartService.cart$
       .pipe(takeUntil(this.destroy$))
       .subscribe(cart => {
-        debugger;
+        ;
         this.cart = cart;
       });
   }

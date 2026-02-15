@@ -33,10 +33,10 @@ export class FilterSidebarComponent implements OnInit {
   constructor(private dataService: DataService,
     private productTagsService: ProductTagsService,
     private homeService: HomeService,
-  ) {}
+  ) { }
 
   ngOnInit() {
-     this.filterOptions = this.dataService.getFilterOptions();
+    this.filterOptions = this.dataService.getFilterOptions();
     this.getTags();
     this.getCategories();
 
@@ -50,12 +50,12 @@ export class FilterSidebarComponent implements OnInit {
   onCategoryChange(category: Category) {
     // this.filterOptions.categories.forEach(c => c.isSelected = false);
     // category.isSelected = true;
-        category.isSelected = !category.isSelected;
+    category.isSelected = !category.isSelected;
     this.emitFilterChange();
   }
 
   onPriceRangeChange() {
-    debugger;
+    ;
     if (this.rangeValues[0] > this.rangeValues[1]) {
       const temp = this.rangeValues[0];
       this.rangeValues[0] = this.rangeValues[1];
@@ -86,7 +86,7 @@ export class FilterSidebarComponent implements OnInit {
     this.applyFilterChange.emit();
 
   }
-  
+
   onResetFilterClick() {
     // this.toggleSidebar.emit();
     this.filterOptions.categories.forEach(c => c.isSelected = false);
@@ -117,11 +117,11 @@ export class FilterSidebarComponent implements OnInit {
       }));
     });
   }
-  
+
   getCategories() {
     this.homeService.GetCategories({
-      pageNumber:1,
-      pageSize:10000,
+      pageNumber: 1,
+      pageSize: 10000,
     }).subscribe((res) => {
       this.filterOptions.categories = res.entities.items.map((category: any) => ({
         name: category.name,

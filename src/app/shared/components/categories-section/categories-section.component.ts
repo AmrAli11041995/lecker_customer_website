@@ -11,7 +11,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 @Component({
   selector: 'app-categories-section',
   standalone: true,
-  imports: [CommonModule, AuthRoutingModule,PaginationComponent, TranslateModule],
+  imports: [CommonModule, AuthRoutingModule, PaginationComponent, TranslateModule],
   templateUrl: './categories-section.component.html',
   styleUrl: './categories-section.component.scss'
 })
@@ -31,8 +31,8 @@ export class CategoriesSectionComponent {
     'assets/img/Products/oreo.png'
   ];
 
-  constructor(private dataService: DataService ,
-     private homeService: HomeService) {
+  constructor(private dataService: DataService,
+    private homeService: HomeService) {
     // this.categories = this.dataService
     //   .getCategories()
     //   .slice(0, 6)
@@ -41,7 +41,7 @@ export class CategoriesSectionComponent {
     //     image: this.placeholderImages[i % this.placeholderImages.length]
     //   }));
     // this.homeService.GetCategories().subscribe((res ) => {
-    //   debugger;
+    //    ;
     //   this.categories = (res.data as any[]).slice(0, 6).map((c, i) => ({
     //     ...c
     //     // image: 

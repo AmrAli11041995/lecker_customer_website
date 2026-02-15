@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   contactForm!: FormGroup;
   submitted = false;
 
-   get paginatedProducts(): Product[] {
+  get paginatedProducts(): Product[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.filteredProducts.slice(startIndex, endIndex);
@@ -62,19 +62,19 @@ export class HomeComponent implements OnInit {
   get totalPages(): number {
     return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
   }
-  
+
   constructor(
     private dataService: DataService,
     private productService: ProductService,
     private homeService: HomeService,
     private emailService: EmailService,
     private cartService: CartService,
-        private fb: FormBuilder,
+    private fb: FormBuilder,
     private toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit() {
-     this.contactForm = this.fb.group({
+    this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
       emailTo: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required]],
@@ -93,16 +93,16 @@ export class HomeComponent implements OnInit {
       this.isFilterSidebarOpen = true; // Always visible on desktop
     }
   }
-  
-  currentCategoryPage: number=1;
-  totalCategoryPages: number=1;
-  loadCategories(){
-     this.homeService.GetCategories({
-      pageNumber:this.currentCategoryPage,
-      pageSize:6,
-     }).subscribe((res ) => {
-      debugger;
-      this.categories = [...res.entities.items] 
+
+  currentCategoryPage: number = 1;
+  totalCategoryPages: number = 1;
+  loadCategories() {
+    this.homeService.GetCategories({
+      pageNumber: this.currentCategoryPage,
+      pageSize: 6,
+    }).subscribe((res) => {
+      ;
+      this.categories = [...res.entities.items]
       this.totalCategoryPages = res.entities.totalPages;
       this.currentCategoryPage = res.entities.currentPage;
     });
@@ -113,15 +113,15 @@ export class HomeComponent implements OnInit {
   }
   loadProducts() {
     this.productService.GetProducts({
-      pageNumber:1,
-      pageSize:10,
-      searchTerm:null,
-      tagIds:[],
-      rate:null,
-      sortBy:null,
+      pageNumber: 1,
+      pageSize: 10,
+      searchTerm: null,
+      tagIds: [],
+      rate: null,
+      sortBy: null,
     }).subscribe({
       next: (response) => {
-        debugger;
+        ;
         this.products = response.data;
         this.filteredProducts = [...this.products];
         this.sortProducts();
@@ -208,7 +208,7 @@ export class HomeComponent implements OnInit {
     //   this.toastService.showError('This product is currently out of stock');
     //   return;
     // }
-        console.log('Added to cart:', product);
+    console.log('Added to cart:', product);
 
     // this.cartService.addItem(product);
     // this.toastService.showSuccess(`${product.name} added to cart!`);
@@ -252,7 +252,7 @@ export class HomeComponent implements OnInit {
     this.onAddToWishlist(product);
   }
 
- 
+
   onSendRequest() {
     this.submitted = true;
     if (this.contactForm.invalid) {
@@ -260,14 +260,14 @@ export class HomeComponent implements OnInit {
       return;
     }
     const payload = this.contactForm.value;
-    this.emailService.sendEmail(payload).subscribe(res=>{
+    this.emailService.sendEmail(payload).subscribe(res => {
       this.toastService.showSuccess('Email sent successfully!');
       this.contactForm.reset();
       this.submitted = false;
     },
-  (er)=>{
-          this.toastService.showError('Email not sent!');
-  })
+      (er) => {
+        this.toastService.showError('Email not sent!');
+      })
     console.log('Contact form submitted:', payload);
   }
 }

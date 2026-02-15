@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-product-modal',
   standalone: true,
-  imports: [CommonModule,TranslateModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './product-modal.component.html',
   styleUrl: './product-modal.component.scss'
 })
@@ -22,7 +22,7 @@ export class ProductModalComponent implements OnInit, OnChanges {
   selectedImageIndex: number = 0;
   quantity: number = 1;
   productImages: string[] = [];
-  
+
   // Touch/swipe functionality
   private touchStartX: number = 0;
   private touchStartY: number = 0;
@@ -45,15 +45,15 @@ export class ProductModalComponent implements OnInit, OnChanges {
   }
 
   generateProductImages(): string[] {
-    debugger;
+    ;
     if (!this.product) return [];
-    
+
     // Generate multiple images for the gallery (using the same image for now)
     return [
-      this.product.image?.imageUrl??"",
-      this.product.image?.imageUrl??"",
-      this.product.image?.imageUrl??"",
-      this.product.image?.imageUrl??""
+      this.product.image?.imageUrl ?? "",
+      this.product.image?.imageUrl ?? "",
+      this.product.image?.imageUrl ?? "",
+      this.product.image?.imageUrl ?? ""
     ];
   }
 
@@ -121,14 +121,14 @@ export class ProductModalComponent implements OnInit, OnChanges {
   onTouchEnd(event: TouchEvent) {
     this.touchEndX = event.changedTouches[0].clientX;
     this.touchEndY = event.changedTouches[0].clientY;
-    
+
     this.handleSwipe();
   }
 
   private handleSwipe() {
     const deltaX = this.touchEndX - this.touchStartX;
     const deltaY = this.touchEndY - this.touchStartY;
-    
+
     // Only process horizontal swipes (ignore vertical scrolling)
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.minSwipeDistance) {
       if (deltaX > 0) {

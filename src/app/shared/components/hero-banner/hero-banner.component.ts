@@ -18,12 +18,12 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
     minutes: 18,
     seconds: 46
   };
-  
+
   private countdownInterval: any;
   fileBaseURL = environment.fileBaseURL;
-  constructor(private postService: PostService,private router: Router){
+  constructor(private postService: PostService, private router: Router) {
 
-}
+  }
   ngOnInit() {
     this.startCountdown();
     this.getPosts();
@@ -56,48 +56,48 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
   }
 
   onShopNow() {
-      this.router.navigate(['/products']);
+    this.router.navigate(['/products']);
 
     // TODO: Navigate to products or implement shop now functionality
     console.log('Shop Now clicked');
   }
 
-  posts=[];
-  bannerPost: any={}
-  getPosts(){
+  posts = [];
+  bannerPost: any = {}
+  getPosts() {
     this.postService.GetPosts().subscribe((res) => {
       console.log(res);
-      debugger;
+      ;
       this.posts = res.data;
-      if(this.posts.length > 0){
-        let bannerPosttemp:any = this.posts[0];
-       console.log(this.bannerPost);
+      if (this.posts.length > 0) {
+        let bannerPosttemp: any = this.posts[0];
+        console.log(this.bannerPost);
         let now = new Date();
         let endDate = new Date(bannerPosttemp?.expirationDate);
-        if(now < endDate){
+        if (now < endDate) {
           let diff = this.getDateDiff(now, endDate);
           this.bannerPost = this.posts[0];
-          this.countdown.seconds = diff.seconds;  
+          this.countdown.seconds = diff.seconds;
           this.countdown.minutes = diff.minutes;
           this.countdown.hours = diff.hours;
           this.countdown.days = diff.days;
-        } 
+        }
       }
     });
   }
   getDateDiff(start: Date, end: Date) {
-  const diffMs = Math.abs(end.getTime() - start.getTime());
+    const diffMs = Math.abs(end.getTime() - start.getTime());
 
-  const totalSeconds = Math.floor(diffMs / 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const totalHours   = Math.floor(totalMinutes / 60);
-  const days         = Math.floor(totalHours / 24);
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const days = Math.floor(totalHours / 24);
 
-  return {
-    days,
-    hours: totalHours % 24,
-    minutes: totalMinutes % 60,
-    seconds: totalSeconds % 60
-  };
-}
+    return {
+      days,
+      hours: totalHours % 24,
+      minutes: totalMinutes % 60,
+      seconds: totalSeconds % 60
+    };
+  }
 }

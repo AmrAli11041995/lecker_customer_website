@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../../features/products/models/product.model';
 
-export interface WishlistItem extends Product {}
+export interface WishlistItem extends Product { }
 
 @Injectable({ providedIn: 'root' })
 export class WishlistService {
@@ -40,12 +40,12 @@ export class WishlistService {
 
   private persist(items: WishlistItem[]) {
     this.itemsSubject.next(items);
-    try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items)); } catch {}
+    try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items)); } catch { }
   }
 
   private load(): WishlistItem[] {
     try {
-      debugger;
+      ;
       const raw = localStorage.getItem(this.STORAGE_KEY);
       return raw ? JSON.parse(raw) : [];
     } catch { return []; }
