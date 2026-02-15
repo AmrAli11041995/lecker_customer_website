@@ -111,7 +111,7 @@ export class FilterSidebarComponent implements OnInit {
   getTags() {
     this.productTagsService.GetTags().subscribe((res) => {
       this.filterOptions.tags = res.data.map((tag: any) => ({
-        name: tag.name,
+        name: tag,
         isSelected: false,
         id: tag.id
       }));

@@ -34,11 +34,11 @@
         </div>
         <div class="section-content" [class.collapsed]="isCollapsed.categories">
           <div class="categories-list">
-            <label *ngFor="let category of filterOptions.categories" class="rating-item"
-            >
-            <!-- class="category-item" -->
+            <label *ngFor="let category of filterOptions.categories" class="rating-item">
+              <!-- class="category-item" -->
               <!-- <input type="radio" name="category" [checked]="category.isSelected" (change)="onCategoryChange(category)"> -->
-              <input  type="checkbox"  name="category" [checked]="category.isSelected" (change)="onCategoryChange(category)">
+              <input type="checkbox" name="category" [checked]="category.isSelected"
+                (change)="onCategoryChange(category)">
               <!-- <span class="radio-custom"></span> -->
               <span class="checkbox-custom"></span>
               <span class="category-label">{{ category.name }} <span class="count"
