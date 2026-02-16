@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +11,7 @@ import { TranslationService } from './shared/services/translation-helper.service
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, CommonModule],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SpinnerComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

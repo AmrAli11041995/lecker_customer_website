@@ -4,7 +4,7 @@ export interface Product {
   imageUrl: string;
   image?: Image;
   // image: string;
-   price: number;
+  price: number;
   //basePrice: number;
   originalPrice?: number;
   rating?: number;
@@ -15,15 +15,15 @@ export interface Product {
   isOnSale?: boolean;
   salePercentage?: number;
   orderedQuantity?: number;
-  skw?:string;
-  brand?:string;
-  descreption?:string;
-  brandId?:number;
+  skw?: string;
+  brand?: string;
+  descreption?: string;
+  brandId?: number;
 }
-export interface Image{
+export interface Image {
   id: number;
-imageBase ?: string;
-imageUrl:string;
+  imageBase?: string;
+  imageUrl: string;
 
 }
 export interface Category {
@@ -33,8 +33,8 @@ export interface Category {
   fileUrl?: string;
   count: number;
   isSelected: boolean;
-  categoryStatusEnum? : number;
-  
+  categoryStatusEnum?: number;
+
 }
 
 export interface FilterOptions {
@@ -51,7 +51,7 @@ export interface FilterOptions {
     isSelected: boolean;
   }[];
   tags: {
-    id?: number;
+    // id?: number;
     name: string;
     isSelected: boolean;
   }[];
