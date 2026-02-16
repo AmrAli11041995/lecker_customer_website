@@ -11,7 +11,6 @@ export class CartService {
   private cartSubject = new BehaviorSubject<Cart>(this.getInitialCart());
   public cart$ = this.cartSubject.asObservable();
   private getInitialCart(): Cart {
-    debugger;
     // Dummy cart data matching the screenshot
     // const items: CartItem[] = [
     //   {

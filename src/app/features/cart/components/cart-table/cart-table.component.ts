@@ -19,7 +19,6 @@ export class CartTableComponent {
   @Output() updateCart = new EventEmitter<void>();
 
   constructor() { 
-    debugger;
     let val = this.cartItems;
   }
   

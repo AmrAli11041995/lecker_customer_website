@@ -240,7 +240,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onApplyFilters() {
     // this.currentFilters = query;
-    debugger;
     this.currentPage = 1;
     this.itemsPerPage = 10;
     let query = {

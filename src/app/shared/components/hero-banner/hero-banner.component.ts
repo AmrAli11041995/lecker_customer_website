@@ -67,7 +67,6 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
   getPosts(){
     this.postService.GetPosts().subscribe((res) => {
       console.log(res);
-      debugger;
       this.posts = res.data;
       if(this.posts.length > 0){
         let bannerPosttemp:any = this.posts[0];

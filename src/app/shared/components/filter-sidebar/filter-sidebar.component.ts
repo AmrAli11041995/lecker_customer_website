@@ -55,7 +55,6 @@ export class FilterSidebarComponent implements OnInit {
   }
 
   onPriceRangeChange() {
-    debugger;
     if (this.rangeValues[0] > this.rangeValues[1]) {
       const temp = this.rangeValues[0];
       this.rangeValues[0] = this.rangeValues[1];

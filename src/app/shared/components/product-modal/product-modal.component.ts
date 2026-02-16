@@ -45,7 +45,6 @@ export class ProductModalComponent implements OnInit, OnChanges {
   }
 
   generateProductImages(): string[] {
-    debugger;
     if (!this.product) return [];
     
     // Generate multiple images for the gallery (using the same image for now)

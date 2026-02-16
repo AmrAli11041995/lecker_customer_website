@@ -44,19 +44,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger
     let cartts = localStorage.getItem('cart_items_v1');
     this.cartService.cart$
       .pipe(takeUntil(this.destroy$))
       .subscribe(cart => {
-        debugger
         this.cart = cart;
       });
 
     this.wishlist.items$
       .pipe(takeUntil(this.destroy$))
       .subscribe(items => {
-        debugger
         this.wishlistCount = items.length;
       });
 

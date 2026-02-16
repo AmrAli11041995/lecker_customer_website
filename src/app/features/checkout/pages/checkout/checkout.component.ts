@@ -89,7 +89,6 @@ export class CheckoutComponent implements OnInit {
 
   onPlaceOrder(): void {
     // Validate billing info
-    debugger;
     if (!this.isBillingInfoValid()) {
       this.toastService.showError('Please fill in all required billing information');
       return;
@@ -143,11 +142,9 @@ export class CheckoutComponent implements OnInit {
       },
       orderDetails: [...orderDetails]
     }
-    debugger;
 
     this.checkoutService.addOrder(orderObj).subscribe({
       next: (response) => {
-        debugger
         this.cartService.clearCart();
     
     // Redirect to home after a short delay

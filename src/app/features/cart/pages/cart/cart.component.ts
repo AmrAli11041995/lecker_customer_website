@@ -35,7 +35,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.cart$
       .pipe(takeUntil(this.destroy$))
       .subscribe(cart => {
-        debugger;
         this.cart = cart;
       });
   }

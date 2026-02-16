@@ -101,7 +101,6 @@ export class HomeComponent implements OnInit {
       pageNumber:this.currentCategoryPage,
       pageSize:6,
      }).subscribe((res ) => {
-      debugger;
       this.categories = [...res.entities.items] 
       this.totalCategoryPages = res.entities.totalPages;
       this.currentCategoryPage = res.entities.currentPage;
@@ -121,7 +120,6 @@ export class HomeComponent implements OnInit {
       sortBy:null,
     }).subscribe({
       next: (response) => {
-        debugger;
         this.products = response.data;
         this.filteredProducts = [...this.products];
         this.sortProducts();

@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://localhost:7110',
-  apiBaseUrlGateWay: 'https://localhost:7110/Gateway',
+  apiBaseUrl: 'http://engmustafakader-001-site3.ktempurl.com',
+  apiBaseUrlGateWay: 'http://engmustafakader-001-site3.ktempurl.com/Gateway',
   fileBaseURL: 'http://engmustafakader-001-site5.ktempurl.com',
   debug: false
 };

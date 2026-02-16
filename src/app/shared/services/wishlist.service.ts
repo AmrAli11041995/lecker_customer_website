@@ -45,7 +45,6 @@ export class WishlistService {
 
   private load(): WishlistItem[] {
     try {
-      debugger;
       const raw = localStorage.getItem(this.STORAGE_KEY);
       return raw ? JSON.parse(raw) : [];
     } catch { return []; }
