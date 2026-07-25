@@ -44,6 +44,11 @@ export class ProductModalComponent implements OnInit, OnChanges {
     }
   }
 
+  isLoggedIn():boolean{
+      return !!localStorage.getItem('token');
+
+  }
+  
   generateProductImages(): string[] {
     ;
     if (!this.product) return [];

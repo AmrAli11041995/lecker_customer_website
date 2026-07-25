@@ -31,14 +31,14 @@
       </div>
     </div>
     
-    <div class="product-pricing">
+    <div class="product-pricing" *ngIf="isLoggedIn()">
       <span class="current-price">${{ product.price.toFixed(2) }}</span>
       <span class="original-price" *ngIf="product.originalPrice as orig">
         ${{ orig.toFixed(2) }}
       </span>
     </div>
     
-    <button 
+    <button  *ngIf="isLoggedIn()"
       class="add-to-cart-btn" 
       (click)="onAddToCart($event)"
       [disabled]="!product.isInStock"
