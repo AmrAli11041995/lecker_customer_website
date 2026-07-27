@@ -134,6 +134,7 @@ export class CheckoutComponent implements OnInit {
       companyName: checkoutData.billingInfo.companyName,
       firstName: checkoutData.billingInfo.firstName,
       lastName: checkoutData.billingInfo.lastName,
+      customerId: checkoutData.billingInfo.customerId,
       PaymentMethod: checkoutData.paymentMethod,
       totalPrice: checkoutData.orderSummary.total,
       orderAddress: {
