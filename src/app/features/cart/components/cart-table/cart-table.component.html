@@ -16,7 +16,7 @@
           <tr *ngFor="let item of cartItems" class="cart-row">
             <td class="product-cell">
               <div class="product-info">
-                <img [src]="item.image" [alt]="item.name" class="product-image">
+                <img [src]="item.image" [alt]="item.name" class="product-image" fallbackImage="assets/img/empty-default.png">
                 <span class="product-name">{{ item.name }}</span>
               </div>
             </td>

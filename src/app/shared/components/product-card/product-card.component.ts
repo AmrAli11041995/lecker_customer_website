@@ -5,10 +5,11 @@ import { WishlistService } from '../../services/wishlist.service';
 import { ToastService } from '../../services/toast.service';
 import { environment } from '../../../../environments/environment.development';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { FallbackImageDirective } from '../../directives/fallback-image.directive';
+// FallbackImageDirective
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule,TranslateModule],
+  imports: [CommonModule,TranslateModule, FallbackImageDirective],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })

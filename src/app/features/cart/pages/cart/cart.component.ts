@@ -11,7 +11,7 @@ import { CartTotalComponent } from '../../components/cart-total/cart-total.compo
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CartTableComponent, CartTotalComponent, TranslateModule],
+  imports: [CommonModule, CartTableComponent, CartTotalComponent, TranslateModule, ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

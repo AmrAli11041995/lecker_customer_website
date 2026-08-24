@@ -7,11 +7,12 @@ import { AuthRoutingModule } from "../../../features/auth/auth-routing.module";
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment.development';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { FallbackImageDirective } from '../../directives/fallback-image.directive';
 
 @Component({
   selector: 'app-categories-section',
   standalone: true,
-  imports: [CommonModule, AuthRoutingModule, PaginationComponent, TranslateModule],
+  imports: [CommonModule, AuthRoutingModule, PaginationComponent, TranslateModule, FallbackImageDirective],
   templateUrl: './categories-section.component.html',
   styleUrl: './categories-section.component.scss'
 })

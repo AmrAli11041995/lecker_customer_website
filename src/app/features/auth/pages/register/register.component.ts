@@ -8,6 +8,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { CustomerService } from '../../services/customer.service';
 
 import { LanguageSelectorComponent } from '../../../../shared/components/language-selector/language-selector.component';
+import { ApiResponse } from '../../../../shared/models/apiResponse.model';
 
 @Component({
   selector: 'app-register',
@@ -39,8 +40,8 @@ export class RegisterComponent implements OnInit {
       // countryCode: ['+1', Validators.required],
       phone: ['', Validators.required],
       companyName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      //password: ['', [Validators.required, Validators.minLength(6)]],
+      //confirmPassword: ['', Validators.required],
       taxId: ['', Validators.required],
       // agreeTerms: [false, Validators.requiredTrue]
     });
@@ -116,14 +117,20 @@ export class RegisterComponent implements OnInit {
     //   alert(this.translate.instant('REGISTER.ERROR.PASSWORD_MISMATCH'));
     //   return;
     // }
-    this.customerService.createCustomer(this.prepareFormData()).subscribe(res => {
-      console.log(res);
-      this.toastService.showSuccess(`${this.translate.instant('REGISTER.ERROR.REGISTRATION_SUCCESS')}`);
-      this.router.navigate(['/auth/login']);
-    },
-      (er) => {
+    this.customerService.createCustomer(this.prepareFormData()).subscribe({
+      next: (res: ApiResponse<string>) => {
+        if (res.status === true) {
+          console.log(res);
+          this.toastService.showSuccess(`${this.translate.instant('REGISTER.ERROR.REGISTRATION_SUCCESS')}`);
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.toastService.showError(res.message!);
+        }
+      },
+      error: (er) => {
         console.log(er);
-      })
+      }
+    });
     //   let body= this.registerForm.value;
 
     //   body.roleId = 'Customer'

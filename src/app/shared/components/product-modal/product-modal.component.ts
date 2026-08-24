@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../../features/products/models/product.model';
 import { environment } from '../../../../environments/environment.development';
 import { TranslateModule } from '@ngx-translate/core';
+import { FallbackImageDirective } from '../../directives/fallback-image.directive';
 
 @Component({
   selector: 'app-product-modal',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, FallbackImageDirective],
   templateUrl: './product-modal.component.html',
   styleUrl: './product-modal.component.scss'
 })
