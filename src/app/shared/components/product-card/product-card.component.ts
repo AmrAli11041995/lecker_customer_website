@@ -26,6 +26,10 @@ export class ProductCardComponent {
     private toast: ToastService
   ) {}
 
+  isLoggedIn():boolean{
+      return !!localStorage.getItem('token');
+
+  }
   onAddToCart(event?: Event) {
     if (event) {
       event.stopPropagation();

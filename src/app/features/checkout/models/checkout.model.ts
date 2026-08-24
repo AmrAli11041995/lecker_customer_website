@@ -9,6 +9,7 @@ export interface BillingInfo {
   phone: string;
   shipToDifferentAddress: boolean;
   orderNotes?: string;
+  customerId?: string;
 }
 
 export interface PaymentMethod {

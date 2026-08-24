@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BillingInfo } from '../../models/checkout.model';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-billing-form',
@@ -45,13 +46,17 @@ export class BillingFormComponent implements OnInit {
     'San Jose'
   ];
 
-  constructor(private fb: FormBuilder, private translate: TranslateService) {}
+  constructor(private fb: FormBuilder, private translate: TranslateService,private checkoutService:CheckoutService) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.setupFormSubscription();
+    this.getUserInfo();
   }
+isLoggedIn():boolean{
+      return !!localStorage.getItem('token');
 
+  }
   private initializeForm(): void {
     this.billingForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -63,8 +68,28 @@ export class BillingFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^\+?[\d\s\-\(\)]+$/)]],
       shipToDifferentAddress: [false],
-      orderNotes: ['']
+      orderNotes: [''],
+      customerId:[null]
     });
+  }
+  
+  customerDetails:any;
+  getUserInfo(){
+    if(this.isLoggedIn()){
+      let token = localStorage.getItem('token')??'';
+    this.checkoutService.getUserDetails(token).subscribe(res=>{
+      if(res.status){
+        debugger;
+        this.customerDetails = res.data;
+        this.billingForm.get('firstName')?.setValue(this.customerDetails?.firstName??'');
+        this.billingForm.get('lastName')?.setValue(this.customerDetails?.lastName??'');
+        this.billingForm.get('email')?.setValue(this.customerDetails?.email??'');
+        this.billingForm.get('phone')?.setValue(this.customerDetails?.phoneNumber??'');
+        this.billingForm.get('companyName')?.setValue(this.customerDetails?.companyName??'');
+        this.billingForm.get('customerId')?.setValue(this.customerDetails?.id??null);
+      }
+    })
+    }
   }
 
   private setupFormSubscription(): void {

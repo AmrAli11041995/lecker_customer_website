@@ -69,7 +69,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
   }
+isLoggedIn():boolean{
+      return !!localStorage.getItem('token');
 
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

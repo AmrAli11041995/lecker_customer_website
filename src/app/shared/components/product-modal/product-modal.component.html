@@ -121,7 +121,7 @@
         </div>
 
         <!-- Pricing -->
-        <div class="pricing">
+        <div class="pricing"  *ngIf="isLoggedIn()">
           <div class="price-row">
             <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
             <span class="current-price">${{ product.price }}</span>
@@ -144,14 +144,14 @@
         </div>
 
         <!-- Quantity Selector -->
-        <div class="quantity-selector">
+        <div class="quantity-selector"  *ngIf="isLoggedIn()">
           <button class="quantity-btn" (click)="decreaseQuantity()">-</button>
           <span class="quantity-value">{{ quantity }}</span>
           <button class="quantity-btn" (click)="increaseQuantity()">+</button>
         </div>
 
         <!-- Action Buttons -->
-        <div class="action-buttons">
+        <div class="action-buttons" *ngIf="isLoggedIn()">
           <button 
             class="add-to-cart-btn" 
             [disabled]="!product.isInStock"

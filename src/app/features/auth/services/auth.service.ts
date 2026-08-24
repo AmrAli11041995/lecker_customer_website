@@ -22,4 +22,8 @@ export class AuthService {
       this.apiURl + '/Register',body 
     );
   }
+
+  isLoggedIn(): boolean {
+  return !!localStorage.getItem('token');
+}
 }
