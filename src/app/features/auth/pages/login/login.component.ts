@@ -7,6 +7,8 @@ import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 
 import { LanguageSelectorComponent } from '../../../../shared/components/language-selector/language-selector.component';
+import { CustomerService } from '../../services/customer.service';
+import { ApiResponse } from '../../../../shared/models/apiResponse.model';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent {
   loginForm!: FormGroup;
   showPassword: boolean = false;
   submitted = false;
-  constructor(private fb: FormBuilder, private translate: TranslateService, private authService: AuthService, private router: Router, private toastService: ToastService) { }
+  constructor(private fb: FormBuilder, private translate: TranslateService, private authService: AuthService, private router: Router, private toastService: ToastService, private customerService: CustomerService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -39,9 +41,32 @@ export class LoginComponent {
         next: (res) => {
           debugger;
           if (res.status === true) {
-            console.log(res);
-            localStorage.setItem('token', res.data);
-            this.router.navigate(['/home']);
+            const params: any = {
+              PageNumber: 1,
+              PageSize: 10,
+              StatusId: 2,
+              searchTerm: this.loginForm.value.email
+            };
+            this.customerService.getCustomers(params).subscribe({
+              next: (customerRes: any) => {
+                if (customerRes.success === true) {
+                  if(customerRes.entities.items[0].statusId !== 2) {
+                    this.toastService.showError(`Your Account Not Approved`);
+                    return;
+                  }
+                  console.log(customerRes);
+                  localStorage.setItem('employeeId', customerRes.entities.items[0].id)
+                  localStorage.setItem('token', res.data);
+                  this.router.navigate(['/home']);
+                } else {
+                  this.toastService.showError(`Login failed!`);
+                }
+
+              },
+              error: (err) => {
+                console.log(err)
+              }
+            })
           }
           else {
             this.toastService.showError(`Login failed!`);
@@ -60,5 +85,5 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
     }
   }
-  
+
 }

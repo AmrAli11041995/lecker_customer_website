@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { CartItem } from '../../models/cart.model';
 import { QuantitySelectorComponent } from '../../../../shared/components/quantity-selector/quantity-selector.component';
+import { FallbackImageDirective } from '../../../../shared/directives/fallback-image.directive';
 
 @Component({
   selector: 'app-cart-table',
   standalone: true,
-  imports: [CommonModule, QuantitySelectorComponent, TranslateModule],
+  imports: [CommonModule, QuantitySelectorComponent, TranslateModule, FallbackImageDirective],
   templateUrl: './cart-table.component.html',
   styleUrl: './cart-table.component.scss'
 })

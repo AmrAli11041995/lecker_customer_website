@@ -5,7 +5,7 @@
       <button class="category-card" *ngFor="let c of categories" (click)="onSelect(c)">
         <span class="image-wrap">
           <!-- <img [src]="c.image" [alt]="c.name" /> -->
-          <img [src]="fileBaseURL +c.fileUrl" [alt]="c.name" />
+          <img [src]="fileBaseURL +c.fileUrl" [alt]="c.name" fallbackImage="assets/img/empty-default.png"/>
         </span>
         <span class="name">{{ c.name }}</span>
         <span class="count">{{ c.count }} {{ 'HOME.ITEMS' | translate }}</span>

@@ -179,6 +179,7 @@
     "PAYMENT_METHOD": "Zahlungsmethode",
     "PLACE_ORDER": "Bestellung aufgeben",
     "FREE": "Kostenlos",
+    "Clear": "Klar",
     "PAYMENT_METHODS": { "cash": "Nachnahme", "other": "Andere" }
   },
   "CART_TOTAL": { "TITLE": "Warenkorb Gesamt", "SUBTOTAL": "Zwischensumme", "SHIPPING": "Versand", "TOTAL": "Gesamt", "PROCEED_TO_CHECKOUT": "Zur Kasse", "FREE": "Kostenlos" },
@@ -230,6 +231,6 @@
       "SELECT_COUNTRY": "Land auswählen",
       "SELECT_CITY": "Stadt auswählen"
     },
-    "ERROR": { "PHONE_PATTERN": "Bitte eine gültige Telefonnummer eingeben" }
+    "ERROR": { "PHONE_PATTERN": "Bitte eine gültige Telefonnummer eingeben", "MinValue": "Der Bestellwert liegt unter dem Mindestbestellwert." }
   }
 }

@@ -13,9 +13,11 @@
         <app-order-summary
           [orderSummary]="orderSummary"
           [selectedPaymentMethod]="selectedPaymentMethod"
+          [appliedCopoun]="appliedCopounToggle"
           (paymentMethodChange)="onPaymentMethodChange($event)"
           (placeOrder)="onPlaceOrder()"
           (couponApplied)="onCouponApplied($event)"
+          (clearCoupon)="onClearCoupon($event)"
         ></app-order-summary>
       </div>
     </div>

@@ -22,6 +22,8 @@ export interface OrderSummary {
   subtotal: number;
   shipping: number;
   total: number;
+  discount: number;
+  copounId?: number;
 }
 
 export interface OrderItem {
@@ -32,6 +34,7 @@ export interface OrderItem {
   price: number;
   quantity: number;
   subtotal: number;
+  discount: number;
 }
 
 export interface CheckoutData {

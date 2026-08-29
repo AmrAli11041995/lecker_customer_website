@@ -179,6 +179,7 @@
     "PAYMENT_METHOD": "Payment Method",
     "PLACE_ORDER": "Place Order",
     "FREE": "Free",
+    "Clear": "Clear",
     "PAYMENT_METHODS": { "cash": "Cash on Delivery", "other": "Other" }
   },
   "CART_TOTAL": { "TITLE": "Cart Total", "SUBTOTAL": "Subtotal", "SHIPPING": "Shipping", "TOTAL": "Total", "PROCEED_TO_CHECKOUT": "Proceed to checkout", "FREE": "Free" },
@@ -231,6 +232,6 @@
       "SELECT_COUNTRY": "Select Country",
       "SELECT_CITY": "Select City"
     },
-    "ERROR": { "PHONE_PATTERN": "Please enter a valid phone number" }
+    "ERROR": { "PHONE_PATTERN": "Please enter a valid phone number", "MinValue": "Order Value Is Less Than Minumm Order Value" }
   }
 }

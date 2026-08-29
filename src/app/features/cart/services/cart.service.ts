@@ -2,45 +2,23 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart, CartItem, CouponCode } from '../models/cart.model';
 import { environment } from '../../../../environments/environment.development';
+import { ApiResponse } from '../../../shared/models/apiResponse.model';
+import { Copoun } from '../models/copoun.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private readonly copounServiceUrl: string = `${environment.apiBaseUrlGateWay}/Order/Copoun`
   private readonly STORAGE_KEY = 'cart_items_v1';
   private cartSubject = new BehaviorSubject<Cart>(this.getInitialCart());
   public cart$ = this.cartSubject.asObservable();
-  private getInitialCart(): Cart {
-    ;
-    // Dummy cart data matching the screenshot
-    // const items: CartItem[] = [
-    //   {
-    //     id: 1,
-    //     productId: 1,
-    //     name: 'Nutella Jar',
-    //     image: 'assets/img/Products/nutella.png',
-    //     price: 14.00,
-    //     quantity: 5,
-    //     subtotal: 70.00
-    //   },
-    //   {
-    //     id: 2,
-    //     productId: 2,
-    //     name: 'Orange go Juice',
-    //     image: 'assets/img/Products/orange.png',
-    //     price: 14.00,
-    //     quantity: 1,
-    //     subtotal: 14.00
-    //   }
-    // ];
 
-    // return {
-    //   items,
-    //   subtotal: 84.00,
-    //   shipping: 0,
-    //   total: 84.00,
-    //   itemCount: 6
-    // };
+  constructor(private http: HttpClient) {
+
+  }
+  private getInitialCart(): Cart {
     try {
       const raw = localStorage.getItem(this.STORAGE_KEY);
       if (raw) {
@@ -108,6 +86,9 @@ export class CartService {
     this.cartSubject.next(cart);
   }
 
+  applayCoupon(param: any): Observable<ApiResponse<Copoun>> {
+    return this.http.get<ApiResponse<Copoun>>(`${this.copounServiceUrl}/Validate`, {params: param})
+  }
   applyCoupon(couponCode: string): boolean {
     // Dummy coupon validation
     const validCoupons: { [key: string]: CouponCode } = {

@@ -6,8 +6,11 @@ import { OrderSummaryComponent } from '../../components/order-summary/order-summ
 import { CartService } from '../../../cart/services/cart.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { ToastComponent } from '../../../../shared/components/toast/toast.component';
-import { BillingInfo, OrderSummary, CheckoutData } from '../../models/checkout.model';
+import { BillingInfo, OrderSummary, CheckoutData, OrderItem } from '../../models/checkout.model';
 import { CheckoutService } from '../../services/checkout.service';
+import { ApiResponse } from '../../../../shared/models/apiResponse.model';
+import { Copoun } from '../../../cart/models/copoun.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-checkout',
@@ -32,43 +35,72 @@ export class CheckoutComponent implements OnInit {
 
   selectedPaymentMethod: string = 'cash';
   orderSummary!: OrderSummary;
-
+  discountValue: number = 0;
+  appliedCopounToggle: boolean = false;
   constructor(
     private cartService: CartService,
     private checkoutService: CheckoutService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService,
   ) { }
 
   ngOnInit(): void {
     this.initializeOrderSummary();
   }
 
-  private initializeOrderSummary(): void {
+  private initializeOrderSummary(discountDetails?: Copoun): void {
+    debugger
     const cart = this.cartService.getCart();
-
+    let itemsCart: OrderItem[] = cart.items.map(item => ({
+      id: item.id,
+      productId: item.productId,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: item.quantity,
+      subtotal: item.subtotal,
+      discount: (discountDetails === null || discountDetails === undefined) ? 0 : this.calculateDiscount(discountDetails?.discountType, discountDetails?.discountValue, item.price)
+    }));
+    itemsCart.forEach(item => {
+      item.subtotal = this.calculateTotalForItem(item.quantity, item.price, item.discount);
+    });
     this.orderSummary = {
-      items: cart.items.map(item => ({
-        id: item.id,
-        productId: item.productId,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        quantity: item.quantity,
-        subtotal: item.subtotal
-      })),
+      items: itemsCart,
+      copounId: (discountDetails === null || discountDetails === undefined) ? undefined : discountDetails?.id,
       subtotal: cart.subtotal,
       shipping: cart.shipping,
-      total: cart.total
+      total: (discountDetails === null || discountDetails === undefined) ? cart.total : itemsCart.reduce((accumulator, currentItem) => {
+        return accumulator + currentItem.subtotal;
+      }, 0),
+      discount: (discountDetails === null || discountDetails === undefined) ? 0 : itemsCart.reduce((accumulator, currentItem) => {
+        return accumulator + (currentItem.discount * currentItem.quantity);
+      }, 0),
     };
-
+    this.appliedCopounToggle = (discountDetails === null || discountDetails === undefined) ? false : true;
     // If cart is empty, redirect to home
     if (this.orderSummary.items.length === 0) {
       this.toastService.showInfo('Your cart is empty. Please add some products first.');
       this.router.navigate(['/']);
     }
   }
+  
+  calculateTotalForItem(quantity: number = 0, price: number = 0, discount: number = 0) : number {
+    return quantity * (price - discount);
+  }
 
+  calculateDiscount(discountType?: number, discountValue: number = 0, price: number = 0): number {
+    if (discountType === null) { 
+      return 0; 
+    }
+
+    if (discountType === 1) {
+      // Get Percentage for Copoun
+      let discount: number = discountValue / 100;
+      return price * discount;
+    }
+    return 0;
+  }
   onBillingInfoChange(billingInfo: BillingInfo): void {
     this.billingInfo = billingInfo;
   }
@@ -78,13 +110,42 @@ export class CheckoutComponent implements OnInit {
   }
 
   onCouponApplied(couponCode: string): void {
-    const success = this.cartService.applyCoupon(couponCode);
-    if (success) {
-      this.toastService.showSuccess(`Coupon "${couponCode}" applied successfully!`);
-      this.initializeOrderSummary(); // Refresh order summary
+    debugger
+    var employeeId = localStorage.getItem('employeeId');
+    if (employeeId === undefined || employeeId === null) {
+      this.toastService.showError('Please Register To Use This Code');
     } else {
-      this.toastService.showError(`Invalid coupon code: "${couponCode}"`);
+      var params = {
+        code: couponCode,
+        customerId: employeeId
+      }
+      this.cartService.applayCoupon(params).subscribe({
+        next: (res: ApiResponse<Copoun>) => {
+          debugger
+          if (res.status === true) {
+            if (res.data.minOrderValue === null ||
+              res.data.minOrderValue === undefined ||
+              this.orderSummary.subtotal >= res.data.minOrderValue) {
+              // Calculate Discount Value
+              this.initializeOrderSummary(res.data);
+              this.toastService.showSuccess(`Coupon "${couponCode}" applied successfully!`);
+            } else {
+              this.toastService.showError(this.translate.instant('ERROR.MinValue'));
+            }
+          } else {
+            this.toastService.showError(res.message!)
+          }
+          console.log(res)
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
     }
+  }
+
+  onClearCoupon(copounCode: string) : void {
+    this.initializeOrderSummary(undefined);
   }
 
   onPlaceOrder(): void {
@@ -137,6 +198,8 @@ export class CheckoutComponent implements OnInit {
       customerId: checkoutData.billingInfo.customerId,
       PaymentMethod: checkoutData.paymentMethod,
       totalPrice: checkoutData.orderSummary.total,
+      discountValue: checkoutData.orderSummary.discount,
+      CopounId: checkoutData.orderSummary.copounId,
       orderAddress: {
         country: checkoutData.billingInfo.country,
         city: checkoutData.billingInfo.city,
