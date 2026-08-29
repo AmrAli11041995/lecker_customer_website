@@ -225,6 +225,25 @@
   }
 }
 
+.logout-icon-container {
+  position: relative;
+  color: #8B4513;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  
+  &:hover {
+    color: #A0522D;
+    transform: scale(1.05);
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .wishlist-badge {
   position: absolute;
   top: -8px;
@@ -414,7 +433,8 @@
   }
   
   .wishlist-icon,
-  .cart-icon-container {
+  .cart-icon-container,
+  .logout-icon-container {
     svg {
       width: 20px;
       height: 20px;

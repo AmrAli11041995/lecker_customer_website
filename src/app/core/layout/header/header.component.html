@@ -61,6 +61,24 @@
           <span class="cart-total">${{ cart.total.toFixed(2) }}</span>
         </div>
       </div>
+
+      <div *ngIf="isLoggedIn()" class="separator"></div>
+
+      <div *ngIf="isLoggedIn()" class="logout-icon-container" (click)="signOut()" [title]="'HEADER.SIGN_OUT' | translate">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+      </div>
+
+       <div *ngIf="!isLoggedIn()" class="login-icon-container" (click)="signOut()" [title]="'HEADER.SIGN_OUT' | translate">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+      </div>
     </div>
   </div>
 </header>

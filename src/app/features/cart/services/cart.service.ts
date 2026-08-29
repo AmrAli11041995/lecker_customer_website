@@ -125,7 +125,7 @@ export class CartService {
 
   private calculateTotals(cart: Cart): void {
     cart.subtotal = cart.items.reduce((sum, item) => sum + item.subtotal, 0);
-    cart.shipping = cart.subtotal > 50 ? 0 : 10; // Free shipping over $50
+    cart.shipping = cart.subtotal > 50 ? 0 : 0; // Free shipping over $50
     cart.total = cart.subtotal + cart.shipping;
     cart.itemCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
   }

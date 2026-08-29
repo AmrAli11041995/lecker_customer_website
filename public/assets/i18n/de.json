@@ -5,7 +5,9 @@
     "WISHLIST": "Wunschliste",
     "NAV": { "HOME": "Startseite", "SHOP": "Shop", "CONTACT": "Kontakt" },
     "CART_LABEL": "Warenkorb:",
-    "LANG": { "EN": "Englisch", "DE": "Deutsch" }
+    "LANG": { "EN": "Englisch", "DE": "Deutsch" },
+    "SIGN_OUT": "Abmelden",
+    "SIGN_IN": "Anmelden"
   },
   "HOME": {
     "CATEGORIES": "Kategorien",

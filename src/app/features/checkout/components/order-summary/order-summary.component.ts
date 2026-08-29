@@ -22,7 +22,7 @@ export class OrderSummaryComponent {
 
   paymentMethods: PaymentMethod[] = [
     { type: 'cash', label: 'Cash on Delivery' },
-    { type: 'other', label: 'Other' }
+    // { type: 'other', label: 'Other' }
   ];
 
   couponCode: string = '';
